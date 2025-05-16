@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { FaFacebook, FaTwitter, FaLinkedin, FaInstagram, FaMapMarkerAlt, FaPhone, FaEnvelope, FaClock } from "react-icons/fa";
 // import 
-import image from '@/public/kzfo.png';
+import image from '@/public/kinzi.png';
 import Image from 'next/image';
 import GlowingBackground from "./Glowing";
 import { BackgroundGradientAnimation } from "@/components/ui/background-gradient-animation";

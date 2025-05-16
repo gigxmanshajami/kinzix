@@ -1,0 +1,89 @@
+import React from 'react'
+import { Rocket } from 'lucide-react';
+function RedArrowLine({ width, right, top }) {
+    return (
+        <div className="flex  l justify-center items-center relative top-[1.5em] right-[4em]  " style={{
+            width: width,
+            top: top,
+            righht: right,
+        }}>
+            {/* Left Circle */}
+            <div className="w-2 h-2 bg-red-500 rounded-full"></div>
+
+            {/* Line */}
+            <div className="flex-grow h-0.5 bg-red-500 mx-1"></div>
+
+            {/* Right Arrowhead */}
+            <div className="w-0 h-0 border-t-4 border-b-4 border-l-8 border-transparent border-l-red-500"></div>
+        </div>
+    );
+}
+
+const Howework = () => {
+    return (
+        <div className='flex items-center justify-around h-screen mt-[5em] pb-20 gap-[2em] w-full flex-col'>
+            <div className='flex flex-row items-center justify-center  gap-[3em]'>
+                <div className='w-[453px] h-[174px]  flex-col items-center justify-center flex'>
+                    <div>
+                        <span className='text-[#FF0000] '>HOW WE WORK</span>
+                        <h1 className='font-semibold text-[41px] mt-[12px] leading-[58px] trackgin-[-1.5%]'>Get a dedicated design team at fraction of the cost.</h1>
+                    </div>
+                </div>
+                <div className='flex flex-col w-[450px]  gap-[2em] h-[174px] '>
+                    <p className='text-[#FFFFFF80] leading-7 tracking-normal text-justify text-[24px] font-light'>
+                        Grow your brand with high-quality design for a flat monthly fee. Work with senior designers. Subscribe and make as many requests as you need - no limits.
+                    </p>
+                    <button className='float-right bg-[#FF4B4B] text-black w-[149]  h-[56] text-center justify-center items-center font-medium text-[15px] p-[17px] flex rounded-[8px] hover:scale-105 transition-all cursor-pointer '>
+                        See Pricing
+                    </button>
+                </div>
+            </div>
+            <div className='flex flex-row justify-evenly w-full'>
+                <div className="w-[409px] h-[288px]">
+                    <div>
+                        <div className='flex align-center'>
+                            <div className='bg-[#FF4B4B] w-[60px] h-[60px] rounded-full  p-2 flex items-center mr-20 mb-8 mt-20 justify-center'>
+                                <Rocket size={40} color='black' />
+                            </div>
+                            <RedArrowLine width={'190px'} top={'1.6em'} right={'24em'} />
+                        </div>
+                    </div>
+                    <div className='pr-10'>
+                        <h1 className="text-[26px] font-medium">Subscribe & get started</h1>
+                        <p className="font-light mt-3 w-[250px] text-[14px] text-[#FFFFFF80]">Submit as many design tasks as you need without worrying about individual project fees.
+                        </p>
+                    </div>
+                </div>
+                <div className="w-[409px] h-[288px]">
+                    <div>
+                        <div className='flex  align-center'>
+                            <div className='bg-[#FF4B4B] w-[60px] h-[60px] rounded-full p-2  flex items-center mr-20 mb-8 mt-20 justify-center'>
+                                <Rocket size={40} color='black' />
+                            </div>
+                            <RedArrowLine width={'190px'} top={'1.6em'} right={'23.4em'} />
+                        </div>
+                    </div>
+                    <div className='pr-10'>
+                        <h1 className="text-[26px] font-medium">Subscribe & get started</h1>
+                        <p className="font-light mt-3 w-[250px] text-[14px] text-[#FFFFFF80]">Submit as many design tasks as you need without worrying about individual project fees.
+                        </p>
+                    </div>
+                </div>
+                <div className="w-[409px] h-[288px]">
+                    <div className='flex  align-center'>
+                        <div className='bg-[#FF4B4B] w-[60px] h-[60px] rounded-full p-2  flex items-center mr-20 mb-8 mt-20 justify-center'>
+                            <Rocket size={40} color='black' />
+                        </div>
+                    </div>
+                    <div >
+                        <h1 className="text-[26px] font-medium">Subscribe & get started</h1>
+                        <p className="font-light mt-3 w-[250px] text-[14px] text-[#FFFFFF80]">Submit as many design tasks as you need without worrying about individual project fees.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    )
+}
+
+export default Howework

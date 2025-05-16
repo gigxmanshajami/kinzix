@@ -18,25 +18,25 @@ export const Navbar = ({
   className
 }) => {
   const ref = useRef(null);
-  const { scrollY } = useScroll({
-    target: ref,
-    offset: ["start start", "end start"],
-  });
+  // const { scrollY } = useScroll({
+  //   target: ref,
+  //   offset: ["start start", "end start"],
+  // });
   const [visible, setVisible] = useState(false);
 
-  useMotionValueEvent(scrollY, "change", (latest) => {
-    if (latest > 100) {
-      setVisible(true);
-    } else {
-      setVisible(false);
-    }
-  });
+  // useMotionValueEvent(scrollY, "change", (latest) => {
+  //   if (latest > 100) {
+  //     setVisible(true);
+  //   } else {
+  //     setVisible(false);
+  //   }
+  // });
 
   return (
     <motion.div
-      ref={ref}
+      // ref={ref}
       // IMPORTANT: Change this to class of `fixed` if you want the navbar to be fixed
-      className={cn("fixed inset-x-0 top-0 z-50 w-full", className)}>
+      className={cn("inset-x-0  z-50 w-full", className)}>
       {React.Children.map(children, (child) =>
         React.isValidElement(child)
           ? React.cloneElement(child, { visible })

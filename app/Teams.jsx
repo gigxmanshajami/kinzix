@@ -8,15 +8,18 @@ import { Form } from './components/Book'
 const Teams = ({ data, contactdt }) => {
   console.log('h con', contactdt)
   return (
-    <div>
+    <div className='flex justify-between flex-col gap-[30em]'>
       {/* <TextRevealCardPreview text={'hello'} textRev={'bye'}/>
          */}
       <div>
-        <Lamp textone={data[0].mainHeading} texttwo={data[0].headingS} />
+        <PointerH textdef={contactdt.mainHeading || 'nan'} textanim={contactdt.highlight || 'nan'} />
+        <Form />
+      </div>
+      <div>
+        {/* <Lamp textone={data[0].mainHeading} texttwo={data[0].headingS} /> */}
         <TeamsShow data={data} />
       </div>
-      <PointerH textdef={contactdt.mainHeading || 'nan'} textanim={contactdt.highlight ||  'nan'} />
-      <Form />
+
     </div>
   )
 }

@@ -5,7 +5,7 @@ import { LampContainer } from "@/components/ui/lamp";
 
 export function Lamp({textone, texttwo}) {
     return (
-        <LampContainer>
+        <LampContainer className={'bg-[#0e1519]'}>
             <motion.h1
                 initial={{ opacity: 0.5, y: 100 }}
                 whileInView={{ opacity: 1, y: 0 }}

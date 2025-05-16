@@ -1,91 +1,71 @@
 "use client";
-import React, { useEffect, useRef, useState } from "react";
-import { useMotionValueEvent, useScroll } from "motion/react";
-import { motion } from "motion/react";
-import { IPhoneMockup } from "react-device-mockup";
-import { cn } from "@/lib/utils";
 
-export const StickyScroll = ({ content, contentClassName }) => {
-  const [activeCard, setActiveCard] = useState(0);
-  const ref = useRef(null);
+import { Tabs } from "@/components/ui/tabs";
 
-  const { scrollYProgress } = useScroll({
-    container: ref,
-    offset: ["start start", "end start"],
-  });
-
-  const cardLength = content.length;
-
-  useMotionValueEvent(scrollYProgress, "change", (latest) => {
-    const cardsBreakpoints = content.map((_, index) => index / cardLength);
-    const closestBreakpointIndex = cardsBreakpoints.reduce((acc, breakpoint, index) => {
-      const distance = Math.abs(latest - breakpoint);
-      if (distance < Math.abs(latest - cardsBreakpoints[acc])) {
-        return index;
-      }
-      return acc;
-    }, 0);
-    setActiveCard(closestBreakpointIndex);
-  });
-
-  const backgroundColors = ["#020618", "#0a0a0a", "#0a0a0a"];
-  const linearGradients = [
-    "linear-gradient(to bottom right, #06b6d4, #10b981)",
-    "linear-gradient(to bottom right, #ec4899, #6366f1)",
-    "linear-gradient(to bottom right, #f97316, #eab308)",
-  ];
-
-  const [backgroundGradient, setBackgroundGradient] = useState(linearGradients[0]);
-
-  useEffect(() => {
-    setBackgroundGradient(linearGradients[activeCard % linearGradients.length]);
-  }, [activeCard]);
+export function StickyScroll({ tabs }) {
+  // const tabs = [
+  //   {
+  //     title: "Product",
+  //     value: "product",
+  //     content: (
+  //       <div
+  //         className="w-full overflow-hidden relative h-full rounded-2xl p-10 text-xl md:text-4xl font-bold text-white bg-gradient-to-br from-purple-700 to-violet-900">
+  //         <p>Product Tab</p>
+  //         <DummyContent />
+  //       </div>
+  //     ),
+  //   },
+  //   {
+  //     title: "Services",
+  //     value: "services",
+  //     content: (
+  //       <div
+  //         className="w-full overflow-hidden relative h-full rounded-2xl p-10 text-xl md:text-4xl font-bold text-white bg-gradient-to-br from-purple-700 to-violet-900">
+  //         <p>Services tab</p>
+  //         <DummyContent />
+  //       </div>
+  //     ),
+  //   },
+  //   {
+  //     title: "Playground",
+  //     value: "playground",
+  //     content: (
+  //       <div
+  //         className="w-full overflow-hidden relative h-full rounded-2xl p-10 text-xl md:text-4xl font-bold text-white bg-gradient-to-br from-purple-700 to-violet-900">
+  //         <p>Playground tab</p>
+  //         <DummyContent />
+  //       </div>
+  //     ),
+  //   },
+  //   {
+  //     title: "Content",
+  //     value: "content",
+  //     content: (
+  //       <div
+  //         className="w-full overflow-hidden relative h-full rounded-2xl p-10 text-xl md:text-4xl font-bold text-white bg-gradient-to-br from-purple-700 to-violet-900">
+  //         <p>Content tab</p>
+  //         <DummyContent />
+  //       </div>
+  //     ),
+  //   },
+  //   {
+  //     title: "Random",
+  //     value: "random",
+  //     content: (
+  //       <div
+  //         className="w-full overflow-hidden relative h-full rounded-2xl p-10 text-xl md:text-4xl font-bold text-white bg-gradient-to-br from-purple-700 to-violet-900">
+  //         <p>Random tab</p>
+  //         <DummyContent />
+  //       </div>
+  //     ),
+  //   },
+  // ];
 
   return (
-    <motion.div
-      animate={{ backgroundColor: backgroundColors[activeCard % backgroundColors.length] }}
-      className="relative flex h-[40rem] justify-center space-x-10 rounded-md p-10"
-      ref={ref}
-      style={{ overflowY: "auto", scrollbarWidth: "none" }}
-    >
-      {/* Text Section */}
-      <div className="relative flex items-start px-4">
-        <div className="max-w-2xl">
-          {content.map((item, index) => (
-            <div key={item.title + index} className="my-20">
-              <motion.h2
-                initial={{ opacity: 0 }}
-                animate={{ opacity: activeCard === index ? 1 : 0.3 }}
-                className="text-2xl font-bold text-slate-100"
-              >
-                {item.title}
-              </motion.h2>
-              <motion.p
-                initial={{ opacity: 0 }}
-                animate={{ opacity: activeCard === index ? 1 : 0.3 }}
-                className="text-kg mt-10 max-w-sm text-slate-300"
-              >
-                {item.description}
-              </motion.p>
-            </div>
-          ))}
-          <div className="h-40" />
-        </div>
-      </div>
-
-      {/* iPhone Mockup Section */}
-      <div
-        className={cn("sticky top-0 hidden lg:block", contentClassName)}
-        style={{
-          transform: "scale(0.8)",
-        }}
-      >
-        <IPhoneMockup transparentNavBar={true}  hideStatusBar={true} screenWidth={250} screenType="island" frameColor="#000000">
-          <div className="h-full w-full overflow-hidden bg-white">
-            {content[activeCard].content}
-          </div>
-        </IPhoneMockup>
-      </div>
-    </motion.div>
+    <div
+      className="h-[20rem] md:h-[40rem] [perspective:1000px] relative b flex flex-col max-w-5xl mx-auto w-full  items-start justify-start my-40">
+      <Tabs tabs={tabs}  />
+    </div>
   );
-};
+}
+

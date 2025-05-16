@@ -7,6 +7,10 @@ import Project from './Project';
 // import Conclusion from './Conclusion';
 // import Footer from './Footer';
 import { client } from '@/lib/sanity';
+import Howework from './Howework';
+import Works from './Works';
+
+export const dynamic = 'force-dynamic'; // <- this is the key
 
 const heroQuery = '*[_type == "Hero"][0]';
 // const serviceQuery = '*[_type == "service"]';
@@ -18,26 +22,15 @@ const footerQuery = '*[_type == "footerSection"][0]';
 
 const fetchData = async () => {
   try {
-    // Fetch data for all sections
     const hero = await client.fetch(heroQuery);
-    // const services = await client.fetch(serviceQuery);
     const projects = await client.fetch(projectQuery);
     const teams = await client.fetch(teamsQuery);
     const contactUs = await client.fetch(contactQuery);
     const conclusion = await client.fetch(conclusionQuery);
     const footer = await client.fetch(footerQuery);
-    console.log({
-      hero,
-      // services,
-      projects,
-      teams,
-      contactUs,
-      conclusion,
-      footer,
-    })
+
     return {
       hero,
-      // services,
       projects,
       teams,
       contactUs,
@@ -48,7 +41,6 @@ const fetchData = async () => {
     console.error("Error fetching data:", error);
     return {
       hero: null,
-      // services: null,
       projects: null,
       teams: null,
       contactUs: null,
@@ -58,11 +50,9 @@ const fetchData = async () => {
   }
 };
 
-// Server Component that fetches data and renders the page
 export default async function Home() {
   const {
     hero,
-    // services,
     projects,
     teams,
     contactUs,
@@ -71,19 +61,25 @@ export default async function Home() {
   } = await fetchData();
 
   return (
-    <div className="scroll-smooth">
-      <section>
+    <div className="scroll-smooth ">
+      <section className='px-[150px]'>
         <Hero data={hero} />
       </section>
-      <section >
+      <section className='px-[150px]'>
+        <Howework />
+      </section>
+      <section>
+        <Works />
+      </section>
+      {/* <section className='px-[150px]'>
         <Service data={projects} />
-      </section>
-      <section>
+      </section> */}
+      {/* <section className='px-[150px]'>
         <Project data={projects} />
-      </section>
-      <section>
+      </section> */}
+      {/* <section className='px-[150px]'>
         <Teams data={teams} contactdt={contactUs} />
-      </section>
+      </section> */}
 
     </div>
   );

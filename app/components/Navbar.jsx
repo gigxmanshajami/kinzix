@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Image from 'next/image';
-import kinzixImage from '../kinzix.png';
+import kinzixImage from '@/public/kinzi.png';
 import {
     Navbar,
     NavBody,
@@ -15,6 +15,8 @@ import {
     MobileNavMenu,
 } from "@/components/ui/resizable-navbar";
 import { useState } from "react";
+import { Menu } from 'lucide-react';
+import color from '@/lib/theme';
 const NavbarHome = () => {
     const navItems = [
         {
@@ -34,74 +36,32 @@ const NavbarHome = () => {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
     return (
-        // <nav className="sticky top-0 w-full items-center justify-between border-t border-b border-neutral-200 px-4 py-4 dark:border-neutral-800 backdrop-blur-lg bg-white/30 dark:bg-black/30 flex z-20">
-        //     <div className="flex items-center gap-2">
-        //         {/* <div className="size-7 rounded-full bg-gradient-to-br from-violet-500 to-pink-500" /> */}
-        //         <Image src={kinzixImage} alt="Kinzix" width={120} height={120} />
-        //         {/* <h1 className="text-base font-bold md:text-2xl">kinzix.com</h1> */}
-        //     </div>
-        //     <button className="w-24 transform rounded-lg bg-black px-6 py-2 font-medium text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-gray-800 md:w-32 dark:bg-white dark:text-black dark:hover:bg-gray-200">
-        //         Login
-        //     </button>
-        // </nav>
-        <div className=" w-full sticky top-0 z-[2000]">
-            <Navbar>
-                {/* Desktop Navigation */}
-                <NavBody>
-                    <NavbarLogo />
-                    <NavItems items={navItems} />
-                    <div className="flex items-center gap-4">
-                        <NavbarButton variant="secondary">Login</NavbarButton>
-                        <NavbarButton variant="primary">Book a call</NavbarButton>
-                    </div>
-                </NavBody>
+        <div className='w-full h-[4em] p-3 items-center flex flex-row bg-transparent z-50 backdrop-blur-lg  justify-evenly gap-80  fixed top-0'>
+            {/* logo */}
+            <div>
+                <Image src={kinzixImage} alt='Kinzix' className='lg:w-[120] lg:h-[120] object-contain ' width={120} height={120} />
+            </div>
 
-                {/* Mobile Navigation */}
-                <MobileNav>
-                    <MobileNavHeader>
-                        <NavbarLogo />
-                        <MobileNavToggle
-                            isOpen={isMobileMenuOpen}
-                            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                        />
-                    </MobileNavHeader>
-
-                    <MobileNavMenu
-                        isOpen={isMobileMenuOpen}
-                        onClose={() => setIsMobileMenuOpen(false)}
-                    >
-                        {navItems.map((item, idx) => (
-                            <a
-                                key={`mobile-link-${idx}`}
-                                href={item.link}
-                                onClick={() => setIsMobileMenuOpen(false)}
-                                className="relative text-neutral-600 dark:text-neutral-300"
-                            >
-                                <span className="block">{item.name}</span>
-                            </a>
-                        ))}
-                        <div className="flex w-full flex-col gap-4">
-                            <NavbarButton
-                                onClick={() => setIsMobileMenuOpen(false)}
-                                variant="primary"
-                                className="w-full"
-                            >
-                                Login
-                            </NavbarButton>
-                            <NavbarButton
-                                onClick={() => setIsMobileMenuOpen(false)}
-                                variant="primary"
-                                className="w-full"
-                            >
-                                Book a call
-                            </NavbarButton>
-                        </div>
-                    </MobileNavMenu>
-                </MobileNav>
-            </Navbar>
-            {/* <DummyContent /> */}
-
-            {/* Navbar */}
+            {/* right nav */}
+            <div className=' items-center gap-10 hidden  lg:flex' >
+                <div>
+                    <ul className='flex justify-between items-center  align-middle gap-[32px]'>
+                        <li>Process</li>
+                        <li>Benefits</li>
+                        <li>Services</li>
+                        <li>PortFolio</li>
+                        <li>FAQ</li>
+                    </ul>
+                </div>
+                <div>
+                    <button className='bg-[#FF4B4B] text-black w-[120]  h-[50] text-center justify-center items-center font-semibold text-[15px] p-[17px] flex rounded-[8px] hover:scale-105 transition-all cursor-pointer '>
+                        Get Started
+                    </button>
+                </div>
+            </div>
+            <div className='lg:hidden'>
+                <Menu />
+            </div>
         </div>
     );
 };
