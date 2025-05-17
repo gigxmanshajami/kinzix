@@ -9,6 +9,8 @@ import Project from './Project';
 import { client } from '@/lib/sanity';
 import Howework from './Howework';
 import Works from './Works';
+import DesignSubscription from './components/Helps';
+import Testimonial from './components/Testimonial';
 
 export const dynamic = 'force-dynamic'; // <- this is the key
 
@@ -70,6 +72,12 @@ export default async function Home() {
       </section>
       <section>
         <Works />
+      </section>
+      <section className='px-[150px]'>
+        <DesignSubscription />
+      </section>
+      <section>
+        <Testimonial />
       </section>
       {/* <section className='px-[150px]'>
         <Service data={projects} />
