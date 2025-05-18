@@ -76,13 +76,13 @@ const Footer = () => {
                 boxShadow: 'none',
             }}>
                 {/* Top CTA Section */}
-                <BackgroundGradientAnimation>
+                {/* <BackgroundGradientAnimation>
                     <div className="absolute z-50 inset-0 flex items-center justify-center text-white font-bold px-4 pointer-events-none text-3xl text-center md:text-4xl lg:text-7xl">
                         <p className="bg-clip-text text-transparent drop-shadow-2xl bg-gradient-to-b from-white/80 to-white/20">
                             {text}
                         </p>
                     </div>
-                </BackgroundGradientAnimation>
+                </BackgroundGradientAnimation> */}
             </div>
 
             <footer className="bg-gray-50"
@@ -110,10 +110,61 @@ const Footer = () => {
                             }}
                         /> */}
                             <Image src={image} alt="kinzix" />
-                            <p className="text-gray-600 mb-8">
+                            {/* <p className="text-gray-600 mb-8">
                                 We are dedicated to delivering innovative solutions that empower businesses to thrive in the digital age.
-                            </p>
-                            <div className="flex space-x-4">
+                            </p> */}
+
+                        </div>
+                        <div className="flex flex-col gap-[4em]">
+                            <div className="flex flex-row gap-12">
+                                {/* Quick Info */}
+                                <div>
+                                    <h3 className="text-lg font-semibold text-white mb-6">Services</h3>
+                                    <div className="space-y-4">
+                                        <div className="flex items-start">
+                                            <FaMapMarkerAlt className="text-gray-400 mt-1 mr-3" />
+                                            <p className="text-gray-600">123 Business Avenue, Suite 100<br />New York, NY 10001</p>
+                                        </div>
+                                        <div className="flex items-center">
+                                            <FaPhone className="text-gray-400 mr-3" />
+                                            <a href="tel:+1234567890" className="text-gray-600 hover:text-blue-600">+1 (234) 567-890</a>
+                                        </div>
+                                        <div className="flex items-center">
+                                            <FaEnvelope className="text-gray-400 mr-3" />
+                                            <a href="mailto:contact@example.com" className="text-gray-600 hover:text-blue-600">contact@example.com</a>
+                                        </div>
+                                        <div className="flex items-start">
+                                            <FaClock className="text-gray-400 mt-1 mr-3" />
+                                            <p className="text-gray-600">Mon - Fri: 9:00 AM - 6:00 PM<br />Sat - Sun: Closed</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {/* Quick Info */}
+                                <div>
+                                    <h3 className="text-lg font-semibold text-white mb-6">Technologies</h3>
+                                    <div className="space-y-4">
+                                        <div className="flex items-start">
+                                            <FaMapMarkerAlt className="text-gray-400 mt-1 mr-3" />
+                                            <p className="text-gray-600">123 Business Avenue, Suite 100<br />New York, NY 10001</p>
+                                        </div>
+                                        <div className="flex items-center">
+                                            <FaPhone className="text-gray-400 mr-3" />
+                                            <a href="tel:+1234567890" className="text-gray-600 hover:text-blue-600">+1 (234) 567-890</a>
+                                        </div>
+                                        <div className="flex items-center">
+                                            <FaEnvelope className="text-gray-400 mr-3" />
+                                            <a href="mailto:contact@example.com" className="text-gray-600 hover:text-blue-600">contact@example.com</a>
+                                        </div>
+                                        <div className="flex items-start">
+                                            <FaClock className="text-gray-400 mt-1 mr-3" />
+                                            <p className="text-gray-600">Mon - Fri: 9:00 AM - 6:00 PM<br />Sat - Sun: Closed</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div className="flex space-x-4 items-center  justify-center w-[100%]">
                                 <a href="#" className="text-gray-400 hover:text-blue-600 transition-colors duration-300" aria-label="Facebook">
                                     <FaFacebook size={24} />
                                 </a>
@@ -129,30 +180,7 @@ const Footer = () => {
                             </div>
                         </div>
 
-                        {/* Contact Info */}
-                        <div>
-                            <h3 className="text-lg font-semibold text-white mb-6">Contact Information</h3>
-                            <div className="space-y-4">
-                                <div className="flex items-start">
-                                    <FaMapMarkerAlt className="text-gray-400 mt-1 mr-3" />
-                                    <p className="text-gray-600">123 Business Avenue, Suite 100<br />New York, NY 10001</p>
-                                </div>
-                                <div className="flex items-center">
-                                    <FaPhone className="text-gray-400 mr-3" />
-                                    <a href="tel:+1234567890" className="text-gray-600 hover:text-blue-600">+1 (234) 567-890</a>
-                                </div>
-                                <div className="flex items-center">
-                                    <FaEnvelope className="text-gray-400 mr-3" />
-                                    <a href="mailto:contact@example.com" className="text-gray-600 hover:text-blue-600">contact@example.com</a>
-                                </div>
-                                <div className="flex items-start">
-                                    <FaClock className="text-gray-400 mt-1 mr-3" />
-                                    <p className="text-gray-600">Mon - Fri: 9:00 AM - 6:00 PM<br />Sat - Sun: Closed</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        {/* Subscribe Section */}
+                        {/* Subscribe Section
                         <div>
                             <h3 className="text-lg font-semibold text-white mb-6">Subscribe to Our Newsletter</h3>
                             <form onSubmit={handleSubmit} className="space-y-4">
@@ -179,7 +207,7 @@ const Footer = () => {
                                     <a href="#" className="underline hover:text-blue-600">Privacy Policy</a>
                                 </p>
                             </form>
-                        </div>
+                        </div> */}
                     </div>
                 </div >
 

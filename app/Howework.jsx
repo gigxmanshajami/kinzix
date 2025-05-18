@@ -22,7 +22,7 @@ function RedArrowLine({ width, right, top }) {
 const Howework = () => {
     return (
         <div className='flex items-center justify-around h-screen mt-[5em] pb-20 gap-[2em] w-full flex-col'>
-            <div className='flex flex-row items-center justify-center  gap-[3em]'>
+            <div className='flex flex-col lg:flex-row items-center justify-center  gap-[3em]'>
                 <div className='w-[453px] h-[174px]  flex-col items-center justify-center flex'>
                     <div>
                         <span className='text-[#FF0000] '>HOW WE WORK</span>
@@ -38,7 +38,7 @@ const Howework = () => {
                     </button>
                 </div>
             </div>
-            <div className='flex flex-row justify-evenly w-full'>
+            <div className='flex lg:flex-row   justify-evenly w-full '>
                 <div className="w-[409px] h-[288px]">
                     <div>
                         <div className='flex align-center'>

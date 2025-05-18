@@ -64,10 +64,10 @@ export default async function Home() {
 
   return (
     <div className="scroll-smooth ">
-      <section className='px-[150px]'>
+      <section className='lg:px-[150px]'>
         <Hero data={hero} />
       </section>
-      <section className='px-[150px]'>
+      <section className='lg:px-[150px]'>
         <Howework />
       </section>
       <section>

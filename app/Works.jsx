@@ -1,7 +1,7 @@
 import React from 'react'
 import { AppleCardsCarouselDemo, MacbookScrollDemo, StickyScrollProject } from './components/Projectshowscroll'
 
-const Works = () => {
+const Works = ({rf}) => {
     const content = [
         {
             title: "Collaborative Editing",
@@ -36,7 +36,7 @@ const Works = () => {
     ];
 
     return (
-        <div className='bg-[#fff] pt-[4em] pb-[4em] px-[150px]'>
+        <div className='bg-[#fff] pt-[4em] pb-[4em] px-[150px]' ref={rf}>
             {/* heading */}
             <div className='flex items-center justify-center flex-col gap-3 '>
                 <h1 className='text-[#111204] leading-[58px] tracking-[-2.64px] text-[48px] font-bold'>Our Beautiful Works</h1>

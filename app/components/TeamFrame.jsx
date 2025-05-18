@@ -1,5 +1,5 @@
 'use client'
-import { AnimatedTestimonials } from "@/components/ui/animated-testimonials";
+import { AnimatedTestimonials } from '@/components/ui/animated-testimonials.jsx';
 import { urlFor } from "@/lib/imageUrl";
 import { useEffect, useState } from "react";
 
@@ -25,7 +25,8 @@ export function TeamsShow({ data }) {
 
   return (
     testimonialssec.length > 0 && (
-      <AnimatedTestimonials testimonials={testimonialssec} />
+      // <AnimatedTestimonials testimonials={testimonialssec} />
+      <AnimatedTestimonials />
     )
   );
 }
