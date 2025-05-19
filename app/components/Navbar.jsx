@@ -3,11 +3,30 @@ import React, { useState } from "react";
 import Image from "next/image";
 import kinzixImage from "@/public/kinzi.png";
 import { Menu, ChevronDown, Lightbulb } from "lucide-react";
-
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog"
+import { Textarea } from "@/components/ui/textarea"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
 export const NavbarHome = () => {
   const [activeDropdown, setActiveDropdown] = useState(null);
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [message, setMessage] = useState('');
+  const emailms = 'kinzixinnovation@gmail.com';
 
-  
+  const safeName = name || 'No Name';
+  const safeEmail = email || 'No Email';
+  const safeMessage = message || 'No Message';
+
+  const mailtoLink = `mailto:${emailms}?subject=${encodeURIComponent(`Message from ${safeName} (${safeEmail})`)}&body=${encodeURIComponent(safeMessage)}`;
   const navItems = [
     { name: "Process", link: "#process" },
     { name: "Benefits", link: "#benefits" },
@@ -157,9 +176,50 @@ export const NavbarHome = () => {
         </ul>
 
         {/* CTA */}
-        <button className="bg-[#FF4B4B] text-black w-[120px] h-[50px] flex items-center justify-center font-semibold text-[15px] px-[17px] rounded-[8px] hover:scale-105 transition">
-          Get Started
-        </button>
+        <Dialog>
+          <DialogTrigger asChild>
+            <button className="bg-[#FF4B4B] text-black w-[120px] h-[50px] flex items-center justify-center font-semibold text-[15px] px-[17px] rounded-[8px] hover:scale-105 transition">
+              Contact Us
+            </button>
+          </DialogTrigger>
+          <DialogContent className="sm:max-w-[425px]">
+            <DialogHeader>
+              <DialogTitle>Contact Us</DialogTitle>
+              <DialogDescription>
+                Let’s Connect and Create Something Great.
+              </DialogDescription>
+            </DialogHeader>
+            <div className="grid gap-4 py-4">
+              <div className="grid grid-cols-4 items-center gap-4">
+                <Label htmlFor="name" className="text-right">
+                  Name
+                </Label>
+                <Input id="name" value={name || ''} onChange={(e) => setName(e.target.value)} className="col-span-3" />
+              </div>
+              <div className="grid grid-cols-4 items-center gap-4">
+                <Label htmlFor="email" className="text-right">
+                  Email
+                </Label>
+                <Input id="email" value={email || ''} onChange={(e) => setEmail(e.target.value)} className="col-span-3" />
+              </div>
+              <div className="grid grid-cols-4 items-center gap-4">
+                <Label htmlFor="message" className="text-right">
+                  Message
+                </Label>
+                <Textarea id="message" value={message || ''} onChange={(e) => setMessage(e.target.value)} className="col-span-3" />
+              </div>
+            </div>
+            <DialogFooter>
+              <a href={mailtoLink} className="w-full">
+                <button className='bg-white w-full text-black  h-[50] text-center justify-center items-center font-semibold text-[15px] p-[12px] flex rounded-[8px] hover:scale-105 transition-all cursor-pointer '>
+                  Send Message
+                </button>
+              </a>
+            </DialogFooter>
+          </DialogContent>
+        </Dialog>
+
+
       </div>
 
       {/* mobile burger */}

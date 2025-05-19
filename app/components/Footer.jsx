@@ -62,7 +62,7 @@ const Footer = () => {
         setSuccess(true);
         setEmail("");
     };
-    useEffect(async () => {
+    useEffect(() => {
         fetchData();
     }, [])
     return (

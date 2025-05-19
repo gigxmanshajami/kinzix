@@ -67,28 +67,18 @@ export default async function Home() {
       <section className='lg:px-[150px]'>
         <Hero data={hero} />
       </section>
-      <section className='lg:px-[150px]'>
+      <section className='lg:px-[150px] relative backdrop-blur-[10px] z-10'>
         <Howework />
       </section>
-      <section>
+      <section className='relative z-20'>
         <Works />
       </section>
-      <section className='px-[150px]'>
+      <section className='px-[150px] relative backdrop-blur-[10px] z-10'>
         <DesignSubscription />
       </section>
-      <section>
+      <section className='relative z-20'>
         <Testimonial />
       </section>
-      {/* <section className='px-[150px]'>
-        <Service data={projects} />
-      </section> */}
-      {/* <section className='px-[150px]'>
-        <Project data={projects} />
-      </section> */}
-      {/* <section className='px-[150px]'>
-        <Teams data={teams} contactdt={contactUs} />
-      </section> */}
-
     </div>
   );
 }
