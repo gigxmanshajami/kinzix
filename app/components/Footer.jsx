@@ -4,47 +4,44 @@ import { FaFacebook, FaTwitter, FaLinkedin, FaInstagram, FaMapMarkerAlt, FaPhone
 // import 
 import image from '@/public/kinzi.png';
 import Image from 'next/image';
-import GlowingBackground from "./Glowing";
-import { BackgroundGradientAnimation } from "@/components/ui/background-gradient-animation";
 import { client } from "@/lib/sanity";
 
 const Footer = () => {
     const [email, setEmail] = useState("");
     const [error, setError] = useState("");
     const [success, setSuccess] = useState(false);
-    const conclusionQuery = '*[_type == "conclusionSection"][0]';
-    const footerQuery = '*[_type == "footerSection"][0]';
-    const [text, setText] = useState('');
-    const fetchData = async () => {
-        try {
-            // Fetch data for all sections
+    const footerQuery = '*[_type == "footer"][0]';
+    const [text, setText] = useState("");
 
-            const conclusion = await client.fetch(conclusionQuery);
-            const footer = await client.fetch(footerQuery);
-            console.log({
-                conclusion,
-                footer,
-            })
-            setText(
-                conclusion.mainHeading
-            );
-            return {
-                conclusion,
-                footer,
-            };
-        } catch (error) {
-            console.error("Error fetching data:", error);
-            return {
-                hero: null,
-                // services: null,
-                projects: null,
-                teams: null,
-                contactUs: null,
-                conclusion: null,
-                footer: null,
-            };
-        }
-    };
+    useEffect(() => {
+        let subscription;
+
+        const fetchData = async () => {
+            try {
+                const data = await client.fetch(footerQuery);
+                setText(data?.footerText || "");
+                console.log('footerdata', data)
+            } catch (err) {
+                console.error("Initial fetch error:", err);
+            }
+
+            // Subscribe to real-time changes
+            subscription = client
+                .listen(footerQuery)
+                .subscribe(update => {
+                    const updatedText = update?.result?.footerText;
+                    if (updatedText) {
+                        setText(updatedText);
+                    }
+                });
+        };
+
+        fetchData();
+
+        return () => {
+            if (subscription) subscription.unsubscribe();
+        };
+    }, []);
 
 
     const validateEmail = (email) => {
@@ -62,9 +59,6 @@ const Footer = () => {
         setSuccess(true);
         setEmail("");
     };
-    useEffect(() => {
-        fetchData();
-    }, [])
     return (
         <>
             <div style={{

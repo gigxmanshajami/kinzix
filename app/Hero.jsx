@@ -13,18 +13,10 @@ import starBig from '@/public/Star.png';
 import starMid from '@/public/Star (1).png';
 import starSm from '@/public/Star (2).png';
 export default function Hero({ data }) {
-    console.log(data.Text_First);
-    const words = data.Text_First;
     const [init, setInit] = useState(false);
     useEffect(() => {
         initParticlesEngine(async (engine) => {
-            // you can initiate the tsParticles instance (engine) here, adding custom shapes or presets
-            // this loads the tsparticles package bundle, it's the easiest method for getting everything ready
-            // starting from v2 you can add only the features you need reducing the bundle size
-            //await loadAll(engine);
-            //await loadFull(engine);
             await loadSlim(engine);
-            //await loadBasic(engine);
         }).then(() => {
             setInit(true);
         });
@@ -98,23 +90,10 @@ export default function Hero({ data }) {
         }),
         [],
     );
-    const secText = data.Text_Second;
-    const segments = [
-        { text: "Not all vision needs noise" },
-        { text: "Kinzix Infotech", style: "text-blue-500" },
-        { text: "crafts clean bold products", },
-        { text: "that quietly move things forward", }
-    ];
-    const [showStaticText, setShowStaticText] = useState(false);
-
-    useEffect(() => {
-        const timeout = setTimeout(() => {
-            setShowStaticText(true);
-        }, 5000); // Adjust duration based on how long the text animation takes
-
-        return () => clearTimeout(timeout);
-    }, []);
-
+    const text_first = data.Text_First;
+    const text_middle = data.Text_mid;
+    const text_last = data.Text_last;
+    const description = data.hero_description;
     return (
         <div className="relative flex-col  h-screen overflow-hidden flex items-center justify-center w-full">
             <div className="absolute inset-0 max-w-[600px] max-h-[400px] mx-auto" style={{ pointerEvents: 'none' }}>
@@ -150,7 +129,7 @@ export default function Hero({ data }) {
             {/* Content */}
             <div className="relative  z-10 text-white text-center items-center flex flex-col pt-20 gap-10">
                 <h1 className="text-[40px] sm:text-[32px] md:text-[60px] lg:text-[96px] font-bold pointer-events-none capitalize leading-12 lg:leading-[103px] lg:tracking-[-2.88px]">
-                    Bringing your <br /> Dream Into <span className="text-[#FF4B4B] italic">reality</span>
+                    {text_first}  <br /> {text_middle}<span className="text-[#FF4B4B] italic">{text_last}</span>
                 </h1>
 
                 <motion.div
@@ -166,7 +145,7 @@ export default function Hero({ data }) {
                 </motion.div>
 
                 <p className="lg:text-[18px] text-center lg:w-[522px] text-[#ffffff80] lg:h-[50px] w-[350px]">
-                    We increase revenue and ensure sustainable long-term growth for your business through powerful Webflow websites.
+                 {description}
                 </p>
                 <div className="relative">
                     <motion.div

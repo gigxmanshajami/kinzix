@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import kinzixImage from "@/public/kinzi.png";
 import { Menu, ChevronDown, Lightbulb } from "lucide-react";
@@ -11,101 +11,70 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/components/ui/dialog"
-import { Textarea } from "@/components/ui/textarea"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
+} from "@/components/ui/dialog";
+import { client } from "@/lib/sanity";
+import { Textarea } from "@/components/ui/textarea";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+
 export const NavbarHome = () => {
   const [activeDropdown, setActiveDropdown] = useState(null);
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [message, setMessage] = useState('');
-  const emailms = 'kinzixinnovation@gmail.com';
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
+  const [navItems, setNavItems] = useState([]);
 
-  const safeName = name || 'No Name';
-  const safeEmail = email || 'No Email';
-  const safeMessage = message || 'No Message';
+  const emailms = "kinzixinnovation@gmail.com";
 
-  const mailtoLink = `mailto:${emailms}?subject=${encodeURIComponent(`Message from ${safeName} (${safeEmail})`)}&body=${encodeURIComponent(safeMessage)}`;
-  const navItems = [
-    { name: "Process", link: "#process" },
-    { name: "Benefits", link: "#benefits" },
-    {
-      name: "Services",
-      subCategories: [
-        {
-          categoryHeading: "Consulting",
-          color: "#e63946",
-          items: [
-            { name: "Web Development", link: "#web", icons: <Lightbulb color='#6b6b6b' size={27} strokeOpacity={0.8} /> },
-            { name: "App Development", link: "#app", icons: <Lightbulb color='#6b6b6b' size={27} strokeOpacity={0.8} /> },
-            { name: "App Development", link: "#app", icons: <Lightbulb color='#6b6b6b' size={27} strokeOpacity={0.8} /> },
-            { name: "Web Development", link: "#web", icons: <Lightbulb color='#6b6b6b' size={27} strokeOpacity={0.8} /> },
-            { name: "App Development", link: "#app", icons: <Lightbulb color='#6b6b6b' size={27} strokeOpacity={0.8} /> },
+  // Correct query: fetch nav document(s) and get the menus array
+  const navQuery = '*[_type == "nav"]{menus}';
 
-          ]
-        },
-        {
-          categoryHeading: "Automation",
-          color: "#f4ac4e",
-          items: [
-            { name: "AI & Automation", link: "#ai", icons: <Lightbulb color='#6b6b6b' size={27} strokeOpacity={0.8} /> },
-            { name: "RPA Bots", link: "#rpa", icons: <Lightbulb color='#6b6b6b' size={27} strokeOpacity={0.8} /> },
-            { name: "AI & Automation", link: "#ai", icons: <Lightbulb color='#6b6b6b' size={27} strokeOpacity={0.8} /> },
-            { name: "RPA Bots", link: "#rpa", icons: <Lightbulb color='#6b6b6b' size={27} strokeOpacity={0.8} /> },
-            { name: "RPA Bots", link: "#rpa", icons: <Lightbulb color='#6b6b6b' size={27} strokeOpacity={0.8} /> },
-          ]
-        },
-        {
-          categoryHeading: "Automation",
-          color: "#25dbc0",
-          items: [
-            { name: "AI & Automation", link: "#ai", icons: <Lightbulb color='#6b6b6b' size={27} strokeOpacity={0.8} /> },
-            { name: "RPA Bots", link: "#rpa", icons: <Lightbulb color='#6b6b6b' size={27} strokeOpacity={0.8} /> },
-            { name: "AI & Automation", link: "#ai", icons: <Lightbulb color='#6b6b6b' size={27} strokeOpacity={0.8} /> },
-            { name: "RPA Bots", link: "#rpa", icons: <Lightbulb color='#6b6b6b' size={27} strokeOpacity={0.8} /> },
-            { name: "RPA Bots", link: "#rpa", icons: <Lightbulb color='#6b6b6b' size={27} strokeOpacity={0.8} /> },
-          ]
-        },
-        {
-          categoryHeading: "Automation",
-          color: "#74d67b",
-          items: [
-            { name: "AI & Automation", link: "#ai", icons: <Lightbulb color='#6b6b6b' size={27} strokeOpacity={0.8} /> },
-            { name: "RPA Bots", link: "#rpa", icons: <Lightbulb color='#6b6b6b' size={27} strokeOpacity={0.8} /> },
-            { name: "AI & Automation", link: "#ai", icons: <Lightbulb color='#6b6b6b' size={27} strokeOpacity={0.8} /> },
-            { name: "RPA Bots", link: "#rpa", icons: <Lightbulb color='#6b6b6b' size={27} strokeOpacity={0.8} /> },
-            { name: "RPA Bots", link: "#rpa", icons: <Lightbulb color='#6b6b6b' size={27} strokeOpacity={0.8} /> },
-          ]
-        },
-        {
-          categoryHeading: "Automation",
-          color: "#36b5de",
-          items: [
-            { name: "AI & Automation", link: "#ai", icons: <Lightbulb color='#6b6b6b' size={27} strokeOpacity={0.8} /> },
-            { name: "RPA Bots", link: "#rpa", icons: <Lightbulb color='#6b6b6b' size={27} strokeOpacity={0.8} /> },
-            { name: "RPA Bots", link: "#rpa", icons: <Lightbulb color='#6b6b6b' size={27} strokeOpacity={0.8} /> },
-            { name: "RPA Bots", link: "#rpa", icons: <Lightbulb color='#6b6b6b' size={27} strokeOpacity={0.8} /> },
-            { name: "RPA Bots", link: "#rpa", icons: <Lightbulb color='#6b6b6b' size={27} strokeOpacity={0.8} /> },
+  useEffect(() => {
+    const fetchNavData = async () => {
+      try {
+        const data = await client.fetch(navQuery);
+        // data is an array of nav docs, take the first one (assuming only one)
+        const menus = data[0]?.menus || [];
 
-          ]
-        },
-        {
-          categoryHeading: "Automation",
-          color: "#fa936b",
-          items: [
-            { name: "AI & Automation", link: "#ai", icons: <Lightbulb color='#6b6b6b' size={27} strokeOpacity={0.8} /> },
-            { name: "RPA Bots", link: "#rpa", icons: <Lightbulb color='#6b6b6b' size={27} strokeOpacity={0.8} /> },
-            { name: "RPA Bots", link: "#rpa", icons: <Lightbulb color='#6b6b6b' size={27} strokeOpacity={0.8} /> },
-            { name: "RPA Bots", link: "#rpa", icons: <Lightbulb color='#6b6b6b' size={27} strokeOpacity={0.8} /> },
-            { name: "RPA Bots", link: "#rpa", icons: <Lightbulb color='#6b6b6b' size={27} strokeOpacity={0.8} /> },
-          ]
-        },
-      ]
-    },
-    { name: "PortFolio", link: "#portfolio" },
-    { name: "FAQ", link: "#faq" },
-  ];
+        // Map menus to format for component
+        const mappedData = menus.map((item) => ({
+          name: item.name,
+          link: item.link || "#",
+          subCategories: item.subCategories?.map((cat) => ({
+            categoryHeading: cat.categoryHeading,
+            color: cat.color,
+            items:
+              cat.items?.map((subItem) => ({
+                name: subItem.name,
+                link: subItem.link === "null" ? "#" : subItem.link,
+                icons:
+                  subItem.icon === "Lightbulb" ? (
+                    <Lightbulb
+                      color="#6b6b6b"
+                      size={27}
+                      strokeOpacity={0.8}
+                    />
+                  ) : null,
+              })) || [],
+          })) || [],
+        }));
+
+        setNavItems(mappedData);
+      } catch (error) {
+        console.error("Error fetching nav data:", error);
+      }
+    };
+
+    fetchNavData();
+  }, []);
+
+  const safeName = name || "No Name";
+  const safeEmail = email || "No Email";
+  const safeMessage = message || "No Message";
+
+  const mailtoLink = `mailto:${emailms}?subject=${encodeURIComponent(
+    `Message from ${safeName} (${safeEmail})`
+  )}&body=${encodeURIComponent(safeMessage)}`;
 
   return (
     <div className="w-full h-[4em] p-3 flex items-center bg-transparent fixed top-0 z-50 backdrop-blur-lg gap-80 justify-evenly">
@@ -122,38 +91,41 @@ export const NavbarHome = () => {
       <div className="hidden lg:flex items-center gap-10">
         <ul className="relative flex items-center gap-[32px]">
           {navItems.map((item) => (
-            <li key={item.name} key={item.name} className="relative">
+            <li key={item.name} className="relative">
               {/* label + chevron */}
               <div
                 className="flex items-center gap-1 cursor-pointer z-50"
                 onMouseEnter={() =>
-                  item.subCategories
+                  item.subCategories && item.subCategories.length > 0
                     ? setActiveDropdown(item.name)
                     : setActiveDropdown(null)
                 }
               >
                 <a href={item.link || "#"}>{item.name}</a>
-                {item.subCategories && (
+                {item.subCategories && item.subCategories.length > 0 && (
                   <ChevronDown
                     size={16}
-                    className={`transition-transform ${activeDropdown === item.name ? "rotate-180" : ""
-                      }`}
+                    className={`transition-transform ${
+                      activeDropdown === item.name ? "rotate-180" : ""
+                    }`}
                   />
                 )}
               </div>
 
               {/* full-screen dropdown */}
-              {item.subCategories && activeDropdown && item.name && (
+              {item.subCategories && activeDropdown === item.name && (
                 <div
                   className="fixed left-0 top-[4em] w-[100%] h-[calc(100vh-4em)] bg-transparent z-40 transition-all duration-200 backdrop-blur-lg"
                   onMouseEnter={() => setActiveDropdown(item.name)}
-                  key={item.name}
                   onMouseLeave={() => setActiveDropdown(null)}
                 >
                   <div className="w-full max-w-7xl bg-white mx-auto pl-30 pr-30 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5">
                     {item.subCategories.map((category, idx) => (
                       <div key={idx}>
-                        <h1 className="text-[18px] border-b border-b-[#c9c8c8] font-[500]  uppercase pt-[2px] " style={{ color: category.color || "#6b6b6b", }}>
+                        <h1
+                          className="text-[18px] border-b border-b-[#c9c8c8] font-[500] uppercase pt-[2px]"
+                          style={{ color: category.color || "#6b6b6b" }}
+                        >
                           {category.categoryHeading}
                         </h1>
                         {category.items.map((sub) => (
@@ -162,7 +134,8 @@ export const NavbarHome = () => {
                             href={sub.link}
                             className="pt-2 pb-2 border-b border-b-[#c9c8c8] hover:bg-gray-100 flex transition text-lg font-medium text-[#6b6b6b] gap-2"
                           >
-                            <span>{sub.icons}</span>{sub.name}
+                            <span>{sub.icons}</span>
+                            {sub.name}
                           </a>
                         ))}
                       </div>
@@ -170,7 +143,6 @@ export const NavbarHome = () => {
                   </div>
                 </div>
               )}
-
             </li>
           ))}
         </ul>
@@ -194,32 +166,45 @@ export const NavbarHome = () => {
                 <Label htmlFor="name" className="text-right">
                   Name
                 </Label>
-                <Input id="name" value={name || ''} onChange={(e) => setName(e.target.value)} className="col-span-3" />
+                <Input
+                  id="name"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  className="col-span-3"
+                />
               </div>
               <div className="grid grid-cols-4 items-center gap-4">
                 <Label htmlFor="email" className="text-right">
                   Email
                 </Label>
-                <Input id="email" value={email || ''} onChange={(e) => setEmail(e.target.value)} className="col-span-3" />
+                <Input
+                  id="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  className="col-span-3"
+                />
               </div>
               <div className="grid grid-cols-4 items-center gap-4">
                 <Label htmlFor="message" className="text-right">
                   Message
                 </Label>
-                <Textarea id="message" value={message || ''} onChange={(e) => setMessage(e.target.value)} className="col-span-3" />
+                <Textarea
+                  id="message"
+                  value={message}
+                  onChange={(e) => setMessage(e.target.value)}
+                  className="col-span-3"
+                />
               </div>
             </div>
             <DialogFooter>
               <a href={mailtoLink} className="w-full">
-                <button className='bg-white w-full text-black  h-[50] text-center justify-center items-center font-semibold text-[15px] p-[12px] flex rounded-[8px] hover:scale-105 transition-all cursor-pointer '>
+                <button className="bg-white w-full text-black h-[50px] text-center justify-center items-center font-semibold text-[15px] p-[12px] flex rounded-[8px] hover:scale-105 transition-all cursor-pointer">
                   Send Message
                 </button>
               </a>
             </DialogFooter>
           </DialogContent>
         </Dialog>
-
-
       </div>
 
       {/* mobile burger */}
