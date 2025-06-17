@@ -10,6 +10,8 @@ import Howework from './Howework';
 import Works from './Works';
 import DesignSubscription from './components/Helps';
 import Testimonial from './components/Testimonial';
+import Image from 'next/image';
+import Img from '@/public/illcta.png';
 // import Scrollsec from './Scrollsec';
 import { VelocityScroll } from "@/components/magicui/scroll-based-velocity";
 
@@ -99,22 +101,30 @@ export default function Home() {
         <Howework data={projects} />
       </section>
       {/* cta block */}
-      <section className="lg:px-[150px] mt-[50em] h-screen ">
-        <div>
-          {/* content */}
-          <div>
-            <h1>
+      <section className="lg:px-[150px] mt-[20em] h-screen flex items-center justify-center">
+        <div className="w-full max-w-[1000px] h-auto rounded-[47px] bg-[#F3F3F3] grid grid-cols-1 md:grid-cols-2 gap-8 p-8 relative">
+
+          {/* Content */}
+          <div className="flex flex-col justify-center gap-6 p-[20px]">
+            <h3 className="font-medium text-[#000000] text-2xl">
               Let’s make things happen
-            </h1>
-            <p>
+            </h3>
+            <p className="text-base text-[#333]">
               Contact us today to learn more about how our digital marketing services can help your business grow and succeed online.
             </p>
-            <button className="shadow-[0_0_0_3px_#000000_inset]  hover:bg-transparent border text-white hover:text-black border-black dark:border-white bg-[#191A23]   font-bold transform hover:-translate-y-1 transition duration-400 w-[264px] cursor-none h-[68px] px-[35px] py-[20px]   rounded-[14px]">
+            <button className="shadow-[0_0_0_3px_#000000_inset] hover:bg-transparent border text-white hover:text-black border-black dark:border-white bg-[#191A23] font-bold transform hover:-translate-y-1 transition duration-400 w-[264px] h-[68px] px-[35px] py-[20px] rounded-[14px] cursor-none">
               Get your free proposal
             </button>
           </div>
+
+          {/* Image */}
+          <div className="flex justify-center items-center absolute right-[7em] top-[-1em]">
+            <Image src={Img.src} width={313} height={337} alt="Star" />
+          </div>
+
         </div>
       </section>
+
     </div>
   );
 }

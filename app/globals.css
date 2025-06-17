@@ -12,18 +12,18 @@
   --foreground: #000;
 
   --secondary-glow: conic-gradient(from 10deg at 50% 50%,
-    #eb7494 0deg,
-    #ae77b2 55deg,
-    #97b5da 120deg,
-    #0099ca 160deg,
-    transparent 360deg);
+      #eb7494 0deg,
+      #ae77b2 55deg,
+      #97b5da 120deg,
+      #0099ca 160deg,
+      transparent 360deg);
 
   --third-glow: conic-gradient(from 90deg at 50% 50%,
-    #ff8b7e 0deg,
-    #e24e6b 160deg,
-    #7ed2da 120deg,
-    #8bdce0 55deg,
-    transparent 360deg);
+      #ff8b7e 0deg,
+      #e24e6b 160deg,
+      #7ed2da 120deg,
+      #8bdce0 55deg,
+      transparent 360deg);
 
   --card: oklch(0.21 0.006 285.885);
   --card-foreground: oklch(0.985 0 0);
@@ -71,6 +71,11 @@ body {
   color: var(--foreground);
   font-family: "Space Grotesk", sans-serif;
 }
+
+h1, h2, h3, h4, h5, h6, span, p {
+  font-family: "Space Grotesk", sans-serif !important;
+}
+
 
 @theme inline {
   --color-background: var(--background);

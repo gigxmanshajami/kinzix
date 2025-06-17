@@ -52,6 +52,9 @@ body::after {
   font-family: "Space Grotesk", sans-serif;
   padding: 0 1rem;
 }
+h1, h2, h3, h4, h5, h6, span, p {
+  font-family: "Space Grotesk", sans-serif !important;
+}
 
 .line {
   background-color: black;
