@@ -88,8 +88,8 @@ export default function Home() {
 
   return (
     <div className=" space-grotesk ">
-      <section className="lg:px-[150px] h-screen">
-        {hero ? <Hero data={hero} /> : <div>Loading Hero...</div>}
+      <section className="lg:px-[150px] h-screen" data-aos="zoom-in">
+        {hero ? <Hero data={hero} /> : <div></div>}
       </section>
       <section className="relative mb-10 flex w-full flex-col items-center justify-center overflow-hidden  ">
         {/* <Scrollsec /> */}
@@ -101,8 +101,8 @@ export default function Home() {
         <Howework data={projects} />
       </section>
       {/* cta block */}
-      <section className="lg:px-[150px] mt-[20em] h-screen flex items-center justify-center">
-        <div className="w-full max-w-[1000px] h-auto rounded-[47px] bg-[#F3F3F3] grid grid-cols-1 md:grid-cols-2 gap-8 p-8 relative">
+      <section className="lg:px-[150px] mt-[20em] h-screen flex items-center justify-center" >
+        <div data-aos="zoom-in-up" className="w-full max-w-[1000px] h-auto rounded-[47px] bg-[#F3F3F3] grid grid-cols-1 md:grid-cols-2 gap-8 p-8 relative">
 
           {/* Content */}
           <div className="flex flex-col justify-center gap-6 p-[20px]">
@@ -123,8 +123,55 @@ export default function Home() {
           </div>
 
         </div>
-      </section>
+      </section >
+      {/* case studies */}
+      <section className="lg:px-[155px] h-screen " data-aos="zoom-in-up">
+        {/* heading */}
+        <div className="max-w-6xl mx-auto mb-10 flex flex-row  gap-10 items-center">
+          <h2 className="text-white  w-fit  font-medium  rounded-[7px] items-center flex text-center justify-center text-[40px] px-1.5 h-[51px] bg-[#FE332F]">
+            Case Studies
+          </h2>
+          <p className="text-black w-[580px] h-[46px]">
+            {/* At our digital marketing agency, we offer a range of services <br />
+            to help businesses grow and succeed online. These services include: */}
+          </p>
+        </div>
+        {/* content */}
+        <div className="w-full max-w-[1000px] p-6 bg-[#0F0F15] text-white rounded-[47px] grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-white/20 overflow-hidden">
 
-    </div>
+          {/* Card 1 */}
+          <div className="p-8 flex flex-col justify-between gap-4">
+            <p>
+              For a local restaurant, we implemented a targeted PPC campaign that resulted in a 50% increase in website traffic and a 25% increase in sales.
+            </p>
+            <a href="#" className="text-[#F94F4F] font-medium flex cursor-none items-center gap-2">
+              Learn more <span className="text-xl">↗</span>
+            </a>
+          </div>
+
+          {/* Card 2 */}
+          <div className="p-8 flex flex-col justify-between gap-4">
+            <p>
+              For a B2B software company, we developed an SEO strategy that resulted in a first page ranking for key keywords and a 200% increase in organic traffic.
+            </p>
+            <a href="#" className="text-[#F94F4F] font-medium  cursor-none flex items-center gap-2">
+              Learn more <span className="text-xl">↗</span>
+            </a>
+          </div>
+
+          {/* Card 3 */}
+          <div className="p-8 flex flex-col justify-between gap-4">
+            <p>
+              For a national retail chain, we created a social media marketing campaign that increased followers by 25% and generated a 20% increase in online sales.
+            </p>
+            <a href="#" className="text-[#F94F4F] cursor-none font-medium flex items-center gap-2">
+              Learn more <span className="text-xl">↗</span>
+            </a>
+          </div>
+
+        </div>
+
+      </section>
+    </div >
   );
 }

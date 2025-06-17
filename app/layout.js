@@ -7,6 +7,7 @@ import CalEm from "./components/cal";
 import { NavbarProvider } from "./components/NavBarcontext";
 import MeshImage from '@/public/noise.png';
 import { SmoothCursor } from "@/components/ui/smooth-cursor";
+import ClientRoot from "./components/Clientroot";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -28,24 +29,18 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`}
-     
+
     >
       <SmoothCursor />
       <Head>
         <link rel="icon" href="/kx-light.ico" media="(prefers-color-scheme: light)" />
         <link rel="icon" href="/kx-dark.ico" media="(prefers-color-scheme: dark)" />
       </Head>
-      {/* style={{
-        backgroundImage: `url(${MeshImage.src})`,
-        backgroundSize: 'cover',
-        backgroundRepeat: 'no-repeat',
-      }}  */}
-      <body >
-        <div className="lg:px-[91px]">
+      <body>
+        {/* <div className="lg:px-[91px]">
           <NavbarHome />
-        </div>
-        {children}
-        {/* <Footer /> */}
+        </div> */}
+        <ClientRoot>{children}</ClientRoot>
       </body>
     </html>
   );
