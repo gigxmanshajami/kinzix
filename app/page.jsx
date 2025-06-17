@@ -10,6 +10,8 @@ import Howework from './Howework';
 import Works from './Works';
 import DesignSubscription from './components/Helps';
 import Testimonial from './components/Testimonial';
+// import Scrollsec from './Scrollsec';
+import { VelocityScroll } from "@/components/magicui/scroll-based-velocity";
 
 export const dynamic = 'force-dynamic';
 
@@ -83,25 +85,35 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="scroll-smooth">
-      <section className="lg:px-[150px]">
+    <div className=" space-grotesk ">
+      <section className="lg:px-[150px] h-screen">
         {hero ? <Hero data={hero} /> : <div>Loading Hero...</div>}
       </section>
-
-      <section className="lg:px-[150px] relative backdrop-blur-[10px] z-10">
+      <section className="relative mb-10 flex w-full flex-col items-center justify-center overflow-hidden  ">
+        {/* <Scrollsec /> */}
+        <VelocityScroll numRows={2} defaultVelocity={2} className='text-sm'>Velocity Scroll</VelocityScroll>
+        <div className="pointer-events-none absolute inset-y-0 left-0 w-1/4 bg-gradient-to-r from-background"></div>
+        <div className="pointer-events-none absolute inset-y-0 right-0 w-1/4 bg-gradient-to-l from-background"></div>
+      </section>
+      <section className="lg:px-[114px] h-screen ">
         <Howework data={projects} />
       </section>
-
-      <section className="relative z-20">
-        <Works data={works} />
-      </section>
-
-      <section className="px-[150px] relative backdrop-blur-[10px] z-10">
-        <DesignSubscription data={designSubscription} />
-      </section>
-
-      <section className="relative z-20">
-        <Testimonial data={testimonial} />
+      {/* cta block */}
+      <section className="lg:px-[150px] mt-[50em] h-screen ">
+        <div>
+          {/* content */}
+          <div>
+            <h1>
+              Let’s make things happen
+            </h1>
+            <p>
+              Contact us today to learn more about how our digital marketing services can help your business grow and succeed online.
+            </p>
+            <button className="shadow-[0_0_0_3px_#000000_inset]  hover:bg-transparent border text-white hover:text-black border-black dark:border-white bg-[#191A23]   font-bold transform hover:-translate-y-1 transition duration-400 w-[264px] cursor-none h-[68px] px-[35px] py-[20px]   rounded-[14px]">
+              Get your free proposal
+            </button>
+          </div>
+        </div>
       </section>
     </div>
   );

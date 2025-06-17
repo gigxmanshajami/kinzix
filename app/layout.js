@@ -5,7 +5,8 @@ import Footer from "./components/Footer";
 import { NavbarHome } from "./components/Navbar";
 import CalEm from "./components/cal";
 import { NavbarProvider } from "./components/NavBarcontext";
-
+import MeshImage from '@/public/noise.png';
+import { SmoothCursor } from "@/components/ui/smooth-cursor";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -26,23 +27,26 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`}>
+    <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`}
+     
+    >
+      <SmoothCursor />
       <Head>
         <link rel="icon" href="/kx-light.ico" media="(prefers-color-scheme: light)" />
-        {/* Favicon for dark mode */}
         <link rel="icon" href="/kx-dark.ico" media="(prefers-color-scheme: dark)" />
       </Head>
+      {/* style={{
+        backgroundImage: `url(${MeshImage.src})`,
+        backgroundSize: 'cover',
+        backgroundRepeat: 'no-repeat',
+      }}  */}
       <body >
-        {/* <NavbarHome /> */}
+        <div className="lg:px-[91px]">
           <NavbarHome />
-          <main className="flex-grow">
-            {children}
-          </main>
-        {/* <Footer/> */}
-        <Footer />
-        <CalEm />
+        </div>
+        {children}
+        {/* <Footer /> */}
       </body>
     </html>
-
   );
 }

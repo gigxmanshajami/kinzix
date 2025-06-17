@@ -1,4 +1,4 @@
-'use client';
+'use cl ient';
 import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
@@ -19,7 +19,7 @@ export default function Testimonial({ data }) {
     const handlePrev = () => {
         setDirection(-1);
         setIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
-    };
+    };  
 
     const handleNext = () => {
         setDirection(1);
