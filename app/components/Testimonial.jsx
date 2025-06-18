@@ -1,75 +1,118 @@
-'use cl ient';
-import { useEffect, useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+'use client';
+import { useState, useRef, useEffect } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
-import { urlFor } from "@/lib/imageUrl";
-export default function Testimonial({ data }) {
-    const testimonials = data?.testimonials || [];
+import gsap from 'gsap';
+import Bubble from '@/public/Bubble.png';
+
+const testimonials = [
+    {
+        quote:
+            "We have been working with Positivus for the past year and have seen a significant increase in website traffic and leads as a result of their efforts. The team is professional, responsive, and truly cares about the success of our business. We highly recommend Positivus to any company looking to grow their online presence.",
+        name: "John Smith",
+        title: "Marketing Director at XYZ Corp",
+    },
+    {
+        quote:
+            "We have been working with Positivus for the past year and have seen a significant increase in website traffic and leads as a result of their efforts. The team is professional, responsive, and truly cares about the success of our business. We highly recommend Positivus to any company looking to grow their online presence.",
+        name: "Jane Doe",
+        title: "COO at Alpha Inc.",
+    },
+    {
+        quote:
+            "We have been working with Positivus for the past year and have seen a significant increase in website traffic and leads as a result of their efforts. The team is professional, responsive, and truly cares about the success of our business. We highly recommend Positivus to any company looking to grow their online presence.",
+        name: "Michael Lee",
+        title: "Head of Marketing at Gamma Co.",
+    },
+];
+
+export default function Testimonials() {
     const [index, setIndex] = useState(0);
-    const [direction, setDirection] = useState(1);
+    const [paused, setPaused] = useState(false);
+    const containerRef = useRef(null);
 
-    useEffect(() => {
-        const interval = setInterval(() => {
-            setDirection(1);
-            setIndex((prev) => (prev + 1) % testimonials.length);
-        }, 9000);
-        return () => clearInterval(interval);
-    }, [testimonials.length]);
-
-    const handlePrev = () => {
-        setDirection(-1);
-        setIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
-    };  
-
-    const handleNext = () => {
-        setDirection(1);
-        setIndex((prev) => (prev + 1) % testimonials.length);
+    const animate = () => {
+        gsap.fromTo(
+            containerRef.current,
+            { opacity: 0, y: 30 },
+            { opacity: 1, y: 0, duration: 0.5, ease: 'power2.out' }
+        );
     };
 
-    const t = testimonials[index] || {};
+    useEffect(() => {
+        animate();
+    }, [index]);
+
+    useEffect(() => {
+        if (!paused) {
+            const interval = setInterval(() => {
+                setIndex((prev) => (prev + 1) % testimonials.length);
+            }, 5000);
+            return () => clearInterval(interval);
+        }
+    }, [paused]);
+
+    const handleToggle = (next = true) => {
+        setPaused(true);
+        setIndex((prev) =>
+            next ? (prev + 1) % testimonials.length : (prev - 1 + testimonials.length) % testimonials.length
+        );
+    };
 
     return (
-        <section className="text-center py-16 bg-white">
-            <p className="text-sm uppercase text-gray-500 mb-2">Testimonial</p>
-            <h2 className="text-3xl font-bold mb-4 text-black">{data?.title_testi}</h2>
-            <p className="text-gray-600 mb-10">{data?.desc_testi}</p>
+        <div className="bg-[#191A23]  px-4 text-white rounded-[45px]">
+            <div className="max-w-5xl mx-auto text-center">
+                <div className="relative">
+                    <div
+                        ref={containerRef}
+                        className="w-full max-w-3xl mx-auto bg-no-repeat bg-center bg-contain relative flex flex-col justify-center top-[20px] items-center text-center"
+                        style={{
+                            backgroundImage: `url(${Bubble.src})`,
+                            backgroundRepeat: 'no-repeat',
+                            backgroundPosition: 'center',
+                            backgroundSize: 'contain',
+                            padding: '100px 60px 120px', // Adjust padding to match image shape
+                        }}
+                    >
+                        <p className="text-lg leading-relaxed max-w-[480px] mx-auto">
+                            “{testimonials[index].quote}”
+                        </p>
+                    </div>
 
-            <div className="flex flex-row justify-between items-center">
-                <button onClick={handlePrev} className="w-[50px] h-[50px]  ml-[60px] flex items-center justify-center m-2 bg-[black] p-2 rounded-full shadow hover:scale-105">
-                    <ChevronLeft />
-                </button>
+                    <div className="mt-6 relative right-[-8em] text-left">
+                        <p className="text-[#FF3D3D] font-semibold">{testimonials[index].name}</p>
+                        <p className="text-gray-400 text-sm">{testimonials[index].title}</p>
+                    </div>
 
-                <div className="relative max-w-4xl mx-auto h-[485px] p-[93px] bg-[#F9F9F9] justify-evenly rounded-3xl shadow flex items-center gap-6 overflow-hidden">
-                    <AnimatePresence mode="wait">
-                        <motion.div
-                            key={index}
-                            initial={{ opacity: 0, x: direction > 0 ? 50 : -50 }}
-                            animate={{ opacity: 1, x: 0 }}
-                            exit={{ opacity: 0, x: direction > 0 ? -50 : 50 }}
-                            transition={{ duration: 0.5 }}
-                            className="flex items-center gap-6"
-                        >
-                            <div className="flex-1 text-left">
-                                <div className="mb-2 text-gray-500 font-medium">{t.company}</div>
-                                <h3 className="text-xl font-bold text-gray-900 mb-2 w-[421px]">{t.title}</h3>
-                                <p className="text-gray-700 mb-4 w-[407px]">{t.feedback}</p>
-                                <p className="font-semibold text-black">{t.name}</p>
-                                <p className="text-sm text-gray-600">{t.position}</p>
-                            </div>
 
-                            <img
-                                src={t.image ? urlFor(t.image).width(325).height(325).url() : '/sample.png'}
-                                alt={t.name}
-                                className="w-[325px] h-[325px] rounded-full object-cover border-4 border-white shadow"
+
+                    {/* Dots */}
+                    <div className="mt-8 flex justify-center gap-2 relative bottom-[20px]">
+                        {testimonials.map((_, i) => (
+                            <div
+                                key={i}
+                                className={`w-3 h-3 rounded-full transition-all duration-300 ${i === index
+                                    ? "bg-[#FF3D3D]"
+                                    : "bg-white opacity-20"
+                                    }`}
                             />
-                        </motion.div>
-                    </AnimatePresence>
+                        ))}
+                    </div>
+                    {/* Arrows */}
                 </div>
-
-                <button onClick={handleNext} className="w-[50px] h-[50px]  mr-[60px] flex items-center justify-center m-2 bg-black p-2 rounded-full shadow hover:scale-105">
-                    <ChevronRight />
+                {/* <button
+                    onClick={() => handleToggle(false)}
+                    className="absolute left-0 top-1/2 -translate-y-1/2 text-white p-2"
+                >
+                    <ChevronLeft size={28} />
                 </button>
+                <button
+                    onClick={() => handleToggle(true)}
+                    className="absolute right-0 top-1/2 -translate-y-1/2 text-white p-2"
+                >
+                    <ChevronRight size={28} />
+                </button> */}
             </div>
-        </section>
+
+        </div>
     );
 }

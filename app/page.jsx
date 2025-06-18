@@ -55,6 +55,7 @@ const processSteps = [
 ];
 
 import { VelocityScroll } from "@/components/magicui/scroll-based-velocity";
+import TeamSection from './Teams';
 
 export const dynamic = 'force-dynamic';
 
@@ -233,7 +234,7 @@ export default function Home() {
             return (
               <div
                 key={index}
-                data-aos="zoom-in-up"
+                // data-aos="fade-up"
                 className={`rounded-[20px]  border-t-[0.9px] border-b-[5px] border-x-[0.9px] border-solid border-[black] overflow-hidden transition-all duration-300 ${isOpen ? 'bg-[#FE332F] text-white' : 'bg-[#F2F2F2] text-black'
                   }`}
               >
@@ -262,6 +263,18 @@ export default function Home() {
             );
           })}
         </div>
+      </section>
+      <section className="lg:px-[150px] h-screen mt-56 pb-[60px] " data-aos="zoom-in-up">
+        {/* heading */}
+        <div className="max-w-6xl mx-auto mb-10 flex flex-row  gap-10 items-center">
+          <h2 className="text-white  w-fit  font-medium  rounded-[7px] items-center flex text-center justify-center text-[40px] px-1.5 h-[51px] bg-[#FE332F]">
+            Testimonials
+          </h2>
+          <p className="text-black w-[580px] h-[46px]">
+            Hear from Our Satisfied Clients: Read Our Testimonials to Learn More about Our Digital Marketing Services
+          </p>
+        </div>
+        <Testimonial />
       </section>
     </div >
   );
