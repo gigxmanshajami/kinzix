@@ -13,6 +13,47 @@ import Testimonial from './components/Testimonial';
 import Image from 'next/image';
 import Img from '@/public/illcta.png';
 // import Scrollsec from './Scrollsec';
+import { Plus, Minus } from 'lucide-react';
+
+const processSteps = [
+  {
+    number: "01",
+    title: "Consultation",
+    content:
+      "During the initial consultation, we will discuss your business goals and objectives, target audience, and current marketing efforts. This will allow us to understand your needs and tailor our services to best fit your requirements.",
+  },
+  {
+    number: "02",
+    title: "Research and Strategy Development",
+    content:
+      "We dive deep into your industry, competitors, and audience to craft a custom digital strategy focused on driving measurable results.",
+  },
+  {
+    number: "03",
+    title: "Implementation",
+    content:
+      "Once the strategy is finalized, we begin execution — setting up campaigns, optimizing your website, and aligning all creative elements for launch.",
+  },
+  {
+    number: "04",
+    title: "Monitoring and Optimization",
+    content:
+      "We continuously track performance using analytics and real-time data, refining tactics to improve ROI and overall efficiency.",
+  },
+  {
+    number: "05",
+    title: "Reporting and Communication",
+    content:
+      "You’ll receive detailed reports and insights on a regular basis, with full transparency and open lines of communication at every step.",
+  },
+  {
+    number: "06",
+    title: "Continual Improvement",
+    content:
+      "We don’t stop at success. We constantly test, iterate, and evolve your campaigns to stay ahead of trends and ensure long-term growth.",
+  },
+];
+
 import { VelocityScroll } from "@/components/magicui/scroll-based-velocity";
 
 export const dynamic = 'force-dynamic';
@@ -24,6 +65,7 @@ const designSubscriptionQuery = '*[_type == "designSubscription"][0]';
 const testimonialQuery = '*[_type == "testimonial"][0]';
 
 export default function Home() {
+  const [openIndex, setOpenIndex] = useState(0);
   const [hero, setHero] = useState(null);
   const [projects, setProjects] = useState([]);
   const [works, setWorks] = useState([]);
@@ -125,7 +167,7 @@ export default function Home() {
         </div>
       </section >
       {/* case studies */}
-      <section className="lg:px-[155px] h-screen " data-aos="zoom-in-up">
+      <section className="lg:px-[155px] h-fit" data-aos="zoom-in-up">
         {/* heading */}
         <div className="max-w-6xl mx-auto mb-10 flex flex-row  gap-10 items-center">
           <h2 className="text-white  w-fit  font-medium  rounded-[7px] items-center flex text-center justify-center text-[40px] px-1.5 h-[51px] bg-[#FE332F]">
@@ -171,6 +213,54 @@ export default function Home() {
 
         </div>
 
+      </section>
+      {/* <section></section> */}
+      <section className="lg:px-[150px] h-screen mt-20 " data-aos="zoom-in-up">
+        <div className="max-w-6xl mx-auto mb-10 flex flex-row  gap-10 items-center">
+          <h2 className="text-white font-medium rounded-[7px] flex items-center justify-center text-[40px] w-fit h-[51px] bg-[#FE332F] whitespace-nowrap px-1.5">
+            Our Working Process
+          </h2>
+
+          <p className="text-black w-[580px] h-[46px]">
+            Step-by-Step Guide to <br />
+            Achieving Your Business Goals
+          </p>
+        </div>
+
+        <div className="space-y-4  max-w-[1000px] p-6">
+          {processSteps.map((step, index) => {
+            const isOpen = openIndex === index;
+            return (
+              <div
+                key={index}
+                className={`rounded-[20px]  border-t-[0.9px] border-b-[5px] border-x-[0.9px] border-solid border-[black] overflow-hidden transition-all duration-300 ${isOpen ? 'bg-[#FE332F] text-white' : 'bg-[#F2F2F2] text-black'
+                  }`}
+              >
+                <button
+                  onClick={() => setOpenIndex(isOpen ? null : index)}
+                  className="w-full px-6 py-5 flex items-center justify-between text-left"
+                >
+                  <div className="flex gap-4 items-center">
+                    <span className="text-3xl font-bold">{step.number}</span>
+                    <span className="text-lg font-medium">{step.title}</span>
+                  </div>
+                  <div
+                    className={`rounded-[60px] border-[0.9px] border-solid border-black p-[3px] transition-colors duration-300 ${isOpen ? 'bg-[#fff] text-black' : 'bg-transparent text-black'
+                      }`}
+                  >
+                    {isOpen ? <Minus className="w-6 h-6" /> : <Plus className="w-6 h-6" />}
+                  </div>
+                </button>
+
+                {isOpen && step.content && (
+                  <div className="px-6 pb-6 pt-2 border-t border-white/30 text-sm">
+                    {step.content}
+                  </div>
+                )}
+              </div>
+            );
+          })}
+        </div>
       </section>
     </div >
   );
