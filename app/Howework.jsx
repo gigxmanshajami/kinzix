@@ -48,7 +48,7 @@ const Howework = ({ data }) => {
     return (
         <div className="py-12 px-10 " >
             {/* Header */}
-            <div className="max-w-6xl mx-auto mb-10 flex flex-row  gap-10 items-center">
+            <div className="max-w-6xl mx-auto mb-10 flex flex-row  gap-10 items-center"  data-aos="zoom-in-up">
                 <h2 className="text-white font-medium  rounded-[7px] items-center flex text-center justify-center text-[40px] w-[178px] h-[51px] bg-[#FE332F]">
                     Services
                 </h2>
@@ -67,6 +67,7 @@ const Howework = ({ data }) => {
                     {services.map((service, i) => (
                         <div
                             key={i}
+                            data-aos="zoom-out-up"
                             className={`service-card ${service.bg} ${service.text} border-[#191A23] border-[0.9px] border-b-[7px] border-solid rounded-[45px] p-6 w-[461px] h-[255px] flex flex-row justify-between`}
                         >
                             <div className="flex flex-col justify-between p-[15px] ">
