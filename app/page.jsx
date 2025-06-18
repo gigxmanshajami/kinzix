@@ -233,6 +233,7 @@ export default function Home() {
             return (
               <div
                 key={index}
+                data-aos="zoom-in-up"
                 className={`rounded-[20px]  border-t-[0.9px] border-b-[5px] border-x-[0.9px] border-solid border-[black] overflow-hidden transition-all duration-300 ${isOpen ? 'bg-[#FE332F] text-white' : 'bg-[#F2F2F2] text-black'
                   }`}
               >
