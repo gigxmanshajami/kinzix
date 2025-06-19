@@ -8,10 +8,12 @@ import Project from './Project';
 import { client } from '@/lib/sanity';
 import Howework from './Howework';
 import Works from './Works';
+import ms from '@/public/ms.png';
 import DesignSubscription from './components/Helps';
 import Testimonial from './components/Testimonial';
 import Image from 'next/image';
 import Img from '@/public/illcta.png';
+import bgimage from '@/public/wave.svg';
 // import Scrollsec from './Scrollsec';
 import { Plus, Minus } from 'lucide-react';
 
@@ -131,10 +133,17 @@ export default function Home() {
 
   return (
     <div className=" space-grotesk ">
-      <section className="lg:px-[150px] h-screen" data-aos="zoom-in">
+
+      <section className="lg:px-[150px] mt-[8em] h-screen" data-aos="zoom-in" style={{
+        backgroundImage: `url(${bgimage.src})`,
+        backgroundRepeat: 'no-repeat',
+      }}>
         {hero ? <Hero data={hero} /> : <div></div>}
+        {/* <div className="pointer-events-none absolute inset-y-0 left-0 w-1/4 bg-gradient-to-r from-background"></div> */}
+        {/* <div className="pointer-events-none absolute inset-y-0 left-0 w-1/4 bg-gradient-to-t from-background"></div>
+        <div className="pointer-events-none absolute inset-y-0 right-0 w-1/4 bg-gradient-to-t from-background"></div> */}
       </section>
-      <section className="relative mb-10 flex w-full flex-col items-center justify-center overflow-hidden  ">
+      <section className="relative mb-10 flex w-full flex-col items-center justify-center overflow-hidden  " >
         {/* <Scrollsec /> */}
         <VelocityScroll numRows={2} defaultVelocity={2} className='text-sm'>Velocity Scroll</VelocityScroll>
         <div className="pointer-events-none absolute inset-y-0 left-0 w-1/4 bg-gradient-to-r from-background"></div>
@@ -232,33 +241,35 @@ export default function Home() {
           {processSteps.map((step, index) => {
             const isOpen = openIndex === index;
             return (
-              <div
-                key={index}
-                // data-aos="fade-up"
-                className={`rounded-[20px]  border-t-[0.9px] border-b-[5px] border-x-[0.9px] border-solid border-[black] overflow-hidden transition-all duration-300 ${isOpen ? 'bg-[#FE332F] text-white' : 'bg-[#F2F2F2] text-black'
-                  }`}
-              >
-                <button
-                  onClick={() => setOpenIndex(isOpen ? null : index)}
-                  className="w-full px-6 py-5 flex items-center justify-between text-left"
-                >
-                  <div className="flex gap-4 items-center">
-                    <span className="text-3xl font-bold">{step.number}</span>
-                    <span className="text-lg font-medium">{step.title}</span>
-                  </div>
-                  <div
-                    className={`rounded-[60px] border-[0.9px] border-solid border-black p-[3px] transition-colors duration-300 ${isOpen ? 'bg-[#fff] text-black' : 'bg-transparent text-black'
-                      }`}
-                  >
-                    {isOpen ? <Minus className="w-6 h-6" /> : <Plus className="w-6 h-6" />}
-                  </div>
-                </button>
+              <div data-aos="fade-up">
+                <div
+                  key={index}
 
-                {isOpen && step.content && (
-                  <div className="px-6 pb-6 pt-2 border-t border-white/30 text-sm">
-                    {step.content}
-                  </div>
-                )}
+                  className={`rounded-[20px]  border-t-[0.9px] border-b-[5px] border-x-[0.9px] border-solid border-[black] overflow-hidden transition-all duration-300 ${isOpen ? 'bg-[#FE332F] text-white' : 'bg-[#F2F2F2] text-black'
+                    }`}
+                >
+                  <button
+                    onClick={() => setOpenIndex(isOpen ? null : index)}
+                    className="w-full px-6 py-5 flex items-center justify-between text-left"
+                  >
+                    <div className="flex gap-4 items-center">
+                      <span className="text-3xl font-bold">{step.number}</span>
+                      <span className="text-lg font-medium">{step.title}</span>
+                    </div>
+                    <div
+                      className={`rounded-[60px] border-[0.9px] border-solid border-black p-[3px] transition-colors duration-300 ${isOpen ? 'bg-[#fff] text-black' : 'bg-transparent text-black'
+                        }`}
+                    >
+                      {isOpen ? <Minus className="w-6 h-6" /> : <Plus className="w-6 h-6" />}
+                    </div>
+                  </button>
+
+                  {isOpen && step.content && (
+                    <div className="px-6 pb-6 pt-2 border-t border-white/30 text-sm">
+                      {step.content}
+                    </div>
+                  )}
+                </div>
               </div>
             );
           })}
@@ -275,6 +286,77 @@ export default function Home() {
           </p>
         </div>
         <Testimonial />
+      </section>
+      <section className="lg:px-[150px] h-screen mt-20" data-aos="zoom-in-up">
+        <div className="max-w-6xl mx-auto mb-10 flex flex-row  gap-10 items-center">
+          <h2 className="text-white font-medium rounded-[7px] flex items-center justify-center text-[40px] w-fit h-[51px] bg-[#FE332F] whitespace-nowrap px-1.5">
+            Contact Us
+          </h2>
+        </div>
+        <div className="flex flex-col-reverse lg:flex-row items-center justify-between bg-[#f2f2f2] h-[98vh] rounded-[40px] p-8 lg:p-16">
+
+          {/* Left Form */}
+          <div className="w-full lg:w-1/2 flex justify-center">
+            <div className="w-full max-w-md space-y-6">
+              <div className="flex items-center gap-2">
+                <div className="h-4 w-4 rounded-full bg-red-600 border-2 border-red-300" />
+                <span className="text-sm font-medium text-black">Say Hi</span>
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium mb-1 text-black">Name</label>
+                <input
+                  type="text"
+                  placeholder="Name"
+                  className="w-full border border-black rounded-xl px-4 py-3 outline-none bg-white"
+                />
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium mb-1 text-black">
+                  Email<span className="text-red-500">*</span>
+                </label>
+                <input
+                  type="email"
+                  placeholder="Email"
+                  className="w-full border border-black rounded-xl px-4 py-3 outline-none bg-white"
+                />
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium mb-1 text-black">
+                  Message<span className="text-red-500">*</span>
+                </label>
+                <textarea
+                  placeholder="Message"
+                  rows={6}
+                  className="w-full border border-black rounded-xl px-4 py-3 outline-none resize-none bg-white"
+                />
+              </div>
+
+              <button className="w-full bg-[#18181B] text-white py-3 rounded-xl font-medium">
+                Send Message
+              </button>
+            </div>
+          </div>
+
+          {/* Right Image */}
+          <div className="w-full lg:w-1/2 flex justify-end">
+            {/*     color: transparent;
+    width: 290px;
+    position: relative;
+    right: -67px;
+} */}
+            <Image
+              src={ms}
+              alt="Illustration"
+              className="rounded-[32px] object-cover h-96 lg:h-full relative rightp-[-67px]"
+              width={290}
+              height={290}
+            />
+          </div>
+
+        </div>
       </section>
     </div >
   );

@@ -59,7 +59,7 @@ export default function Testimonials() {
     };
 
     return (
-        <div className="bg-[#191A23]  px-4 text-white rounded-[45px]">
+        <div className="bg-[#191A23]  px-4 text-white rounded-[45px] h-[485px]">
             <div className="max-w-5xl mx-auto text-center">
                 <div className="relative">
                     <div
@@ -86,7 +86,7 @@ export default function Testimonials() {
 
 
                     {/* Dots */}
-                    <div className="mt-8 flex justify-center gap-2 relative bottom-[20px]">
+                    <div className="mt-[6px] flex justify-center gap-2 relative bottom-[20px]">
                         {testimonials.map((_, i) => (
                             <div
                                 key={i}

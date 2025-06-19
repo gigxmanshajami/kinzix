@@ -211,7 +211,7 @@ export const NavbarHome = () => {
     //     <Menu />
     //   </div>
     // </div>
-    <div className="flex  flex-row justify-between pl-[50px]  snap-start  pr-[45px] items-center px-[20px]">
+    <div className="flex sticky top-0 h-[5em] flex-row justify-between pl-[50px]  snap-start  pr-[45px] items-center px-[20px]">
       {/* logo */}
       <div>
         <Image
@@ -229,13 +229,13 @@ export const NavbarHome = () => {
             <li key={index}>{item.name}</li>
           ))} */}
           <li className="text-black">
-            About Us
+            Home
           </li>
           <li className="text-black">
-            About Us
+            Project
           </li>
           <li className="text-black">
-            About Us
+            Services
           </li>
           <li className="text-black">
             About Us

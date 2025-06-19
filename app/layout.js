@@ -41,9 +41,6 @@ export default function RootLayout({ children }) {
         <link rel="icon" href="/kx-dark.ico" media="(prefers-color-scheme: dark)" />
       </Head>
       <body>
-        {/* <div className="lg:px-[91px]">
-          <NavbarHome />
-        </div> */}
         <ClientRoot>{children}</ClientRoot>
       </body>
     </html>

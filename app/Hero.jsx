@@ -18,7 +18,7 @@ export default function Hero({ data }) {
     return (
         <div>
             {/* content */}
-            <div className="flex flex-row justify-between gap-2 mt-5">
+            <div className="flex flex-row justify-between gap-2 mt-5" >
                 {/* header content */}
                 <div className="flex flex-col w-[531px] h-[418px] gap-[35px]">
                     <h1 className="font-medium text-[60px] leading-[67px] text-black  underline">
