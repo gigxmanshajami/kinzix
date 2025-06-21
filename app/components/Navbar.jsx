@@ -15,9 +15,15 @@ import {
 import { client } from "@/lib/sanity";
 import { Textarea } from "@/components/ui/textarea";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+import { getCalApi } from "@calcom/embed-react";
 
 export const NavbarHome = () => {
+  useEffect(() => {
+    (async function () {
+      const cal = await getCalApi({ "namespace": "30min" });
+      cal("ui", { "hideEventTypeDetails": false, "layout": "month_view" });
+    })();
+  }, [])
   const [activeDropdown, setActiveDropdown] = useState(null);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -228,16 +234,16 @@ export const NavbarHome = () => {
           {/* {navItems.map((item, index) => (
             <li key={index}>{item.name}</li>
           ))} */}
-          <li className="text-black">
+          <li className="text-black hover:underline transition-all">
             Home
           </li>
-          <li className="text-black">
+          <li className="text-black hover:underline transition-all">
             Project
           </li>
-          <li className="text-black">
+          <li className="text-black hover:underline transition-all">
             Services
           </li>
-          <li className="text-black">
+          <li className="text-black hover:underline transition-all">
             About Us
           </li>
         </ul>
@@ -246,8 +252,11 @@ export const NavbarHome = () => {
 
         {/* gap */}
         <div>
-          <button className="w-[188px] h-[50px] text-black items-center rounded-[14px] border-[#191A23] border-[1.3]">
-            Request a quote
+          <button data-cal-namespace="30min"
+            data-cal-link="kinzix/30min"
+
+            data-cal-config='{"layout":"month_view","theme":"auto"}' className="w-[188px] h-[50px]  hover:scale-125 cursor-pointer transition-all text-black items-center rounded-[14px] border-[#191A23] border-[1.3]">
+            Book A Meeting
           </button>
         </div>
       </div>

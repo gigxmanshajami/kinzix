@@ -30,7 +30,7 @@ export default function Hero({ data }) {
                     {/* <button className="text-white bg-[#191A23] rounded-[14px] font-normal ">
                         Book a consultation
                     </button> */}
-                    <button className="shadow-[0_0_0_3px_#000000_inset]  hover:bg-transparent border text-white hover:text-black border-black dark:border-white bg-[#191A23]   font-bold transform hover:-translate-y-1 transition duration-400 w-[264px] cursor-none h-[68px] px-[35px] py-[20px]   rounded-[14px]">
+                    <button className="shadow-[0_0_0_3px_#000000_inset]  hover:bg-transparent border text-white hover:text-black border-black  bg-[#191A23]   font-bold transform hover:-translate-y-1 transition duration-400 w-[264px] cursor-none h-[68px] px-[35px] py-[20px]   rounded-[14px]">
                         Book a consultation
                     </button>
                 </div>

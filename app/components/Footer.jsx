@@ -1,230 +1,74 @@
-'use client'
-import React, { useEffect, useState } from "react";
-import { FaFacebook, FaTwitter, FaLinkedin, FaInstagram, FaMapMarkerAlt, FaPhone, FaEnvelope, FaClock } from "react-icons/fa";
-// import 
-import image from '@/public/kinzi.png';
 import Image from 'next/image';
-import { client } from "@/lib/sanity";
-
+import { Linkedin, Facebook, Github, Instagram } from 'lucide-react';
+import kinzixImage from "@/public/kinzi.png";
 const Footer = () => {
-    const [email, setEmail] = useState("");
-    const [error, setError] = useState("");
-    const [success, setSuccess] = useState(false);
-    const footerQuery = '*[_type == "footer"][0]';
-    const [text, setText] = useState("");
-
-    useEffect(() => {
-        let subscription;
-
-        const fetchData = async () => {
-            try {
-                const data = await client.fetch(footerQuery);
-                setText(data?.footerText || "");
-                console.log('footerdata', data)
-            } catch (err) {
-                console.error("Initial fetch error:", err);
-            }
-
-            // Subscribe to real-time changes
-            subscription = client
-                .listen(footerQuery)
-                .subscribe(update => {
-                    const updatedText = update?.result?.footerText;
-                    if (updatedText) {
-                        setText(updatedText);
-                    }
-                });
-        };
-
-        fetchData();
-
-        return () => {
-            if (subscription) subscription.unsubscribe();
-        };
-    }, []);
-
-
-    const validateEmail = (email) => {
-        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-    };
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        if (!validateEmail(email)) {
-            setError("Please enter a valid email address");
-            setSuccess(false);
-            return;
-        }
-        setError("");
-        setSuccess(true);
-        setEmail("");
-    };
     return (
-        <>
-            <div style={{
-                bottom: "0",
-                position: "relative",
-                zIndex: "50",
-                // top: "100%",
-                top: '16%',
-                boxShadow: 'none',
-            }}>
-                {/* Top CTA Section */}
-                {/* <BackgroundGradientAnimation>
-                    <div className="absolute z-50 inset-0 flex items-center justify-center text-white font-bold px-4 pointer-events-none text-3xl text-center md:text-4xl lg:text-7xl">
-                        <p className="bg-clip-text text-transparent drop-shadow-2xl bg-gradient-to-b from-white/80 to-white/20">
-                            {text}
+        <footer data-aos="zoom-in-up" className="bg-[#121217] text-white px-6 md:px-20 pt-16 pb-8 rounded-t-3xl">
+            <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-12">
+
+                {/* Left Section */}
+                <div className="space-y-4">
+                    {/* <h1 className="text-2xl font-bold"> 
+                    
+                    </h1> */}
+                    <img
+                        src={kinzixImage.src}
+                        alt="Kinzix"
+                        className="object-contain h-fit w-[112px]"
+                    // width={112}
+
+                    />
+                    <div className="max-w-6xl mx-auto mb-10 mt-10 flex flex-row  gap-10 items-center">
+                        <h2 className="text-white font-medium rounded-[7px] flex items-center justify-center text-[20px] w-fit h-fit bg-[#FE332F] whitespace-nowrap px-1.5">
+                            Contact Us
+                        </h2>
+                    </div>
+                    <div className="text-sm text-gray-300 space-y-1">
+                        <p>Email: info@kinzix.com</p>
+                        <p>Phone: 555-567-8901</p>
+                        <p>
+                            Address: 1234 Main St<br />
+                            Moonstone City, Stardust State 12345
                         </p>
                     </div>
-                </BackgroundGradientAnimation> */}
+                </div>
+
+                {/* Navigation Links */}
+                <div className="flex flex-wrap gap-6 text-sm font-medium">
+                    <a href="#" className="hover:underline">About us</a>
+                    <a href="#" className="hover:underline">Services</a>
+                    <a href="#" className="hover:underline">Use Cases</a>
+                    <a href="#" className="hover:underline">Pricing</a>
+                    <a href="#" className="hover:underline">Blog</a>
+                </div>
+
+                {/* Social Icons */}
+                <div className="flex gap-3">
+                    <div className="w-8 h-8  hover:scale-125 cursor-pointer transition-all bg-white rounded-full flex items-center justify-center text-black font-bold"><Linkedin stroke='#000' fill='#000' size={20} strokeOpacity={2}   color='#000' /></div>
+                    <div className="w-8 h-8 hover:scale-125 cursor-pointer transition-all bg-white rounded-full flex items-center justify-center text-black font-bold"><Facebook stroke='#000' fill='#000' size={20}  strokeOpacity={2}  color='#000' /></div>
+                    <div className="w-8 h-8 hover:scale-125 cursor-pointer transition-all bg-white rounded-full flex items-center justify-center text-black font-bold"><Github stroke='#000' fill='#000' size={20}  strokeOpacity={2}  color='#000' /></div>
+                    {/* <div className="w-8 h-8 bg-white rounded-full flex items-center justify-center text-black font-bold"><Instagram stroke='#000'   size={20} strokeWidth={3} strokeOpacity={4}  color='#000' /></div> */}
+                </div>
             </div>
 
-            <footer className="bg-gray-50"
-                style={{
-                    bottom: '0',
-                    position: 'relative',
-                    zIndex: '50',
-                    background: '#ffffff00',
-                    backdropFilter: 'blur(10px)',
-                    // top: '100%',
-                    marginTop: '5em',
-                }}
-            >
-                {/* Main Footer Section */}
-                < div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16" >
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-                        {/* Company Info */}
-                        <div>
-                            {/* <img
-                            src="https://images.unsplash.com/photo-1614680376739-414d95ff43df"
-                            alt="Company Logo"
-                            className="h-12 w-auto mb-6"
-                            onError={(e) => {
-                                e.target.src = "https://via.placeholder.com/150x50?text=Logo";
-                            }}
-                        /> */}
-                            <Image src={image} alt="kinzix" />
-                            {/* <p className="text-gray-600 mb-8">
-                                We are dedicated to delivering innovative solutions that empower businesses to thrive in the digital age.
-                            </p> */}
+            {/* Subscribe Box */}
+            <div className="bg-[#1E1E24] rounded-xl p-6 mt-10 flex flex-col md:flex-row gap-4 items-center justify-between">
+                <input
+                    type="email"
+                    placeholder="Email"
+                    className="w-full md:w-auto px-4 py-3 rounded-lg border border-white bg-transparent text-white placeholder-white focus:outline-none"
+                />
+                <button className="bg-[#FF3D3D] text-white px-6 py-3 rounded-lg font-medium">
+                    Subscribe to news
+                </button>
+            </div>
 
-                        </div>
-                        <div className="flex flex-col gap-[4em]">
-                            <div className="flex flex-row gap-12">
-                                {/* Quick Info */}
-                                <div>
-                                    <h3 className="text-lg font-semibold text-white mb-6">Services</h3>
-                                    <div className="space-y-4">
-                                        <div className="flex items-start">
-                                            <FaMapMarkerAlt className="text-gray-400 mt-1 mr-3" />
-                                            <p className="text-gray-600">123 Business Avenue, Suite 100<br />New York, NY 10001</p>
-                                        </div>
-                                        <div className="flex items-center">
-                                            <FaPhone className="text-gray-400 mr-3" />
-                                            <a href="tel:+1234567890" className="text-gray-600 hover:text-blue-600">+1 (234) 567-890</a>
-                                        </div>
-                                        <div className="flex items-center">
-                                            <FaEnvelope className="text-gray-400 mr-3" />
-                                            <a href="mailto:contact@example.com" className="text-gray-600 hover:text-blue-600">contact@example.com</a>
-                                        </div>
-                                        <div className="flex items-start">
-                                            <FaClock className="text-gray-400 mt-1 mr-3" />
-                                            <p className="text-gray-600">Mon - Fri: 9:00 AM - 6:00 PM<br />Sat - Sun: Closed</p>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                {/* Quick Info */}
-                                <div>
-                                    <h3 className="text-lg font-semibold text-white mb-6">Technologies</h3>
-                                    <div className="space-y-4">
-                                        <div className="flex items-start">
-                                            <FaMapMarkerAlt className="text-gray-400 mt-1 mr-3" />
-                                            <p className="text-gray-600">123 Business Avenue, Suite 100<br />New York, NY 10001</p>
-                                        </div>
-                                        <div className="flex items-center">
-                                            <FaPhone className="text-gray-400 mr-3" />
-                                            <a href="tel:+1234567890" className="text-gray-600 hover:text-blue-600">+1 (234) 567-890</a>
-                                        </div>
-                                        <div className="flex items-center">
-                                            <FaEnvelope className="text-gray-400 mr-3" />
-                                            <a href="mailto:contact@example.com" className="text-gray-600 hover:text-blue-600">contact@example.com</a>
-                                        </div>
-                                        <div className="flex items-start">
-                                            <FaClock className="text-gray-400 mt-1 mr-3" />
-                                            <p className="text-gray-600">Mon - Fri: 9:00 AM - 6:00 PM<br />Sat - Sun: Closed</p>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-                            <div className="flex space-x-4 items-center  justify-center w-[100%]">
-                                <a href="#" className="text-gray-400 hover:text-blue-600 transition-colors duration-300" aria-label="Facebook">
-                                    <FaFacebook size={24} />
-                                </a>
-                                <a href="#" className="text-gray-400 hover:text-blue-400 transition-colors duration-300" aria-label="Twitter">
-                                    <FaTwitter size={24} />
-                                </a>
-                                <a href="#" className="text-gray-400 hover:text-blue-700 transition-colors duration-300" aria-label="LinkedIn">
-                                    <FaLinkedin size={24} />
-                                </a>
-                                <a href="#" className="text-gray-400 hover:text-pink-600 transition-colors duration-300" aria-label="Instagram">
-                                    <FaInstagram size={24} />
-                                </a>
-                            </div>
-                        </div>
-
-                        {/* Subscribe Section
-                        <div>
-                            <h3 className="text-lg font-semibold text-white mb-6">Subscribe to Our Newsletter</h3>
-                            <form onSubmit={handleSubmit} className="space-y-4">
-                                <div>
-                                    <input
-                                        type="email"
-                                        value={email}
-                                        onChange={(e) => setEmail(e.target.value)}
-                                        placeholder="Enter your email"
-                                        className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-600 focus:border-transparent"
-                                        aria-label="Email subscription"
-                                    />
-                                    {error && <p className="text-red-500 text-sm mt-1">{error}</p>}
-                                    {success && <p className="text-green-500 text-sm mt-1">Thank you for subscribing!</p>}
-                                </div>
-                                <button
-                                    type="submit"
-                                    className="w-full bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition duration-300"
-                                >
-                                    Subscribe Now
-                                </button>
-                                <p className="text-xs text-gray-500 mt-2">
-                                    By subscribing, you agree to our{" "}
-                                    <a href="#" className="underline hover:text-blue-600">Privacy Policy</a>
-                                </p>
-                            </form>
-                        </div> */}
-                    </div>
-                </div >
-
-                {/* Bottom Copyright Section */}
-                < div style={{
-                    borderTopWidth: 0.2,
-                    borderColor: "#ffffff24",
-                }}>
-                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-                        <div className="flex flex-col md:flex-row justify-between items-center">
-                            <p className="text-gray-500 text-sm">
-                                © {new Date().getFullYear()} Kinzix InfoTech. All rights reserved.
-                            </p>
-                            <div className="flex space-x-6 mt-4 md:mt-0">
-                                <a href="#" className="text-sm text-gray-500 hover:text-blue-600 underline">Privacy Policy</a>
-                                <a href="#" className="text-sm text-gray-500 hover:text-blue-600 underline">Terms of Service</a>
-                                <a href="#" className="text-sm text-gray-500 hover:text-blue-600 underline">Cookie Policy</a>
-                            </div>
-                        </div>
-                    </div>
-                </div >
-            </footer >
-        </>
+            {/* Bottom Line */}
+            <div className="border-t border-gray-600 mt-12 pt-6 flex flex-col md:flex-row justify-between items-center text-sm text-gray-400">
+                <p>© 2025 Kinzix.com. All Rights Reserved.</p>
+                <a href="#" className="hover:underline">Privacy Policy</a>
+            </div>
+        </footer>
     );
 };
 

@@ -48,7 +48,7 @@ const Howework = ({ data }) => {
     return (
         <div className="py-12 px-10 " >
             {/* Header */}
-            <div className="max-w-6xl mx-auto mb-10 flex flex-row  gap-10 items-center"  data-aos="zoom-in-up">
+            <div className="max-w-6xl mx-auto mb-10 flex flex-row  gap-10 items-center" data-aos="zoom-in-up">
                 <h2 className="text-white font-medium  rounded-[7px] items-center flex text-center justify-center text-[40px] w-[178px] h-[51px] bg-[#FE332F]">
                     Services
                 </h2>
@@ -62,7 +62,7 @@ const Howework = ({ data }) => {
             {/*     padding: calc(var(--spacing) * 6);
     width: 461px;
     height: 255px !important; */}
-            <div ref={gridRef} className="w-full flex justify-center cursor-pointer pb-20 h-screen">
+            <div ref={gridRef} className="w-full flex justify-center  pb-20 h-screen">
                 <div className="grid grid-cols-2 gap-x-10 gap-y-6 max-w-[1240px]">
                     {services.map((service, i) => (
                         <div
@@ -80,7 +80,7 @@ const Howework = ({ data }) => {
                                     </span>
                                 </h3>
                                 <div className="flex items-center space-x-2">
-                                    <div className={`w-[44px] h-[44px] flex items-center justify-center rounded-full ${service.lbg}`}>
+                                    <div className={`w-[44px] h-[44px] flex items-center justify-center rounded-full ${service.lbg}  hover:scale-125 cursor-none transition-all`}>
                                         <MoveUpRight color={service.iconcolor} strokeWidth={2.27} />
                                     </div>
                                     <span className={`text-sm font-medium ${service.textcolor}`}>Learn more</span>

@@ -19,11 +19,11 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "Kinzix",
-  description: "kinzix",
-  // icons: {
-  //   icon: "/fav.ico",
-  // },
+  title: "Kinzix - Software compnay",
+  description: "kinzix || Software  company ",
+  icons: {
+    icon: "/k.ico",
+  },
 };
 
 export default function RootLayout({ children }) {
@@ -42,6 +42,7 @@ export default function RootLayout({ children }) {
       </Head>
       <body>
         <ClientRoot>{children}</ClientRoot>
+        
       </body>
     </html>
   );

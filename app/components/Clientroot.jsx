@@ -5,6 +5,7 @@ import { useEffect } from 'react';
 import 'aos/dist/aos.css';
 import { NavbarHome } from "./Navbar";
 import { SmoothCursor } from "@/components/ui/smooth-cursor";
+import Footer from './Footer';
 
 export default function ClientRoot({ children }) {
     useEffect(() => {
@@ -28,6 +29,9 @@ export default function ClientRoot({ children }) {
                 <NavbarHome />
             </div>
             {children}
+            <div className='px-[50px] mt-40'>
+                <Footer />
+            </div>
         </>
     );
 }
