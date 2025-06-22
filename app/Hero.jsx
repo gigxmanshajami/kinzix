@@ -40,7 +40,7 @@ export default function Hero({ data }) {
                         data-cal-namespace="30min"
                         data-cal-link="kinzix/30min"
 
-                        data-cal-config='{"layout":"month_view","theme":"auto"}' className="w-[188px] h-[50px]  hover:scale-125 cursor-pointer transition-all text-black items-center rounded-[14px] border-[#191A23] border-[1.3]"
+                        data-cal-config='{"layout":"month_view","theme":"auto"}'
                         className="shadow-[0_0_0_3px_#000000_inset]  hover:bg-transparent border text-white hover:text-black border-black  bg-[#191A23]   font-bold transform hover:-translate-y-1 transition duration-400 w-[264px] cursor-none h-[68px] px-[35px] py-[20px]   rounded-[14px]">
                         Book a consultation
                     </button>
