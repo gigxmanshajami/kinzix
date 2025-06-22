@@ -46,13 +46,13 @@ const Howework = ({ data }) => {
         return () => ctx.revert();
     }, []);
     return (
-        <div className="py-12 px-10 " >
+        <div className="py-12 lg:px-10 px-4 " >
             {/* Header */}
-            <div className="max-w-6xl mx-auto mb-10 flex flex-row  gap-10 items-center" data-aos="zoom-in-up">
+            <div className="max-w-6xl mx-auto mb-10 flex lg:flex-row flex-col  gap-10 items-center" data-aos="zoom-in-up">
                 <h2 className="text-white font-medium  rounded-[7px] items-center flex text-center justify-center text-[40px] w-[178px] h-[51px] bg-[#FE332F]">
                     Services
                 </h2>
-                <p className="text-black w-[580px] h-[46px]">
+                <p className="text-black w-[580px] text-center text-[15px] lg:text-left h-[46px]">
                     At our digital marketing agency, we offer a range of services <br />
                     to help businesses grow and succeed online. These services include:
                 </p>
@@ -62,13 +62,14 @@ const Howework = ({ data }) => {
             {/*     padding: calc(var(--spacing) * 6);
     width: 461px;
     height: 255px !important; */}
-            <div ref={gridRef} className="w-full flex justify-center  pb-20 h-screen">
-                <div className="grid grid-cols-2 gap-x-10 gap-y-6 max-w-[1240px]">
+            <div ref={gridRef} className="w-full  flex justify-center  pb-20 h-screen">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-10 gap-y-6 max-w-[1240px]">
+
                     {services.map((service, i) => (
                         <div
                             key={i}
                             data-aos="zoom-out-up"
-                            className={`service-card ${service.bg} ${service.text} border-[#191A23] border-[0.9px] border-b-[7px] border-solid rounded-[45px] p-6 w-[461px] h-[255px] flex flex-row justify-between`}
+                            className={`service-card ${service.bg} ${service.text} border-[#191A23] border-[0.9px] border-b-[7px] border-solid rounded-[45px] p-6 lg:w-[461px] h-[255px] flex flex-row justify-between w-[416px]`}
                         >
                             <div className="flex flex-col justify-between p-[15px] ">
                                 <h3 className="text-xl font-semibold leading-tight mb-6">

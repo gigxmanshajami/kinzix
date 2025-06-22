@@ -7,7 +7,7 @@ import Teams from './Teams';
 import Project from './Project';
 import { client } from '@/lib/sanity';
 import Howework from './Howework';
-import WorldMap from "@/components/ui/world-map";
+// import WorldMap from "@/components/ui/world-map";
 import { motion } from "motion/react";
 import Works from './Works';
 import ms from '@/public/ms.png';
@@ -139,7 +139,7 @@ export default function Home() {
   return (
     <div className=" space-grotesk ">
 
-      <section className="lg:px-[150px] mt-[8em] h-screen" data-aos="zoom-in" style={{
+      <section className="lg:px-[150px] mt-[8em] lg:h-screen h-fit" data-aos="zoom-in" style={{
         backgroundImage: `url(${bgimage.src})`,
         backgroundRepeat: 'no-repeat',
       }}>
@@ -150,7 +150,7 @@ export default function Home() {
       </section>
       <section className="relative mb-10 flex w-full flex-col items-center justify-center overflow-hidden  " >
         {/* <Scrollsec /> */}
-        <VelocityScroll numRows={2} defaultVelocity={2} className='text-sm'>Velocity Scroll</VelocityScroll>
+        <VelocityScroll numRows={2} defaultVelocity={2} >Velocity Scroll</VelocityScroll>
         <div className="pointer-events-none absolute inset-y-0 left-0 w-1/4 bg-gradient-to-r from-background"></div>
         <div className="pointer-events-none absolute inset-y-0 right-0 w-1/4 bg-gradient-to-l from-background"></div>
       </section>
@@ -158,15 +158,15 @@ export default function Home() {
         <Howework data={projects} />
       </section>
       {/* cta block */}
-      <section className="lg:px-[150px] mt-[20em] h-screen flex items-center justify-center" >
+      <section className="lg:px-[150px] px-[10px]  lg:mt-[20em] mt-[62em] lg:h-screen h-fit flex items-center justify-center" >
         <div data-aos="zoom-in-up" className="w-full max-w-[1000px] h-auto rounded-[47px] bg-[#F3F3F3] grid grid-cols-1 md:grid-cols-2 gap-8 p-8 relative">
 
           {/* Content */}
-          <div className="flex flex-col justify-center gap-6 p-[20px]">
+          <div className="flex flex-col justify-center items-center gap-6 p-[20px] lg:items-baseline">
             <h3 className="font-medium text-[#000000] text-2xl">
               Let’s make things happen
             </h3>
-            <p className="text-base text-[#333]">
+            <p className="text-base text-[#333] lg:text-left text-center">
               Contact us today to learn more about how our digital marketing services can help your business grow and succeed online.
             </p>
             <button className="shadow-[0_0_0_3px_#000000_inset] hover:bg-transparent border text-white hover:text-black border-black dark:border-white bg-[#191A23] font-bold transform hover:-translate-y-1 transition duration-400 w-[264px] h-[68px] px-[35px] py-[20px] rounded-[14px] cursor-none">
@@ -175,23 +175,20 @@ export default function Home() {
           </div>
 
           {/* Image */}
-          <div className="flex justify-center items-center absolute right-[7em] top-[-1em]">
+          <div className="flex justify-center items-center absolute right-[7em] top-[-1em] hidden lg:block">
             <Image src={Img.src} width={313} height={337} alt="Star" />
           </div>
 
         </div>
       </section >
       {/* case studies */}
-      <section className="lg:px-[155px] h-fit" data-aos="zoom-in-up">
+      <section className="lg:px-[155px] mt-10 px-[10px] h-fit" data-aos="zoom-in-up">
         {/* heading */}
-        <div className="max-w-6xl mx-auto mb-10 flex flex-row  gap-10 items-center">
+        <div className="lg:max-w-6xl w-full justify-center mx-auto mb-10 flex flex-row  gap-10 items-center">
           <h2 className="text-white  w-fit  font-medium  rounded-[7px] items-center flex text-center justify-center text-[40px] px-1.5 h-[51px] bg-[#FE332F]">
             Case Studies
           </h2>
-          <p className="text-black w-[580px] h-[46px]">
-            {/* At our digital marketing agency, we offer a range of services <br />
-            to help businesses grow and succeed online. These services include: */}
-          </p>
+  
         </div>
         {/* content */}
         <div data-aos="fade-up" className="w-full max-w-[1000px] p-6 bg-[#0F0F15] text-white rounded-[47px] grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-white/20 overflow-hidden">
@@ -230,19 +227,19 @@ export default function Home() {
 
       </section>
       {/* <section></section> */}
-      <section className="lg:px-[150px] h-screen mt-20 " data-aos="zoom-in-up">
-        <div className="max-w-6xl mx-auto mb-10 flex flex-row  gap-10 items-center">
+      <section className="lg:px-[150px] px-[10px] lg:h-screen  h-fit mt-20 " data-aos="zoom-in-up">
+        <div className="lg:max-w-6xl w-full justify-center lg:justify-baseline mx-auto mb-10 flex lg:flex-row flex-col  gap-10 items-center">
           <h2 className="text-white font-medium rounded-[7px] flex items-center justify-center text-[40px] w-fit h-[51px] bg-[#FE332F] whitespace-nowrap px-1.5">
             Our Working Process
           </h2>
 
-          <p className="text-black w-[580px] h-[46px]">
+          <p className="text-black w-[580px] h-[46px] text-center lg:text-left text-2xl">
             Step-by-Step Guide to <br />
             Achieving Your Business Goals
           </p>
         </div>
 
-        <div className="space-y-4  max-w-[1000px] p-6">
+        <div className="space-y-4  max-w-[1000px] lg:p-6">
           {processSteps.map((step, index) => {
             const isOpen = openIndex === index;
             return (
@@ -281,17 +278,14 @@ export default function Home() {
         </div>
       </section>
       {/* project */}
-      <section className=" lg:px-[150px] h-screen mt-70 mb-90 text-white">
+      <section className=" lg:px-[150px] px-[10px] lg:h-screen h-fit lg:mt-70 mt-20 mb-90 text-white">
         <div className="max-w-6xl mx-auto">
           {/* Section Heading */}
-          <div className="max-w-6xl mx-auto mb-10 flex flex-row  gap-10 items-center">
+          <div className="max-w-6xl mx-auto mb-10 flex flex-row  gap-10 items-center justify-center lg:justify-baseline">
             <h2 className="text-white  w-fit  font-medium  rounded-[7px] items-center flex text-center justify-center text-[40px] px-1.5 h-[51px] bg-[#FE332F]">
               Our projects
             </h2>
-            <p className="text-black w-[580px] h-[46px]">
-              {/* At our digital marketing agency, we offer a range of services <br />
-            to help businesses grow and succeed online. These services include: */}
-            </p>
+        
           </div>
 
           {/* Team Grid */}
@@ -473,7 +467,13 @@ export default function Home() {
           <Calx />
         </div>
       </section>
-      <section className="relative lg:px-[150px] h-fit mt-30 overflow-hidden" data-aos="zoom-in-up" >
+      {/* <section classNamesptool.py v4.8.1
+Serial port COM6
+Connecting......................................
+
+A fatal error occurred: Failed to connect to ESP32: No serial data received.
+For troubleshooting steps visit: https://docs.espressif.com/projects/esptool/en/latest/troubleshooting.html
+Failed uploading: uploading error: exit status 2e="relative lg:px-[150px] h-fit mt-30 overflow-hidden" data-aos="zoom-in-up" >
         <div className="max-w-6xl mx-auto mb-10 flex flex-row  gap-10 items-center">
           <h2 className="text-white  w-fit  font-medium  rounded-[7px] items-center flex text-center justify-center text-[40px] px-1.5 h-[51px] bg-[#FE332F]">
             We Work Globally
@@ -516,7 +516,7 @@ export default function Home() {
             },
           ]}
         />
-      </section>
+      </section> */}
     </div >
   );
 }

@@ -229,7 +229,7 @@ export const NavbarHome = () => {
         />
       </div>
       {/* content */}
-      <div className="flex flex-row justify-between items-center gap-10">
+      <div className=" flex-row justify-between items-center gap-10 hidden lg:flex">
         <ul className="flex flex-row gap-10 cursor-pointer ">
           {/* {navItems.map((item, index) => (
             <li key={index}>{item.name}</li>
