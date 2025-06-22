@@ -78,9 +78,9 @@ export default function Testimonials() {
                         </p>
                     </div>
 
-                    <div className="mt-6 relative right-[-8em] text-left">
-                        <p className="text-[#FF3D3D] font-semibold">{testimonials[index].name}</p>
-                        <p className="text-gray-400 text-sm">{testimonials[index].title}</p>
+                    <div className="mt-6 relative w-fit right-[-8em] text-left">
+                        <p className="text-[#FF3D3D] w-fit font-semibold">{testimonials[index].name}</p>
+                        <p className="text-gray-400 w-fit text-sm">{testimonials[index].title}</p>
                     </div>
 
 

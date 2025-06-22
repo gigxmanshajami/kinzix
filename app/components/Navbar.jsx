@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import kinzixImage from "@/public/kinzi-black.png";
-import { Menu, ChevronDown, Lightbulb } from "lucide-react";
+import { Menu, ChevronDown, Lightbulb, } from "lucide-react";
 import {
   Dialog,
   DialogContent,
@@ -73,6 +73,11 @@ export const NavbarHome = () => {
 
     fetchNavData();
   }, []);
+  const [hidenav, setHidenav] = useState(false);
+  const setNav = () => {
+    setHidenav(!hidenav);
+  };
+
   const safeName = name || "No Name";
   const safeEmail = email || "No Email";
   const safeMessage = message || "No Message";
@@ -82,184 +87,82 @@ export const NavbarHome = () => {
   )}&body=${encodeURIComponent(safeMessage)}`;
 
   return (
-    // <div className="w-full h-[4em] p-3 flex items-center bg-transparent fixed top-0 z-50 backdrop-blur-lg gap-80 justify-evenly">
-    //   {/* logo */}
-    // <Image
-    //   src={kinzixImage}
-    //   alt="Kinzix"
-    //   className="object-contain lg:w-[120px] lg:h-[120px]"
-    //   width={120}
-    //   height={120}
-    // />
+    <div className=" w-[100%]" >
+      {/* <div className="lg:px-[91px] fixed z-[2000] bg-[#ffffffbf] w-[100%] h-fit top-0 " style={{
+                backdropFilter: 'blur(20px)',
+            }}></div> */}
+      <div className="flex bg-[#fff] lg:bg-transparent  border-b-[1px] lg:border-b-0   sticky top-0 h-[5em] flex-row justify-between lg:pl-[50px]  snap-start  pr-[45px] items-center px-[20px]" >
+        {/* logo */}
+        <div>
+          <Image
+            src={kinzixImage}
+            alt="Kinzix"
+            className="object-contain lg:w-[120px] lg:h-[120px]"
+            width={120}
+            height={120}
+          />
+        </div>
+        {/* content */}
+        <div className="block lg:hidden">
+          <Menu size={24} color="black" onClick={setNav} />
+        </div>
 
-    //   {/* desktop nav */}
-    //   <div className="hidden lg:flex items-center gap-10">
-    //     <ul className="relative flex items-center gap-[32px]">
-    //       {navItems.map((item) => (
-    //         <li key={item.name} className="relative">
-    //           {/* label + chevron */}
-    //           <div
-    //             className="flex items-center gap-1 cursor-pointer z-50"
-    //             onMouseEnter={() =>
-    //               item.subCategories && item.subCategories.length > 0
-    //                 ? setActiveDropdown(item.name)
-    //                 : setActiveDropdown(null)
-    //             }
-    //           >
-    //             <a href={item.link || "#"}>{item.name}</a>
-    //             {item.subCategories && item.subCategories.length > 0 && (
-    //               <ChevronDown
-    //                 size={16}
-    //                 className={`transition-transform ${
-    //                   activeDropdown === item.name ? "rotate-180" : ""
-    //                 }`}
-    //               />
-    //             )}
-    //           </div>
-
-    //           {/* full-screen dropdown */}
-    //           {item.subCategories && activeDropdown === item.name && (
-    //             <div
-    //               className="fixed left-0 top-[4em] w-[100%] h-[calc(100vh-4em)] bg-transparent z-40 transition-all duration-200 backdrop-blur-lg"
-    //               onMouseEnter={() => setActiveDropdown(item.name)}
-    //               onMouseLeave={() => setActiveDropdown(null)}
-    //             >
-    //               <div className="w-full max-w-7xl bg-white mx-auto pl-30 pr-30 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5">
-    //                 {item.subCategories.map((category, idx) => (
-    //                   <div key={idx}>
-    //                     <h1
-    //                       className="text-[18px] border-b border-b-[#c9c8c8] font-[500] uppercase pt-[2px]"
-    //                       style={{ color: category.color || "#6b6b6b" }}
-    //                     >
-    //                       {category.categoryHeading}
-    //                     </h1>
-    //                     {category.items.map((sub) => (
-    //                       <a
-    //                         key={sub.name}
-    //                         href={sub.link}
-    //                         className="pt-2 pb-2 border-b border-b-[#c9c8c8] hover:bg-gray-100 flex transition text-lg font-medium text-[#6b6b6b] gap-2"
-    //                       >
-    //                         <span>{sub.icons}</span>
-    //                         {sub.name}
-    //                       </a>
-    //                     ))}
-    //                   </div>
-    //                 ))}
-    //               </div>
-    //             </div>
-    //           )}
-    //         </li>
-    //       ))}
-    //     </ul>
-
-    //     {/* CTA */}
-    //     <Dialog>
-    //       <DialogTrigger asChild>
-    //         <button className="bg-[#FF4B4B] text-black w-[120px] h-[50px] flex items-center justify-center font-semibold text-[15px] px-[17px] rounded-[8px] hover:scale-105 transition">
-    //           Contact Us
-    //         </button>
-    //       </DialogTrigger>
-    //       <DialogContent className="sm:max-w-[425px]">
-    //         <DialogHeader>
-    //           <DialogTitle>Contact Us</DialogTitle>
-    //           <DialogDescription>
-    //             Let’s Connect and Create Something Great.
-    //           </DialogDescription>
-    //         </DialogHeader>
-    //         <div className="grid gap-4 py-4">
-    //           <div className="grid grid-cols-4 items-center gap-4">
-    //             <Label htmlFor="name" className="text-right">
-    //               Name
-    //             </Label>
-    //             <Input
-    //               id="name"
-    //               value={name}
-    //               onChange={(e) => setName(e.target.value)}
-    //               className="col-span-3"
-    //             />
-    //           </div>
-    //           <div className="grid grid-cols-4 items-center gap-4">
-    //             <Label htmlFor="email" className="text-right">
-    //               Email
-    //             </Label>
-    //             <Input
-    //               id="email"
-    //               value={email}
-    //               onChange={(e) => setEmail(e.target.value)}
-    //               className="col-span-3"
-    //             />
-    //           </div>
-    //           <div className="grid grid-cols-4 items-center gap-4">
-    //             <Label htmlFor="message" className="text-right">
-    //               Message
-    //             </Label>
-    //             <Textarea
-    //               id="message"
-    //               value={message}
-    //               onChange={(e) => setMessage(e.target.value)}
-    //               className="col-span-3"
-    //             />
-    //           </div>
-    //         </div>
-    //         <DialogFooter>
-    //           <a href={mailtoLink} className="w-full">
-    //             <button className="bg-white w-full text-black h-[50px] text-center justify-center items-center font-semibold text-[15px] p-[12px] flex rounded-[8px] hover:scale-105 transition-all cursor-pointer">
-    //               Send Message
-    //             </button>
-    //           </a>
-    //         </DialogFooter>
-    //       </DialogContent>
-    //     </Dialog>
-    //   </div>
-
-    //   {/* mobile burger */}
-    //   <div className="lg:hidden">
-    //     <Menu />
-    //   </div>
-    // </div>
-    <div className="flex sticky top-0 h-[5em] flex-row justify-between pl-[50px]  snap-start  pr-[45px] items-center px-[20px]">
-      {/* logo */}
-      <div>
-        <Image
-          src={kinzixImage}
-          alt="Kinzix"
-          className="object-contain lg:w-[120px] lg:h-[120px]"
-          width={120}
-          height={120}
-        />
-      </div>
-      {/* content */}
-      <div className=" flex-row justify-between items-center gap-10 hidden lg:flex">
-        <ul className="flex flex-row gap-10 cursor-pointer ">
-          {/* {navItems.map((item, index) => (
+        <div className=" flex-row justify-between items-center gap-10 hidden lg:flex">
+          <ul className="flex flex-row gap-10 cursor-pointer ">
+            {/* {navItems.map((item, index) => (
             <li key={index}>{item.name}</li>
           ))} */}
-          <li className="text-black hover:underline transition-all">
-            Home
-          </li>
-          <li className="text-black hover:underline transition-all">
-            Project
-          </li>
-          <li className="text-black hover:underline transition-all">
-            Services
-          </li>
-          <li className="text-black hover:underline transition-all">
-            About Us
-          </li>
-        </ul>
-        {/* cta button */}
+            <li className="text-black hover:underline transition-all">
+              Home
+            </li>
+            <li className="text-black hover:underline transition-all">
+              Project
+            </li>
+            <li className="text-black hover:underline transition-all">
+              Services
+            </li>
+            <li className="text-black hover:underline transition-all">
+              About Us
+            </li>
+          </ul>
+          {/* cta button */}
 
 
-        {/* gap */}
-        <div>
-          <button data-cal-namespace="30min"
-            data-cal-link="kinzix/30min"
+          {/* gap */}
+          <div>
+            <button data-cal-namespace="30min"
+              data-cal-link="kinzix/30min"
 
-            data-cal-config='{"layout":"month_view","theme":"auto"}' className="w-[188px] h-[50px]  hover:scale-125 cursor-pointer transition-all text-black items-center rounded-[14px] border-[#191A23] border-[1.3]">
-            Book A Meeting
-          </button>
+              data-cal-config='{"layout":"month_view","theme":"auto"}' className="w-[188px] h-[50px]  hover:scale-125 cursor-pointer transition-all text-black items-center rounded-[14px] border-[#191A23] border-[1.3]">
+              Book A Meeting
+            </button>
+          </div>
         </div>
       </div>
+      {
+        hidenav ? (
+          <div className="items-center   justify-center flex h-screen">
+            <ul className="flex flex-col gap-10 cursor-pointer w-min h-fit ">
+              {/* {navItems.map((item, index) => (
+                <li key={index}>{item.name}</li>
+              ))} */}
+              <li className="text-black hover:underline transition-all">
+                Home
+              </li>
+              <li className="text-black hover:underline transition-all">
+                Project
+              </li>
+              <li className="text-black hover:underline transition-all">
+                Services
+              </li>
+              <li className="text-black hover:underline transition-all">
+                About Us
+              </li>
+            </ul>
+          </div>
+        ) : null
+      }
+
     </div>
   );
 };

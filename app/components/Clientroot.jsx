@@ -29,7 +29,7 @@ export default function ClientRoot({ children }) {
                 <NavbarHome />
             </div>
             {children}
-            <div className='px-[50px] mt-40'>
+            <div className='lg:px-[50px] px-[16px] mt-20'>
                 <Footer />
             </div>
         </>

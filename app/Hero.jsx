@@ -11,20 +11,20 @@ import Blurbg from '@/public/Ellipse.png';
 import Image from 'next/image';
 import HeaderImage from '@/public/Illustration.png'
 export default function Hero({ data }) {
-    const text_first = data.Text_First;
-    const text_middle = data.Text_mid;
-    const text_last = data.Text_last;
-    const description = data.hero_description;
+    // const text_first = data.Text_First;
+    // const text_middle = data.Text_mid;
+    // const text_last = data.Text_last;
+    // const description = data.hero_description;
     return (
         <div>
             {/* content */}
             <div className="flex flex-row justify-between gap-2 mt-5 " >
                 {/* header content */}
                 <div className="flex flex-col w-[531px] h-[418px] gap-[35px]  items-center lg:items-baseline">
-                    <h1 className="font-medium text-center lg:text-left lg:text-[60px] text-[55px] leading-[67px] text-black  underline">
+                    <h1 className="font-medium text-center lg:text-left lg:text-[60px] text-[55px] leading-[67px] text-black  underline w-fit">
                         Navigating the digital landscape for success
                     </h1>
-                    <p className="leading-[28px] text-[#000000] w-[453px] text-center lg:text-left">
+                    <p className="leading-[28px] text-[#000000] lg:w-[453px] text-center lg:text-left w-fit">
                         Our digital marketing agency helps businesses grow and succeed online through a range of services including SEO, PPC, social media marketing, and content creation.
                     </p>
                     {/* <button className="text-white bg-[#191A23] rounded-[14px] font-normal ">

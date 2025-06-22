@@ -139,11 +139,12 @@ export default function Home() {
   return (
     <div className=" space-grotesk ">
 
-      <section className="lg:px-[150px] mt-[8em] lg:h-screen h-fit" data-aos="zoom-in" style={{
+      <section className="lg:px-[150px] px-[16px] mb-48 lg:mb-0 mt-[8em] lg:h-screen h-fit" data-aos="zoom-in" style={{
         backgroundImage: `url(${bgimage.src})`,
         backgroundRepeat: 'no-repeat',
+        backgroundSize:'cover',
       }}>
-        {hero ? <Hero data={hero} /> : <div></div>}
+        <Hero data={hero} />
         {/* <div className="pointer-events-none absolute inset-y-0 left-0 w-1/4 bg-gradient-to-r from-background"></div> */}
         {/* <div className="pointer-events-none absolute inset-y-0 left-0 w-1/4 bg-gradient-to-t from-background"></div>
         <div className="pointer-events-none absolute inset-y-0 right-0 w-1/4 bg-gradient-to-t from-background"></div> */}
@@ -158,12 +159,12 @@ export default function Home() {
         <Howework data={projects} />
       </section>
       {/* cta block */}
-      <section className="lg:px-[150px] px-[10px]  lg:mt-[20em] mt-[62em] lg:h-screen h-fit flex items-center justify-center" >
+      <section className="lg:px-[150px] px-[16px]  lg:mt-[20em] mt-[75em] lg:h-screen h-fit flex items-center justify-center" >
         <div data-aos="zoom-in-up" className="w-full max-w-[1000px] h-auto rounded-[47px] bg-[#F3F3F3] grid grid-cols-1 md:grid-cols-2 gap-8 p-8 relative">
 
           {/* Content */}
           <div className="flex flex-col justify-center items-center gap-6 p-[20px] lg:items-baseline">
-            <h3 className="font-medium text-[#000000] text-2xl">
+            <h3 className="font-medium text-center lg:text-left text-[#000000] text-2xl">
               Let’s make things happen
             </h3>
             <p className="text-base text-[#333] lg:text-left text-center">
@@ -182,13 +183,13 @@ export default function Home() {
         </div>
       </section >
       {/* case studies */}
-      <section className="lg:px-[155px] mt-10 px-[10px] h-fit" data-aos="zoom-in-up">
+      <section className="lg:px-[155px] mt-10 px-[16px] h-fit" data-aos="zoom-in-up">
         {/* heading */}
         <div className="lg:max-w-6xl w-full justify-center mx-auto mb-10 flex flex-row  gap-10 items-center">
           <h2 className="text-white  w-fit  font-medium  rounded-[7px] items-center flex text-center justify-center text-[40px] px-1.5 h-[51px] bg-[#FE332F]">
             Case Studies
           </h2>
-  
+
         </div>
         {/* content */}
         <div data-aos="fade-up" className="w-full max-w-[1000px] p-6 bg-[#0F0F15] text-white rounded-[47px] grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-white/20 overflow-hidden">
@@ -227,13 +228,13 @@ export default function Home() {
 
       </section>
       {/* <section></section> */}
-      <section className="lg:px-[150px] px-[10px] lg:h-screen  h-fit mt-20 " data-aos="zoom-in-up">
+      <section className="lg:px-[150px] px-[16px] lg:h-screen  h-fit mt-20 " data-aos="zoom-in-up">
         <div className="lg:max-w-6xl w-full justify-center lg:justify-baseline mx-auto mb-10 flex lg:flex-row flex-col  gap-10 items-center">
-          <h2 className="text-white font-medium rounded-[7px] flex items-center justify-center text-[40px] w-fit h-[51px] bg-[#FE332F] whitespace-nowrap px-1.5">
+          <h2 className="text-white font-medium rounded-[7px] flex items-center justify-center  text-4xl lg:text-[40px] w-fit h-[51px] bg-[#FE332F] whitespace-nowrap px-1.5">
             Our Working Process
           </h2>
 
-          <p className="text-black w-[580px] h-[46px] text-center lg:text-left text-2xl">
+          <p className="text-black w-fit lg:w-[580px] h-[46px] text-center lg:text-left text-2xl hidden lg:block">
             Step-by-Step Guide to <br />
             Achieving Your Business Goals
           </p>
@@ -278,14 +279,14 @@ export default function Home() {
         </div>
       </section>
       {/* project */}
-      <section className=" lg:px-[150px] px-[10px] lg:h-screen h-fit lg:mt-70 mt-20 mb-90 text-white">
+      <section className=" lg:px-[150px] px-[16px] lg:h-screen h-fit lg:mt-70 mt-20  text-white">
         <div className="max-w-6xl mx-auto">
           {/* Section Heading */}
           <div className="max-w-6xl mx-auto mb-10 flex flex-row  gap-10 items-center justify-center lg:justify-baseline">
             <h2 className="text-white  w-fit  font-medium  rounded-[7px] items-center flex text-center justify-center text-[40px] px-1.5 h-[51px] bg-[#FE332F]">
               Our projects
             </h2>
-        
+
           </div>
 
           {/* Team Grid */}
@@ -359,34 +360,29 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="lg:px-[150px] h-screen mt-56 pb-[60px] " data-aos="zoom-in-up">
+      <section className="lg:px-[150px] h-screen mt-20 px-[16px] pb-[60px] " data-aos="zoom-in-up">
         {/* heading */}
-        <div className="max-w-6xl mx-auto mb-10 flex flex-row  gap-10 items-center">
+        <div className="max-w-6xl mx-auto mb-10 flex lg:flex-row flex-col  gap-10 items-center">
           <h2 className="text-white  w-fit  font-medium  rounded-[7px] items-center flex text-center justify-center text-[40px] px-1.5 h-[51px] bg-[#FE332F]">
             Testimonials
           </h2>
-          <p className="text-black w-[580px] h-[46px]">
+          <p className="text-black lg:w-[580px] w-fit text-center lg:text-left h-[46px]">
             Hear from Our Satisfied Clients: Read Our Testimonials to Learn More about Our Digital Marketing Services
           </p>
         </div>
         <Testimonial />
       </section>
-      <section className="lg:px-[150px] h-screen mt-20" data-aos="zoom-in-up">
-        <div className="max-w-6xl mx-auto mb-10 flex flex-row  gap-10 items-center">
+      <section className="lg:px-[150px] h-fit lg:h-screen mt-20 px-[16px]" data-aos="zoom-in-up">
+        <div className="max-w-6xl mx-auto mb-10 flex flex-row  gap-10 items-center justify-center lg:justify-baseline">
           <h2 className="text-white font-medium rounded-[7px] flex items-center justify-center text-[40px] w-fit h-[51px] bg-[#FE332F] whitespace-nowrap px-1.5">
             Contact Us
           </h2>
         </div>
-        <div className="flex flex-col-reverse lg:flex-row items-center justify-between bg-[#f2f2f2] h-[98vh] rounded-[40px] p-8 lg:p-16">
+        <div className="flex flex-col-reverse lg:flex-row items-center justify-between bg-[#f2f2f2] lg:h-[98vh] h-fit rounded-[40px] p-8 lg:p-16">
 
           {/* Left Form */}
           <div className="w-full lg:w-1/2 flex justify-center">
             <div className="w-full max-w-md space-y-6">
-              <div className="flex items-center gap-2">
-                <div className="h-4 w-4 rounded-full bg-red-600 border-2 border-red-300" />
-                <span className="text-sm font-medium text-black">Say Hi</span>
-              </div>
-
               <div>
                 <label className="block text-sm font-medium mb-1 text-black">Name</label>
                 <input
@@ -425,7 +421,7 @@ export default function Home() {
           </div>
 
           {/* Right Image */}
-          <div className="w-full lg:w-1/2 flex justify-end">
+          <div className="w-full lg:w-1/2 lg:flex hidden justify-end">
             {/*     color: transparent;
     width: 290px;
     position: relative;
@@ -447,12 +443,12 @@ export default function Home() {
         backgroundRepeat: 'no-repeat',
         backgroundSize: 'cover',
       }} */}
-      <section className="relative lg:px-[150px] h-fit mt-30 overflow-hidden" data-aos="zoom-in-up" >
+      <section className="relative lg:px-[150px] px-[16px] mt-10  h-fit lg:mt-30 overflow-hidden" data-aos="zoom-in-up" >
 
 
         {/* Heading */}
-        <div className="relative max-w-6xl mx-auto mb-10 flex flex-row gap-10 items-center z-10" >
-          <h2 className="text-white font-medium rounded-[7px] flex items-center justify-center text-[40px] w-fit h-[51px] bg-[#FE332F] whitespace-nowrap px-1.5">
+        <div className="relative max-w-6xl mx-auto mb-10 flex flex-row gap-10 items-center z-10 justify-center lg:justify-baseline" >
+          <h2 className="text-white font-medium rounded-[7px] flex items-center justify-center lg:text-[40px] w-fit h-[51px] bg-[#FE332F] whitespace-nowrap px-1.5 text-3xl ">
             Or Schedule a meeting
           </h2>
           {/* <img
