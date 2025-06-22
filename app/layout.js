@@ -26,7 +26,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`}>
       <body>
-        <SmoothCursor />
+        <SmoothCursor  className="hidden lg:block"/>
         <ClientRoot>{children}</ClientRoot>
       </body>
     </html>

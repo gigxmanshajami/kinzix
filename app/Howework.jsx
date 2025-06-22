@@ -52,16 +52,12 @@ const Howework = ({ data }) => {
                 <h2 className="text-white font-medium  rounded-[7px] items-center flex text-center justify-center text-[40px] w-[178px] h-[51px] bg-[#FE332F]">
                     Services
                 </h2>
-                <p className="text-black lg:w-[580px] text-center text-[15px] lg:text-left h-[46px] w-fit">
+                <p className="text-black lg:w-[580px] text-center text-[15px] lg:text-left h-[46px] w-fit hidden lg:block">
                     At our digital marketing agency, we offer a range of services <br />
                     to help businesses grow and succeed online. These services include:
                 </p>
             </div>
 
-            {/* Card Grid */}
-            {/*     padding: calc(var(--spacing) * 6);
-    width: 461px;
-    height: 255px !important; */}
             <div ref={gridRef} className="w-full  flex justify-center  pb-20 h-screen">
                 <div  className="grid grid-cols-1 sm:grid-cols-2 gap-x-10 gap-y-6 max-w-[1240px]">
 

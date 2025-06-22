@@ -164,7 +164,7 @@ export default function Home() {
 
           {/* Content */}
           <div className="flex flex-col justify-center items-center gap-6 p-[20px] lg:items-baseline">
-            <h3 className="font-medium text-center lg:text-left text-[#000000] text-2xl">
+            <h3 className=" font-bold text-center lg:text-left text-[#000000] text-2xl">
               Let’s make things happen
             </h3>
             <p className="text-base text-[#333] lg:text-left text-center">
@@ -360,7 +360,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="lg:px-[150px] h-screen mt-20 px-[16px] pb-[60px] " data-aos="zoom-in-up">
+      <section className="lg:px-[150px] hidden h-screen mt-20 px-[16px] pb-[60px]  lg:mt-90" data-aos="zoom-in-up">
         {/* heading */}
         <div className="max-w-6xl mx-auto mb-10 flex lg:flex-row flex-col  gap-10 items-center">
           <h2 className="text-white  w-fit  font-medium  rounded-[7px] items-center flex text-center justify-center text-[40px] px-1.5 h-[51px] bg-[#FE332F]">

@@ -104,7 +104,7 @@ export const NavbarHome = () => {
         </div>
         {/* content */}
         <div className="block lg:hidden">
-          <Menu size={24} color="black" onClick={setNav} />
+          <Menu size={24} color="black" strokeWidth={3} strokeOpacity={1} stroke="black" onClick={setNav} />
         </div>
 
         <div className=" flex-row justify-between items-center gap-10 hidden lg:flex">
@@ -141,8 +141,8 @@ export const NavbarHome = () => {
       </div>
       {
         hidenav ? (
-          <div className="items-center   justify-center flex h-screen">
-            <ul className="flex flex-col gap-10 cursor-pointer w-min h-fit ">
+          <div className="items-center transition-all   justify-center flex h-screen">
+            <ul className="flex flex-col gap-10 cursor-pointer w-min h-fit items-center text-center text-[46px] underline relative -top-[67px] font-medium">
               {/* {navItems.map((item, index) => (
                 <li key={index}>{item.name}</li>
               ))} */}
