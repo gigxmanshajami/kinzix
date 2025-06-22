@@ -74,7 +74,7 @@ const testimonialQuery = '*[_type == "testimonial"][0]';
 
 export default function Home() {
   const [openIndex, setOpenIndex] = useState(0);
-  const [hero, setHero] = useState(null);
+  const [hero, setHero] = useState([]);
   const [projects, setProjects] = useState([]);
   const [works, setWorks] = useState([]);
   const [designSubscription, setDesignSubscription] = useState([]);
@@ -135,23 +135,29 @@ export default function Home() {
       testimonialSub.unsubscribe();
     };
   }, []);
-
+  useEffect(() => {
+    console.log(hero?.marquee)
+  }, [hero])
   return (
     <div className=" space-grotesk ">
 
       <section className="lg:px-[150px] px-[16px] mb-48 lg:mb-0 mt-[8em] lg:h-screen h-fit" data-aos="zoom-in" style={{
         backgroundImage: `url(${bgimage.src})`,
         backgroundRepeat: 'no-repeat',
-        backgroundSize:'cover',
+        backgroundSize: 'cover',
       }}>
         <Hero data={hero} />
         {/* <div className="pointer-events-none absolute inset-y-0 left-0 w-1/4 bg-gradient-to-r from-background"></div> */}
         {/* <div className="pointer-events-none absolute inset-y-0 left-0 w-1/4 bg-gradient-to-t from-background"></div>
         <div className="pointer-events-none absolute inset-y-0 right-0 w-1/4 bg-gradient-to-t from-background"></div> */}
       </section>
-      <section className="relative mb-10 flex w-full flex-col items-center justify-center overflow-hidden  " >
+      <section className="relative mb-10 flex w-full flex-col items-center justify-center overflow-hidden lg:mt-20 " >
         {/* <Scrollsec /> */}
-        <VelocityScroll numRows={2} defaultVelocity={2} >Velocity Scroll</VelocityScroll>
+        {hero && hero.marquee && (
+          <VelocityScroll numRows={2} defaultVelocity={2}>
+            {hero.marquee}
+          </VelocityScroll>
+        )}
         <div className="pointer-events-none absolute inset-y-0 left-0 w-1/4 bg-gradient-to-r from-background"></div>
         <div className="pointer-events-none absolute inset-y-0 right-0 w-1/4 bg-gradient-to-l from-background"></div>
       </section>

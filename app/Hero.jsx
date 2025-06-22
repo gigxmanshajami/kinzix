@@ -9,12 +9,15 @@ import Particles, { initParticlesEngine } from "@tsparticles/react";
 import { loadSlim } from "@tsparticles/slim";
 import Blurbg from '@/public/Ellipse.png';
 import Image from 'next/image';
+import { getCalApi } from "@calcom/embed-react";
+
 import HeaderImage from '@/public/Illustration.png'
 export default function Hero({ data }) {
-    // const text_first = data.Text_First;
+    const text_first = data?.Text_First;
     // const text_middle = data.Text_mid;
     // const text_last = data.Text_last;
-    // const description = data.hero_description;
+    const description = data?.hero_description;
+    console.warn(data, 'from hero');
     return (
         <div>
             {/* content */}
@@ -22,16 +25,23 @@ export default function Hero({ data }) {
                 {/* header content */}
                 <div className="flex flex-col w-[531px] h-[418px] gap-[35px]  items-center lg:items-baseline">
                     <h1 className="font-medium text-center lg:text-left lg:text-[60px] text-[55px] leading-[67px] text-black  underline w-fit">
-                        Navigating the digital landscape for success
+                        {text_first}
+                        {/* Navigating the digital landscape for success */}
                     </h1>
                     <p className="leading-[28px] text-[#000000] lg:w-[453px] text-center lg:text-left w-fit">
-                        Our digital marketing agency helps businesses grow and succeed online through a range of services including SEO, PPC, social media marketing, and content creation.
+                        {/* Our digital marketing agency helps businesses grow and succeed online through a range of services including SEO, PPC, social media marketing, and content creation. */}
+                        {description}
                     </p>
                     {/* <button className="text-white bg-[#191A23] rounded-[14px] font-normal ">
                         Book a consultation
                     </button> */}
 
-                    <button className="shadow-[0_0_0_3px_#000000_inset]  hover:bg-transparent border text-white hover:text-black border-black  bg-[#191A23]   font-bold transform hover:-translate-y-1 transition duration-400 w-[264px] cursor-none h-[68px] px-[35px] py-[20px]   rounded-[14px]">
+                    <button
+                        data-cal-namespace="30min"
+                        data-cal-link="kinzix/30min"
+
+                        data-cal-config='{"layout":"month_view","theme":"auto"}' className="w-[188px] h-[50px]  hover:scale-125 cursor-pointer transition-all text-black items-center rounded-[14px] border-[#191A23] border-[1.3]"
+                        className="shadow-[0_0_0_3px_#000000_inset]  hover:bg-transparent border text-white hover:text-black border-black  bg-[#191A23]   font-bold transform hover:-translate-y-1 transition duration-400 w-[264px] cursor-none h-[68px] px-[35px] py-[20px]   rounded-[14px]">
                         Book a consultation
                     </button>
                 </div>
