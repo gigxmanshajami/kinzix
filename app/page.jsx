@@ -372,7 +372,7 @@ export default function Home() {
         </div>
         <Testimonial />
       </section>
-      <section className="lg:px-[150px] h-fit lg:h-screen mt-20 px-[16px]" data-aos="zoom-in-up">
+      <section className="lg:px-[150px] h-fit lg:h-screen mt-20 lg:mt-80 px-[16px]" data-aos="zoom-in-up">
         <div className="max-w-6xl mx-auto mb-10 flex flex-row  gap-10 items-center justify-center lg:justify-baseline">
           <h2 className="text-white font-medium rounded-[7px] flex items-center justify-center text-[40px] w-fit h-[51px] bg-[#FE332F] whitespace-nowrap px-1.5">
             Contact Us
