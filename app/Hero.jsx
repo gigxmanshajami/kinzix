@@ -47,30 +47,7 @@ export default function Hero({ data }) {
                 </div>
                 {/* image container */}
                 <div>
-                    {/* <motion.img
-                        src={HeaderImage.src}
-                        alt="Eclipse"
-                        // className="absolute top-[23em] lg:top-[15em] bg-transparent pointer-events-none select-none"
-                        // style={{
-                        //     backdropFilter: 'blur(36px)',
-                        //     width: '412px',
-                        //     height: '309px',
-                        //     // top: '15em',
-                        //     zIndex: -1,
-                        // }}
-                        className="w-[600.46px] h-[515px]"
-                        initial={{ scale: 2.8 }}
-                        animate={{ scale: [2.7, 2.9, 2.7] }}
-                        transition={{
-                            duration: 8,
-                            repeat: Infinity,
-                            ease: 'easeInOut',
-                        }}
-                    /> */}
-                    {/* position: relative;
-    top: 10em;
-    width: 185px !important;
-    right: 5em; */}
+
                     <motion.div
                         className="w-[185px] relative right-[8em] top-[10em] lg:block hidden "
                         initial={{ scale: 2.8 }}

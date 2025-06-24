@@ -1,98 +1,64 @@
-"use client";
-import React, { useEffect, useState } from "react";
-import Image from "next/image";
-import kinzixImage from "@/public/kinzi-black.png";
-import { Menu, ChevronDown, Lightbulb, } from "lucide-react";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
-import { client } from "@/lib/sanity";
-import { Textarea } from "@/components/ui/textarea";
-import { Input } from "@/components/ui/input";
-import { getCalApi } from "@calcom/embed-react";
+'use client';
+
+import React, { useEffect, useState } from 'react';
+import Image from 'next/image';
+import kinzixImage from '@/public/kinzi-black.png';
+import { Menu, ChevronDown, Lightbulb } from 'lucide-react';
+import { getCalApi } from '@calcom/embed-react';
+import { client } from '@/lib/sanity';
 
 export const NavbarHome = () => {
-  useEffect(() => {
-    (async function () {
-      const cal = await getCalApi({ "namespace": "30min" });
-      cal("ui", { "hideEventTypeDetails": false, "layout": "month_view" });
-    })();
-  }, [])
   const [activeDropdown, setActiveDropdown] = useState(null);
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [message, setMessage] = useState("");
+  const [hidenav, setHidenav] = useState(false);
   const [navItems, setNavItems] = useState([]);
 
-  const emailms = "kinzixinnovation@gmail.com";
-
-  // Correct query: fetch nav document(s) and get the menus array
-  const navQuery = '*[_type == "nav"]{menus}';
+  const setNav = () => {
+    setHidenav(!hidenav);
+  };
 
   useEffect(() => {
     const fetchNavData = async () => {
       try {
-        const data = await client.fetch(navQuery);
-        // data is an array of nav docs, take the first one (assuming only one)
+        const data = await client.fetch('*[_type == "nav"]{menus}');
         const menus = data[0]?.menus || [];
 
-        // Map menus to format for component
         const mappedData = menus.map((item) => ({
           name: item.name,
-          link: item.link || "#",
+          link: item.link || '#',
           subCategories: item.subCategories?.map((cat) => ({
             categoryHeading: cat.categoryHeading,
             color: cat.color,
-            items:
-              cat.items?.map((subItem) => ({
-                name: subItem.name,
-                link: subItem.link === "null" ? "#" : subItem.link,
-                icons:
-                  subItem.icon === "Lightbulb" ? (
-                    <Lightbulb
-                      color="#6b6b6b"
-                      size={27}
-                      strokeOpacity={0.8}
-                    />
-                  ) : null,
-              })) || [],
+            items: cat.items?.map((subItem) => ({
+              name: subItem.name,
+              link: subItem.link === 'null' ? '#' : subItem.link,
+              icon:
+                subItem.icon === 'Lightbulb' ? (
+                  <Lightbulb color="#6b6b6b" size={27} strokeOpacity={0.8} />
+                ) : null,
+            })) || [],
           })) || [],
         }));
 
         setNavItems(mappedData);
-      } catch (error) {
-        console.error("Error fetching nav data:", error);
+      } catch (err) {
+        console.error('Failed to fetch nav data:', err);
       }
     };
 
     fetchNavData();
   }, []);
-  const [hidenav, setHidenav] = useState(false);
-  const setNav = () => {
-    setHidenav(!hidenav);
-  };
 
-  const safeName = name || "No Name";
-  const safeEmail = email || "No Email";
-  const safeMessage = message || "No Message";
-
-  const mailtoLink = `mailto:${emailms}?subject=${encodeURIComponent(
-    `Message from ${safeName} (${safeEmail})`
-  )}&body=${encodeURIComponent(safeMessage)}`;
+  useEffect(() => {
+    (async function () {
+      const cal = await getCalApi({ namespace: '30min' });
+      cal('ui', { hideEventTypeDetails: false, layout: 'month_view' });
+    })();
+  }, []);
 
   return (
-    <div className=" w-[100%]" >
-      {/* <div className="lg:px-[91px] fixed z-[2000] bg-[#ffffffbf] w-[100%] h-fit top-0 " style={{
-                backdropFilter: 'blur(20px)',
-            }}></div> */}
-      <div className="flex bg-[#fff] lg:bg-transparent  border-b-[1px] lg:border-b-0   sticky top-0 h-[5em] flex-row justify-between lg:pl-[50px]  snap-start  pr-[45px] items-center px-[20px]" >
-        {/* logo */}
+    <div className="w-full">
+      <div className="flex bg-[#fff] lg:bg-transparent border-b-[1px] lg:border-b-0 sticky top-0 h-[5em] flex-row justify-between lg:pl-[50px] pr-[45px] items-center px-[20px]">
+        {/* Logo */}
         <div>
           <Image
             src={kinzixImage}
@@ -102,67 +68,49 @@ export const NavbarHome = () => {
             height={120}
           />
         </div>
-        {/* content */}
+
+        {/* Mobile Menu Icon */}
         <div className="block lg:hidden">
-          <Menu size={24} color="black" strokeWidth={3} strokeOpacity={1} stroke="black" onClick={setNav} />
+          <Menu size={24} color="black" strokeWidth={3} onClick={setNav} />
         </div>
 
-        <div className=" flex-row justify-between items-center gap-10 hidden lg:flex">
-          <ul className="flex flex-row gap-10 cursor-pointer ">
-            {/* {navItems.map((item, index) => (
-            <li key={index}>{item.name}</li>
-          ))} */}
-            <li className="text-black hover:underline transition-all">
-              Home
-            </li>
-            <li className="text-black hover:underline transition-all">
-              Project
-            </li>
-            <li className="text-black hover:underline transition-all">
-              Services
-            </li>
-            <li className="text-black hover:underline transition-all">
-              About Us
-            </li>
+        {/* Desktop Nav */}
+        <div className="hidden lg:flex flex-row justify-between items-center gap-10">
+          <ul className="flex flex-row gap-10 cursor-pointer">
+            {navItems.map((item, index) => (
+              <li
+                key={index}
+                className="text-black hover:underline transition-all"
+              >
+                <a href={item.link}>{item.name}</a>
+              </li>
+            ))}
           </ul>
-          {/* cta button */}
-
-
-          {/* gap */}
           <div>
-            <button data-cal-namespace="30min"
+            <button
+              data-cal-namespace="30min"
               data-cal-link="kinzix/30min"
-
-              data-cal-config='{"layout":"month_view","theme":"auto"}' className="w-[188px] h-[50px]  hover:scale-125 cursor-pointer transition-all text-black items-center rounded-[14px] border-[#191A23] border-[1.3]">
+              data-cal-config='{"layout":"month_view","theme":"auto"}'
+              className="w-[188px] h-[50px] hover:scale-125 cursor-pointer transition-all text-black items-center rounded-[14px] border-[#191A23] border-[1.3px]"
+            >
               Book A Meeting
             </button>
           </div>
         </div>
       </div>
-      {
-        hidenav ? (
-          <div className="items-center transition-all   justify-center flex h-screen">
-            <ul className="flex flex-col gap-10 cursor-pointer w-min h-fit items-center text-center text-[46px] underline relative -top-[67px] font-medium">
-              {/* {navItems.map((item, index) => (
-                <li key={index}>{item.name}</li>
-              ))} */}
-              <li className="text-black hover:underline transition-all">
-                Home
-              </li>
-              <li className="text-black hover:underline transition-all">
-                Project
-              </li>
-              <li className="text-black hover:underline transition-all">
-                Services
-              </li>
-              <li className="text-black hover:underline transition-all">
-                About Us
-              </li>
-            </ul>
-          </div>
-        ) : null
-      }
 
+      {/* Mobile Menu */}
+      {hidenav && (
+        <div className="items-center transition-all justify-center flex h-screen">
+          <ul className="flex flex-col gap-10 cursor-pointer w-min h-fit items-center text-center text-[46px] underline relative -top-[67px] font-medium">
+            {navItems.map((item, index) => (
+              <li key={index} className="text-black hover:underline transition-all">
+                <a href={item.link}>{item.name}</a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
     </div>
   );
 };

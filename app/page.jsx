@@ -4,12 +4,14 @@ import { useEffect, useState } from 'react';
 import Hero from './Hero';
 import Service from './Service';
 import Teams from './Teams';
+import { urlFor } from "@/lib/imageUrl";
 import Project from './Project';
 import { client } from '@/lib/sanity';
 import Howework from './Howework';
 // import WorldMap from "@/components/ui/world-map";
 import { motion } from "motion/react";
 import Works from './Works';
+import { getCalApi } from "@calcom/embed-react";
 import ms from '@/public/ms.png';
 import { Rocket, MoveUpRight } from 'lucide-react';
 import DesignSubscription from './components/Helps';
@@ -68,18 +70,31 @@ export const dynamic = 'force-dynamic';
 
 const heroQuery = '*[_type == "Hero"][0]';
 const projectQuery = '*[_type == "work_sec"][0]';
-const worksQuery = '*[_type == "worksCarousel"][0]';
-const designSubscriptionQuery = '*[_type == "designSubscription"][0]';
-const testimonialQuery = '*[_type == "testimonial"][0]';
+const worksQuery = '*[_type == "cs_studies"][0]';
+const designSubscriptionQuery = '*[_type == "working_process"][0]';
+const testimonialQuery = '*[_type == "our_projects"][0]';
 
 export default function Home() {
   const [openIndex, setOpenIndex] = useState(0);
   const [hero, setHero] = useState([]);
   const [projects, setProjects] = useState([]);
   const [works, setWorks] = useState([]);
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
+
+  const mailtoLink = `mailto:info@kinzix.com?subject=${encodeURIComponent(
+    `Message from ${name || "No Name"} (${email || "No Email"})`
+  )}&body=${encodeURIComponent(message || "No message")}`;
+
   const [designSubscription, setDesignSubscription] = useState([]);
   const [testimonial, setTestimonial] = useState(null);
-
+  useEffect(() => {
+    (async function () {
+      const cal = await getCalApi({ "namespace": "30min" });
+      cal("ui", { "hideEventTypeDetails": false, "layout": "month_view" });
+    })();
+  }, [])
   useEffect(() => {
     const fetchAll = async () => {
       try {
@@ -94,7 +109,7 @@ export default function Home() {
 
         setHero(heroData);
         setProjects(projectData);
-        setWorks(worksData);
+        setWorks(worksData.case_studies);
         setDesignSubscription(designData);
         setTestimonial(testimonialData);
         console.log({
@@ -136,12 +151,14 @@ export default function Home() {
     };
   }, []);
   useEffect(() => {
-    console.log(hero?.marquee)
-  }, [hero])
+    console.log(testimonial, 'ds')
+  }, [testimonial])
+
+  const steps = designSubscription?.steps || [];
   return (
     <div className=" space-grotesk ">
 
-      <section className="lg:px-[150px] px-[16px] mb-48 lg:mb-0 mt-[8em] lg:h-screen h-fit" data-aos="zoom-in" style={{
+      <section id="home" className="lg:px-[150px] px-[16px] mb-48 lg:mb-0 mt-[8em] lg:h-screen h-fit" data-aos="zoom-in" style={{
         backgroundImage: `url(${bgimage.src})`,
         backgroundRepeat: 'no-repeat',
         backgroundSize: 'cover',
@@ -161,7 +178,7 @@ export default function Home() {
         <div className="pointer-events-none absolute inset-y-0 left-0 w-1/4 bg-gradient-to-r from-background"></div>
         <div className="pointer-events-none absolute inset-y-0 right-0 w-1/4 bg-gradient-to-l from-background"></div>
       </section>
-      <section className="lg:px-[114px] h-screen ">
+      <section id="services" className="lg:px-[114px] h-screen ">
         <Howework data={projects} />
       </section>
       {/* cta block */}
@@ -171,13 +188,18 @@ export default function Home() {
           {/* Content */}
           <div className="flex flex-col justify-center items-center gap-6 p-[20px] lg:items-baseline">
             <h3 className=" font-bold text-center lg:text-left text-[#000000] text-2xl">
-              Let’s make things happen
+              {/* Let’s make things happen */}
+              {projects?.cta_heading}
             </h3>
             <p className="text-base text-[#333] lg:text-left text-center">
-              Contact us today to learn more about how our digital marketing services can help your business grow and succeed online.
+              {projects?.cta_para}
             </p>
-            <button className="shadow-[0_0_0_3px_#000000_inset] hover:bg-transparent border text-white hover:text-black border-black dark:border-white bg-[#191A23] font-bold transform hover:-translate-y-1 transition duration-400 w-[264px] h-[68px] px-[35px] py-[20px] rounded-[14px] cursor-none">
-              Get your free proposal
+            <button
+              data-cal-namespace="30min"
+              data-cal-link="kinzix/30min"
+              data-cal-config='{"layout":"month_view","theme":"auto"}'
+              className="shadow-[0_0_0_3px_#000000_inset] hover:bg-transparent border text-white hover:text-black border-black dark:border-white bg-[#191A23] font-bold transform hover:-translate-y-1 transition duration-400 w-[264px] h-[68px] px-[35px] py-[20px] rounded-[14px] cursor-none">
+              {projects?.cta_button_text}
             </button>
           </div>
 
@@ -189,72 +211,56 @@ export default function Home() {
         </div>
       </section >
       {/* case studies */}
-      <section className="lg:px-[155px] mt-10 px-[16px] h-fit" data-aos="zoom-in-up">
+      <section id="cs" className="lg:px-[155px] mt-10 px-[16px] h-fit" data-aos="zoom-in-up">
         {/* heading */}
-        <div className="lg:max-w-6xl w-full justify-center mx-auto mb-10 flex flex-row  gap-10 items-center">
-          <h2 className="text-white  w-fit  font-medium  rounded-[7px] items-center flex text-center justify-center text-[40px] px-1.5 h-[51px] bg-[#FE332F]">
+        <div className="lg:max-w-6xl w-full justify-center mx-auto mb-10 flex flex-row gap-10 items-center">
+          <h2 className="text-white w-fit font-medium rounded-[7px] items-center flex text-center justify-center text-[40px] px-1.5 h-[51px] bg-[#FE332F]">
             Case Studies
           </h2>
-
         </div>
+
         {/* content */}
-        <div data-aos="fade-up" className="w-full max-w-[1000px] p-6 bg-[#0F0F15] text-white rounded-[47px] grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-white/20 overflow-hidden">
-
-          {/* Card 1 */}
-          <div data-aos="fade-up" className="p-8 flex flex-col justify-between gap-4">
-            <p>
-              For a local restaurant, we implemented a targeted PPC campaign that resulted in a 50% increase in website traffic and a 25% increase in sales.
-            </p>
-            <a href="#" className="text-[#F94F4F] font-medium flex cursor-none items-center gap-2">
-              Learn more <span className="text-xl">↗</span>
-            </a>
-          </div>
-
-          {/* Card 2 */}
-          <div data-aos="fade-up" className="p-8 flex flex-col justify-between gap-4">
-            <p>
-              For a B2B software company, we developed an SEO strategy that resulted in a first page ranking for key keywords and a 200% increase in organic traffic.
-            </p>
-            <a href="#" className="text-[#F94F4F] font-medium  cursor-none flex items-center gap-2">
-              Learn more <span className="text-xl">↗</span>
-            </a>
-          </div>
-
-          {/* Card 3 */}
-          <div data-aos="fade-up" className="p-8 flex flex-col justify-between gap-4">
-            <p>
-              For a national retail chain, we created a social media marketing campaign that increased followers by 25% and generated a 20% increase in online sales.
-            </p>
-            <a href="#" className="text-[#F94F4F] cursor-none font-medium flex items-center gap-2">
-              Learn more <span className="text-xl">↗</span>
-            </a>
-          </div>
-
+        <div
+          data-aos="fade-up"
+          className="w-full max-w-[1000px] p-6 bg-[#0F0F15] text-white rounded-[47px] grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-white/20 overflow-hidden"
+        >
+          {works.length > 0 ? (
+            works.map((work) => (
+              <div key={work._key} data-aos="fade-up" className="p-8 flex flex-col justify-between gap-4">
+                <p>{work.para}</p>
+                <a
+                  href={work.cs_url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[#F94F4F] font-medium cursor-none flex items-center gap-2"
+                >
+                  Learn more <span className="text-xl">↗</span>
+                </a>
+              </div>
+            ))
+          ) : (
+            <div className="p-8 col-span-3 text-center opacity-50">Loading case studies...</div>
+          )}
         </div>
-
       </section>
       {/* <section></section> */}
-      <section className="lg:px-[150px] px-[16px] lg:h-screen  h-fit mt-20 " data-aos="zoom-in-up">
-        <div className="lg:max-w-6xl w-full justify-center lg:justify-baseline mx-auto mb-10 flex lg:flex-row flex-col  gap-10 items-center">
-          <h2 className="text-white font-medium rounded-[7px] flex items-center justify-center  text-4xl lg:text-[40px] w-fit h-[51px] bg-[#FE332F] whitespace-nowrap px-1.5">
-            Our Working Process
+      <section id="oup" className="lg:px-[150px] px-[16px] lg:h-screen h-fit mt-20" data-aos="zoom-in-up">
+        <div className="lg:max-w-6xl w-full justify-center lg:justify-baseline mx-auto mb-10 flex lg:flex-row flex-col gap-10 items-center">
+          <h2 className="text-white font-medium rounded-[7px] flex items-center justify-center text-4xl lg:text-[40px] w-fit h-[51px] bg-[#FE332F] whitespace-nowrap px-1.5">
+            {designSubscription?.mainHeading || "Our Working Process"}
           </h2>
-
           <p className="text-black w-fit lg:w-[580px] h-[46px] text-center lg:text-left text-2xl hidden lg:block">
-            Step-by-Step Guide to <br />
-            Achieving Your Business Goals
+            {designSubscription?.subHeading || "Step-by-Step Guide to Achieving Your Business Goals"}
           </p>
         </div>
 
-        <div className="space-y-4  max-w-[1000px] lg:p-6">
-          {processSteps.map((step, index) => {
+        <div className="space-y-4 max-w-[1000px] lg:p-6">
+          {steps.map((step, index) => {
             const isOpen = openIndex === index;
             return (
-              <div data-aos="fade-up">
+              <div key={step._key} data-aos="fade-up">
                 <div
-                  key={index}
-
-                  className={`rounded-[20px]  border-t-[0.9px] border-b-[5px] border-x-[0.9px] border-solid border-[black] overflow-hidden transition-all duration-300 ${isOpen ? 'bg-[#FE332F] text-white' : 'bg-[#F2F2F2] text-black'
+                  className={`rounded-[20px] border-t-[0.9px] border-b-[5px] border-x-[0.9px] border-solid border-[black] overflow-hidden transition-all duration-300 ${isOpen ? 'bg-[#FE332F] text-white' : 'bg-[#F2F2F2] text-black'
                     }`}
                 >
                   <button
@@ -272,7 +278,6 @@ export default function Home() {
                       {isOpen ? <Minus className="w-6 h-6" /> : <Plus className="w-6 h-6" />}
                     </div>
                   </button>
-
                   {isOpen && step.content && (
                     <div className="px-6 pb-6 pt-2 border-t border-white/30 text-sm">
                       {step.content}
@@ -285,86 +290,52 @@ export default function Home() {
         </div>
       </section>
       {/* project */}
-      <section className=" lg:px-[150px] px-[16px] lg:h-screen h-fit lg:mt-70 mt-20  text-white">
-        <div className="max-w-6xl mx-auto">
-          {/* Section Heading */}
-          <div className="max-w-6xl mx-auto mb-10 flex flex-row  gap-10 items-center justify-center lg:justify-baseline">
-            <h2 className="text-white  w-fit  font-medium  rounded-[7px] items-center flex text-center justify-center text-[40px] px-1.5 h-[51px] bg-[#FE332F]">
-              Our projects
-            </h2>
+      {testimonial?.projectList?.length > 0 && (
+        <section id='projects' className="lg:px-[150px] px-[16px] lg:h-screen h-fit lg:mt-70 mt-20 text-white">
+          <div className="max-w-6xl mx-auto">
+            {/* Section Heading */}
+            <div className="max-w-6xl mx-auto mb-10 flex flex-row gap-10 items-center justify-center lg:justify-baseline">
+              <h2 className="text-white w-fit font-medium rounded-[7px] items-center flex text-center justify-center text-[40px] px-1.5 h-[51px] bg-[#FE332F]">
+                {testimonial.mainHeading || "Our Projects"}
+              </h2>
+            </div>
 
-          </div>
+            {/* Team Grid */}
+            <div className="grid gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+              {testimonial.projectList.map((person, i) => (
+                <div
+                  key={person._key || i}
+                  className="rounded-3xl overflow-hidden bg-white text-black border-[1px] border-black border-b-[3px] transition-all duration-300"
+                  data-aos="zoom-in-up"
+                >
+                  {/* Thumbnail */}
+                  <img
+                    src={urlFor(person.image?.asset?._ref)}
+                    alt={person.name}
+                    className="w-full h-[200px] object-cover object-top"
+                  />
 
-          {/* Team Grid */}
-          <div className="grid gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
-            {[
-              {
-                name: "John Smith",
-                role: "CEO and Founder",
-                desc: "10+ years of experience in digital marketing. Expertise in SEO, PPC, and content strategy",
-                img: "https://framerusercontent.com/images/dDcewqo47ogdFFnnHpflBchPNCc.png?scale-down-to=1024",
-              },
-              {
-                name: "Jane Doe",
-                role: "Director of Operations",
-                desc: "7+ years of experience in project management and team leadership. Strong communication skills",
-                img: "https://framerusercontent.com/images/iNGKmJrUSas0ik37FzdISFentHU.png?scale-down-to=1024",
-              },
-              {
-                name: "Michael Brown",
-                role: "Senior SEO Specialist",
-                desc: "5+ years of experience in SEO and content creation. Proficient in keyword research and on-page optimization",
-                img: "https://framerusercontent.com/images/zcaQm8uPAFrAZpATDCQ4j6ixQs.jpg",
-              },
-              {
-                name: "Michael Brown",
-                role: "Senior SEO Specialist",
-                desc: "5+ years of experience in SEO and content creation. Proficient in keyword research and on-page optimization",
-                img: "https://framerusercontent.com/images/MpdHGfgLLPFhNJB07Cs4dxk7Y.jpg",
-              },
-              {
-                name: "Michael Brown",
-                role: "Senior SEO Specialist",
-                desc: "5+ years of experience in SEO and content creation. Proficient in keyword research and on-page optimization",
-                img: "https://framerusercontent.com/images/KvYvjtOYlcp9y14M0HwCfzMOyA.jpg",
-              },
-              {
-                name: "Michael Brown",
-                role: "Senior SEO Specialist",
-                desc: "5+ years of experience in SEO and content creation. Proficient in keyword research and on-page optimization",
-                img: "https://framerusercontent.com/images/iNGKmJrUSas0ik37FzdISFentHU.png?scale-down-to=1024",
-              },
-              // add more as needed
-            ].map((person, i) => (
-              <div
-                key={i}
-                className="rounded-3xl overflow-hidden bg-white text-black border-[1px] border-black border-b-[3px] transition-all duration-300"
-                data-aos="zoom-in-up"
-              >
-                {/* Thumbnail */}
-                {/* object-fit: cover;
-    object-position: top; */}
-                <img src={person.img} alt={person.name} className="w-full h-[200px] object-cover object-top" />
-
-                {/* Info */}
-                <div className="p-5">
-                  <div className="flex justify-between items-center mb-2">
-                    <div>
-                      <h3 className="font-semibold text-lg">{person.name}</h3>
-                      <p className="text-sm text-gray-500">{person.role}</p>
+                  {/* Info */}
+                  <div className="p-5">
+                    <div className="flex justify-between items-center mb-2">
+                      <div>
+                        <h3 className="font-semibold text-lg">{person.name}</h3>
+                      </div>
+                      <a href={person.pr_url} target="_blank" rel="noopener noreferrer">
+                        <div className="w-[40px] h-[40px] flex items-center justify-center rounded-full bg-[#191A23] hover:scale-125 cursor-pointer transition-all">
+                          <MoveUpRight color="#B9FF66" strokeWidth={2.27} />
+                        </div>
+                      </a>
                     </div>
-                    <div className={`w-[40px] h-[40px] flex items-center justify-center rounded-full bg-[#191A23]  hover:scale-125 cursor-pointer transition-all`}>
-                      <MoveUpRight color={'#B9FF66'} strokeWidth={2.27} />
-                    </div>
+                    <hr className="my-3 border-t-[1px] border-gray-300" />
+                    <p className="text-sm">{person.description}</p>
                   </div>
-                  <hr className="my-3 border-t-[1px] border-gray-300" />
-                  <p className="text-sm">{person.desc}</p>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       <section className="lg:px-[150px] hidden h-screen mt-20 px-[16px] pb-[60px]  lg:mt-90" data-aos="zoom-in-up">
         {/* heading */}
@@ -378,14 +349,14 @@ export default function Home() {
         </div>
         <Testimonial />
       </section>
-      <section className="lg:px-[150px] h-fit lg:h-screen mt-20 lg:mt-80 px-[16px]" data-aos="zoom-in-up">
-        <div className="max-w-6xl mx-auto mb-10 flex flex-row  gap-10 items-center justify-center lg:justify-baseline">
+      <section id="contact" className="lg:px-[150px] h-fit lg:h-screen mt-20 lg:mt-80 px-[16px]" data-aos="zoom-in-up">
+        <div className="max-w-6xl mx-auto mb-10 flex flex-row gap-10 items-center justify-center lg:justify-baseline">
           <h2 className="text-white font-medium rounded-[7px] flex items-center justify-center text-[40px] w-fit h-[51px] bg-[#FE332F] whitespace-nowrap px-1.5">
             Contact Us
           </h2>
         </div>
-        <div className="flex flex-col-reverse lg:flex-row items-center justify-between bg-[#f2f2f2] lg:h-[98vh] h-fit rounded-[40px] p-8 lg:p-16">
 
+        <div className="flex flex-col-reverse lg:flex-row items-center justify-between bg-[#f2f2f2] lg:h-[98vh] h-fit rounded-[40px] p-8 lg:p-16">
           {/* Left Form */}
           <div className="w-full lg:w-1/2 flex justify-center">
             <div className="w-full max-w-md space-y-6">
@@ -394,6 +365,8 @@ export default function Home() {
                 <input
                   type="text"
                   placeholder="Name"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
                   className="w-full border border-black rounded-xl px-4 py-3 outline-none bg-white"
                 />
               </div>
@@ -405,6 +378,8 @@ export default function Home() {
                 <input
                   type="email"
                   placeholder="Email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                   className="w-full border border-black rounded-xl px-4 py-3 outline-none bg-white"
                 />
               </div>
@@ -416,34 +391,33 @@ export default function Home() {
                 <textarea
                   placeholder="Message"
                   rows={6}
+                  value={message}
+                  onChange={(e) => setMessage(e.target.value)}
                   className="w-full border border-black rounded-xl px-4 py-3 outline-none resize-none bg-white"
                 />
               </div>
 
-              <button className="w-full bg-[#18181B] text-white py-3 rounded-xl font-medium">
-                Send Message
-              </button>
+              <a href={mailtoLink}>
+                <button className="w-full bg-[#18181B] text-white py-3 rounded-xl font-medium">
+                  Send Message
+                </button>
+              </a>
             </div>
           </div>
 
           {/* Right Image */}
           <div className="w-full lg:w-1/2 lg:flex hidden justify-end">
-            {/*     color: transparent;
-    width: 290px;
-    position: relative;
-    right: -67px;
-} */}
             <Image
               src={ms}
               alt="Illustration"
-              className="rounded-[32px] object-cover h-96 lg:h-full relative rightp-[-67px]"
+              className="rounded-[32px] object-cover h-96 lg:h-full"
               width={290}
               height={290}
             />
           </div>
-
         </div>
       </section>
+
       {/* style={{
         backgroundImage: `url(${mesh.src})`,
         backgroundRepeat: 'no-repeat',

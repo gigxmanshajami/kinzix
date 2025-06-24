@@ -1,72 +1,110 @@
+'use client';
+
+import { useEffect, useState } from 'react';
 import Image from 'next/image';
-import { Linkedin, Facebook, Github, Instagram } from 'lucide-react';
-import kinzixImage from "@/public/kinzi.png";
+import { client } from '@/lib/sanity';
+import kinzixImage from '@/public/kinzi.png';
+import { Linkedin, Facebook, Github } from 'lucide-react';
+import { urlFor } from '@/lib/imageUrl'; // helper for Sanity image URLs
+
 const Footer = () => {
+    const [footerData, setFooterData] = useState(null);
+    const [navItems, setNavItems] = useState([]);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const [footerRes, navRes] = await Promise.all([
+                    client.fetch(`*[_type == "footer"][0]`),
+                    client.fetch(`*[_type == "nav"][0].menus`)
+                ]);
+                setFooterData(footerRes);
+                setNavItems(navRes || []);
+            } catch (error) {
+                console.error('Footer fetch error:', error);
+            }
+        };
+
+        fetchData();
+    }, []);
+
+    if (!footerData) return null;
+
     return (
-        <footer data-aos="zoom-in-up" className="bg-[#121217] text-white px-6 md:px-20 pt-16 pb-8 rounded-t-3xl">
-            <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-12 items-center justify-center lg:items-normal lg:justify-between">
-
+        <footer className="bg-[#121217] text-white px-6 md:px-20 pt-16 pb-8 rounded-t-3xl">
+            <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-12 items-center justify-center">
                 {/* Left Section */}
-                <div className="space-y-4 flex flex-col items-center justify-center lg:items-baseline lg:justify-baseline">
-                    {/* <h1 className="text-2xl font-bold"> 
-                    
-                    </h1> */}
+                <div className="space-y-4 flex flex-col items-center justify-center lg:items-start">
                     <img
-                        src={kinzixImage.src}
+                        src={footerData.logo ? urlFor(footerData.logo).url() : kinzixImage}
                         alt="Kinzix"
-                        className="object-contain h-fit w-[112px]"
-                    // width={112}
-
+                        width={112}
+                        height={50}
+                        className="object-contain"
                     />
-                    <div className="max-w-6xl mb-10 mt-10 flex flex-row  gap-10 items-center">
-                        <h2 className="text-white font-medium rounded-[7px] flex items-center justify-center text-[20px] w-fit h-fit bg-[#FE332F] whitespace-nowrap px-1.5">
-                            Contact Us
-                        </h2>
-                    </div>
-                    <div className="text-sm text-gray-300 items-center justify-center text-center lg:items-baseline lg:justify-baseline lg:text-left space-y-1">
-                        <p>Email: info@kinzix.com</p>
-                        <p>Phone: 555-567-8901</p>
-                        <p>
-                            Address: 1234 Main St<br />
-                            Moonstone City, Stardust State 12345
-                        </p>
+
+                    <h2 className="text-white font-medium bg-[#FE332F] text-[20px] px-1.5 rounded-[7px]">
+                        {footerData.contactHeading}
+                    </h2>
+
+                    <div className="text-sm text-gray-300 text-center lg:text-left space-y-1">
+                        <p>Email: {footerData.email}</p>
+                        <p>Phone: {footerData.phone}</p>
+                        <p>Address: {footerData.address}</p>
                     </div>
                 </div>
 
-                {/* Navigation Links */}
-                <div className="flex flex-wrap gap-6 text-sm font-medium items-center justify-center lg:items-baseline lg:justify-baseline">
-                    <a href="#" className="hover:underline">About us</a>
-                    <a href="#" className="hover:underline">Services</a>
-                    <a href="#" className="hover:underline">Use Cases</a>
-                    <a href="#" className="hover:underline">Pricing</a>
-                    <a href="#" className="hover:underline">Blog</a>
+                {/* Nav links from navbar */}
+                <div className="flex flex-wrap gap-6 text-sm font-medium items-center justify-center lg:items-start">
+                    {navItems.map((menu, i) => (
+                        <a key={i} href={menu.link || '#'} className="hover:underline capitalize">
+                            {menu.name}
+                        </a>
+                    ))}
                 </div>
 
                 {/* Social Icons */}
                 <div className="flex gap-3">
-                    <div className="w-8 h-8  hover:scale-125 cursor-pointer transition-all bg-white rounded-full flex items-center justify-center text-black font-bold"><Linkedin stroke='#000' fill='#000' size={20} strokeOpacity={2}   color='#000' /></div>
-                    <div className="w-8 h-8 hover:scale-125 cursor-pointer transition-all bg-white rounded-full flex items-center justify-center text-black font-bold"><Facebook stroke='#000' fill='#000' size={20}  strokeOpacity={2}  color='#000' /></div>
-                    <div className="w-8 h-8 hover:scale-125 cursor-pointer transition-all bg-white rounded-full flex items-center justify-center text-black font-bold"><Github stroke='#000' fill='#000' size={20}  strokeOpacity={2}  color='#000' /></div>
-                    {/* <div className="w-8 h-8 bg-white rounded-full flex items-center justify-center text-black font-bold"><Instagram stroke='#000'   size={20} strokeWidth={3} strokeOpacity={4}  color='#000' /></div> */}
+                    {footerData.socials?.map((s, i) => {
+                        const iconMap = {
+                            linkedin: <Linkedin size={20} />,
+                            facebook: <Facebook size={20} />,
+                            github: <Github size={20} />
+                        };
+
+                        return (
+                            <a
+                                key={i}
+                                href={s.url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="w-8 h-8 hover:scale-125 bg-white text-black rounded-full flex items-center justify-center transition-all"
+                            >
+                                {iconMap[s.platform.toLowerCase()] || s.platform}
+                            </a>
+                        );
+                    })}
                 </div>
             </div>
 
-            {/* Subscribe Box */}
+            {/* Subscribe */}
             <div className="bg-[#1E1E24] rounded-xl p-6 mt-10 flex flex-col md:flex-row gap-4 items-center justify-between">
                 <input
                     type="email"
-                    placeholder="Email"
+                    placeholder={footerData.subscribePlaceholder}
                     className="w-full md:w-auto px-4 py-3 rounded-lg border border-white bg-transparent text-white placeholder-white focus:outline-none"
                 />
                 <button className="bg-[#FF3D3D] text-white px-6 py-3 rounded-lg font-medium">
-                    Subscribe to news
+                    {footerData.subscribeButtonText}
                 </button>
             </div>
 
             {/* Bottom Line */}
             <div className="border-t border-gray-600 mt-12 pt-6 flex flex-col md:flex-row justify-between items-center text-sm text-gray-400">
-                <p>© 2025 Kinzix.com. All Rights Reserved.</p>
-                <a href="#" className="hover:underline">Privacy Policy</a>
+                <p>{footerData.copyright}</p>
+                <a href={footerData.privacyPolicyUrl} className="hover:underline">
+                    Privacy Policy
+                </a>
             </div>
         </footer>
     );
