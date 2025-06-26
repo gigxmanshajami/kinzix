@@ -19,7 +19,7 @@ import Testimonial from './components/Testimonial';
 import Image from 'next/image';
 import Img from '@/public/illcta.png';
 import mesh from '@/public/msh.svg';
-import bgimage from '@/public/wave.svg';
+import bgimage from '@/public/pd.png';
 // import Scrollsec from './Scrollsec';
 import { Plus, Minus } from 'lucide-react';
 
@@ -156,34 +156,52 @@ export default function Home() {
 
   const steps = designSubscription?.steps || [];
   return (
-    <div className=" space-grotesk ">
-
-      <section id="home" className="lg:px-[150px] px-[16px] mb-48 lg:mb-0 mt-[8em] lg:h-screen h-fit" data-aos="zoom-in" style={{
-        backgroundImage: `url(${bgimage.src})`,
-        backgroundRepeat: 'no-repeat',
-        backgroundSize: 'cover',
-      }}>
+    // object-position: center;
+    // object-fit: contain;
+    // position: absolute;
+    // width: 200px;
+    // top: 80px;
+    // /* left: 5px; */
+    // right: 106px;
+    // transform: scale(3);
+    // backdrop-filter: blur(10px);
+    // z-index: -1;
+    // filter: blur(36px);
+    <div className=" space-grotesk overflow-hidden ">
+      {/* object-position: center;
+    object-fit: contain;
+    position: absolute;
+    width: 900px;
+    top: 6px;
+    backdrop-filter: blur(1px);
+    z-index: -1; */}
+      <section id="home" className="lg:px-[150px] px-[16px] mb-48 lg:mb-0 mt-[8em] lg:h-screen h-fit relative" data-aos="zoom-in" >
+        <img
+          data-aos="zoom-in-up"
+          src={bgimage.src}
+          className="absolute top-[100px] lg:top-[-124px] scale-[3] lg:scale-100 w-[200px] lg:w-[900px] right-[120px!important] lg:right-0 "
+          style={{
+            objectPosition: 'center',
+            objectFit: 'contain',
+            backdropFilter: 'blur(10px)',
+            zIndex: -1,
+            filter: 'blur(36px)',
+          }}
+        />
         <Hero data={hero} />
-        {/* <div className="pointer-events-none absolute inset-y-0 left-0 w-1/4 bg-gradient-to-r from-background"></div> */}
-        {/* <div className="pointer-events-none absolute inset-y-0 left-0 w-1/4 bg-gradient-to-t from-background"></div>
-        <div className="pointer-events-none absolute inset-y-0 right-0 w-1/4 bg-gradient-to-t from-background"></div> */}
       </section>
-      <section className="relative mb-10 flex w-full flex-col items-center justify-center overflow-hidden lg:mt-20 " >
-        {/* <Scrollsec /> */}
-        {hero && hero.marquee && (
-          <VelocityScroll numRows={2} defaultVelocity={2}>
-            {hero.marquee}
-          </VelocityScroll>
-        )}
-        <div className="pointer-events-none absolute inset-y-0 left-0 w-1/4 bg-gradient-to-r from-background"></div>
-        <div className="pointer-events-none absolute inset-y-0 right-0 w-1/4 bg-gradient-to-l from-background"></div>
-      </section>
+
       <section id="services" className="lg:px-[114px] h-screen ">
         <Howework data={projects} />
       </section>
       {/* cta block */}
-      <section className="lg:px-[150px] px-[16px]  lg:mt-[20em] mt-[75em] lg:h-screen h-fit flex items-center justify-center" >
-        <div data-aos="zoom-in-up" className="w-full max-w-[1000px] h-auto rounded-[47px] bg-[#F3F3F3] grid grid-cols-1 md:grid-cols-2 gap-8 p-8 relative">
+      <section style={{
+        backgroundImage: `url(${bgimage.src})`,
+        backgroundSize: '600px',
+        backgroundRepeat: 'no-repeat',
+        backgroundPosition:'top',
+      }} className="lg:px-[150px] px-[16px]  lg:mt-[5em] mt-[35em] lg:h-screen h-fit flex items-center justify-center  pb-[7em] lg:pb-[0] " >
+        <div data-aos="zoom-in-up" className="w-full max-w-[1000px] h-auto rounded-[47px] bg-[#F3F3F3] grid grid-cols-1 md:grid-cols-2 gap-8 p-8 relative ">
 
           {/* Content */}
           <div className="flex flex-col justify-center items-center gap-6 p-[20px] lg:items-baseline">
@@ -211,7 +229,12 @@ export default function Home() {
         </div>
       </section >
       {/* case studies */}
-      <section id="cs" className="lg:px-[155px] mt-10 px-[16px] h-fit" data-aos="zoom-in-up">
+      <section   style={{
+          backgroundImage: `url(${bgimage.src})`,
+          backgroundSize: '600px',
+          backgroundPosition:'center',
+          backgroundRepeat: 'no-repeat',
+        }} id="cs" className="lg:px-[155px] mt-10 px-[16px] h-fit" data-aos="zoom-in-up">
         {/* heading */}
         <div className="lg:max-w-6xl w-full justify-center mx-auto mb-10 flex flex-row gap-10 items-center">
           <h2 className="text-white w-fit font-medium rounded-[7px] items-center flex text-center justify-center text-[40px] px-1.5 h-[51px] bg-[#FE332F]">
@@ -291,7 +314,12 @@ export default function Home() {
       </section>
       {/* project */}
       {testimonial?.projectList?.length > 0 && (
-        <section id='projects' className="lg:px-[150px] px-[16px] lg:h-screen h-fit lg:mt-70 mt-20 text-white">
+        <section style={{
+          backgroundImage: `url(${bgimage.src})`,
+          backgroundSize: '600px',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'space',
+        }} id='projects' className="lg:px-[150px] px-[16px] lg:h-screen h-fit lg:mt-70 mt-20 text-white">
           <div className="max-w-6xl mx-auto">
             {/* Section Heading */}
             <div className="max-w-6xl mx-auto mb-10 flex flex-row gap-10 items-center justify-center lg:justify-baseline">
@@ -349,7 +377,7 @@ export default function Home() {
         </div>
         <Testimonial />
       </section>
-      <section id="contact" className="lg:px-[150px] h-fit lg:h-screen mt-20 lg:mt-80 px-[16px]" data-aos="zoom-in-up">
+      <section id="contact" className="lg:px-[150px] h-fit lg:h-screen mt-20 lg:mt-20 px-[16px]" data-aos="zoom-in-up">
         <div className="max-w-6xl mx-auto mb-10 flex flex-row gap-10 items-center justify-center lg:justify-baseline">
           <h2 className="text-white font-medium rounded-[7px] flex items-center justify-center text-[40px] w-fit h-[51px] bg-[#FE332F] whitespace-nowrap px-1.5">
             Contact Us
@@ -423,7 +451,12 @@ export default function Home() {
         backgroundRepeat: 'no-repeat',
         backgroundSize: 'cover',
       }} */}
-      <section className="relative lg:px-[150px] px-[16px] mt-10  h-fit lg:mt-30 overflow-hidden" data-aos="zoom-in-up" >
+      <section style={{
+        backgroundImage: `url(${bgimage.src})`,
+        backgroundSize: '600px',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'space',
+      }} className="relative lg:px-[150px] px-[16px] mt-10  h-fit lg:mt-30 overflow-hidden" data-aos="zoom-in-up" >
 
 
         {/* Heading */}

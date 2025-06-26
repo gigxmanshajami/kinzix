@@ -22,9 +22,9 @@ export default function ClientRoot({ children }) {
         // top: 0;
         // backdrop-filter: blur(5px);
         <>
-            <SmoothCursor />
-            <div className="lg:px-[91px] fixed z-[2000] bg-[#ffffffbf] w-[100%] h-fit top-0 " style={{
-                backdropFilter: 'blur(20px)',
+            {/* <SmoothCursor /> */}
+            <div className="lg:px-[91px] fixed z-[2000] bg-[#ffffff38] w-[100vw] h-fit top-0 " style={{
+                backdropFilter: 'blur(10px)',
             }}>
                 <NavbarHome />
             </div>

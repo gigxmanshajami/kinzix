@@ -47,11 +47,19 @@ export default function Calx() {
             cal("ui", { "hideEventTypeDetails": false, "layout": "month_view" });
         })();
     }, [])
-    return <Cal namespace="30min"
-        calLink="kinzix/30min"
-        style={{ width: "100%", height: "100%", overflow: "scroll" }}
-        config={{ "layout": "month_view" }}
+    // return <Cal namespace="30min"
+    //     calLink="kinzix/30min"
+    //     style={{ width: "100%", height: "100%", overflow: "scroll" }}
+    //     config={{ "layout": "month_view" }}
+    return (
+        <div className="w-full h-[600px] overflow-y-auto scrollbar-hide">
+            <Cal
+                namespace="30min"
+                calLink="kinzix/30min"
+                style={{ width: "100%", height: "100%", border: "none" }}
+                config={{ layout: "month_view" }}
+            />
+        </div>
+    )
 
-
-    />;
 };

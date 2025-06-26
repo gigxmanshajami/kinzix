@@ -87,7 +87,7 @@ const Footer = () => {
                 </div>
             </div>
 
-            {/* Subscribe */}
+            {/* Subscribe
             <div className="bg-[#1E1E24] rounded-xl p-6 mt-10 flex flex-col md:flex-row gap-4 items-center justify-between">
                 <input
                     type="email"
@@ -97,7 +97,7 @@ const Footer = () => {
                 <button className="bg-[#FF3D3D] text-white px-6 py-3 rounded-lg font-medium">
                     {footerData.subscribeButtonText}
                 </button>
-            </div>
+            </div> */}
 
             {/* Bottom Line */}
             <div className="border-t border-gray-600 mt-12 pt-6 flex flex-col md:flex-row justify-between items-center text-sm text-gray-400">
