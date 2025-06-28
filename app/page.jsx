@@ -194,40 +194,8 @@ export default function Home() {
       <section id="services" className="lg:px-[114px] h-screen ">
         <Howework data={projects} />
       </section>
-      {/* cta block */}
-      <section style={{
-        backgroundImage: `url(${bgimage.src})`,
-        backgroundSize: '600px',
-        backgroundRepeat: 'no-repeat',
-        backgroundPosition:'top',
-      }} className="lg:px-[150px] px-[16px]  lg:mt-[5em] mt-[35em] lg:h-screen h-fit flex items-center justify-center  pb-[7em] lg:pb-[0] " >
-        <div data-aos="zoom-in-up" className="w-full max-w-[1000px] h-auto rounded-[47px] bg-[#F3F3F3] grid grid-cols-1 md:grid-cols-2 gap-8 p-8 relative ">
-
-          {/* Content */}
-          <div className="flex flex-col justify-center items-center gap-6 p-[20px] lg:items-baseline">
-            <h3 className=" font-bold text-center lg:text-left text-[#000000] text-2xl">
-              {/* Let’s make things happen */}
-              {projects?.cta_heading}
-            </h3>
-            <p className="text-base text-[#333] lg:text-left text-center">
-              {projects?.cta_para}
-            </p>
-            <button
-              data-cal-namespace="30min"
-              data-cal-link="kinzix/30min"
-              data-cal-config='{"layout":"month_view","theme":"auto"}'
-              className="shadow-[0_0_0_3px_#000000_inset] hover:bg-transparent border text-white hover:text-black border-black dark:border-white bg-[#191A23] font-bold transform hover:-translate-y-1 transition duration-400 w-[264px] h-[68px] px-[35px] py-[20px] rounded-[14px] cursor-none">
-              {projects?.cta_button_text}
-            </button>
-          </div>
-
-          {/* Image */}
-          <div className="flex justify-center items-center absolute right-[7em] top-[-1em] hidden lg:block">
-            <Image src={Img.src} width={313} height={337} alt="Star" />
-          </div>
-
-        </div>
-      </section >
+ 
+    
       {/* case studies */}
       <section   style={{
           backgroundImage: `url(${bgimage.src})`,
