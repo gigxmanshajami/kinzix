@@ -21,14 +21,13 @@ export default function Hero({ data }) {
     return (
         <div>
             {/* content */}
-            <div className="flex flex-row justify-between gap-2 mt-5 " >
+            <div className="flex  mt-20 " >
                 {/* header content */}
-                <div className="flex flex-col w-[531px] h-[418px] gap-[35px]  items-center lg:items-baseline">
-                    <h1 className="font-medium text-center lg:text-left lg:text-[60px] text-[55px] leading-[67px] text-black  underline w-fit">
+                <div className="flex flex-col w-full h-screen gap-[35px]  items-center ">
+                    <h1 className="text-center  lg:text-[60px] text-[55px] leading-[67px] font-semibold text-black  w-fit">
                         {text_first}
-                        {/* Navigating the digital landscape for success */}
                     </h1>
-                    <p className="leading-[28px] text-[#000000] lg:w-[453px] text-center lg:text-left w-fit">
+                    <p className="leading-[28px] text-[#000000] lg:w-[453px] text-center  w-fit">
                         {/* Our digital marketing agency helps businesses grow and succeed online through a range of services including SEO, PPC, social media marketing, and content creation. */}
                         {description}
                     </p>
@@ -41,25 +40,11 @@ export default function Hero({ data }) {
                         data-cal-link="kinzix/30min"
 
                         data-cal-config='{"layout":"month_view","theme":"auto"}'
-                        className="shadow-[0_0_0_3px_#000000_inset]  hover:bg-transparent border text-white hover:text-black border-black  bg-[#191A23]   font-bold transform hover:-translate-y-1 transition duration-400 w-[264px] cursor-none h-[68px] px-[35px] py-[20px]   rounded-[14px]">
+                        className="shadow-[0_0_0_3px_#000000_inset]  hover:bg-transparent border text-white hover:text-black border-black  bg-[#191A23]   font-bold transform hover:-translate-y-1 transition duration-400 w-[264px] cursor-pointer h-[68px] px-[35px] py-[20px]   ">
                         Book a consultation
                     </button>
                 </div>
                 {/* image container */}
-                <div>
-
-                    <motion.div
-                        className="w-[185px] relative right-[8em] top-[10em] lg:block hidden "
-                        initial={{ scale: 2.8 }}
-                        animate={{ scale: [2.7, 2.9, 2.7] }}
-                        transition={{
-                            duration: 8,
-                            repeat: Infinity,
-                            ease: 'easeInOut',
-                        }}>
-                        <Image alt='kinzix image' className="lg:block hidden" src={HeaderImage.src} width={600.46} height={515} />
-                    </motion.div>
-                </div>
             </div>
         </div>
     );

@@ -91,9 +91,9 @@ export const NavbarHome = () => {
               data-cal-namespace="30min"
               data-cal-link="kinzix/30min"
               data-cal-config='{"layout":"month_view","theme":"auto"}'
-              className="w-[188px] h-[50px] hover:scale-125 cursor-pointer transition-all text-black items-center rounded-[14px] border-[#191A23] border-[1.3px]"
+              className="w-[188px] h-[50px] hover:scale-125 cursor-pointer transition-all text-black items-center  border-[#191A23] border-[1.3px]"
             >
-              Book A Meeting
+              Get in touch
             </button>
           </div>
         </div>

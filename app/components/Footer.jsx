@@ -31,7 +31,7 @@ const Footer = () => {
     if (!footerData) return null;
 
     return (
-        <footer className="bg-[#121217] text-white px-6 md:px-20 pt-16 pb-8 rounded-t-3xl">
+        <footer className="bg-[#121217] text-white px-6 md:px-20 pt-16 pb-8 ">
             <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-12 items-center justify-center">
                 {/* Left Section */}
                 <div className="space-y-4 flex flex-col items-center justify-center lg:items-start">

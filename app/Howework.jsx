@@ -46,22 +46,21 @@ const Howework = ({ data }) => {
         <div className="py-12 lg:px-10 px-[3px] ">
             {/* Header */}
             <div className="max-w-6xl  mx-auto mb-10 flex lg:flex-row flex-col gap-10 items-center" data-aos="zoom-in-up">
-                <h2 className="text-white font-medium rounded-[7px] items-center flex text-center justify-center text-[40px] w-[178px] h-[51px] bg-[#FE332F]">
+                <h2 className="text-white font-medium items-center flex text-center justify-center text-[40px] w-[178px] h-[51px] bg-[#FE332F]">
                     Services
                 </h2>
                 <p className="text-black lg:w-[580px] text-center text-[15px] lg:text-left h-[46px] w-fit hidden lg:block">
-                    {data?.headingh ||
-                        'At our digital marketing agency, we offer a range of services to help businesses grow and succeed online. These services include:'}
+                    {data?.headingh}
                 </p>
             </div>
 
-            <div ref={gridRef} className="w-full flex justify-center pb-20 h-screen">
+            <div ref={gridRef} className="w-full flex justify-center  h-fit">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-10 gap-y-6 max-w-[1240px]">
                     {services.map((service, i) => (
                         <div
                             key={service._key || i}
                             data-aos="zoom-out-up"
-                            className="service-card border-[#191A23] border-[0.9px] border-b-[7px] border-solid rounded-[45px] p-6 lg:w-[461px] h-[255px] flex flex-row justify-between w-[359px]"
+                            className="service-card border-[#191A23] border-[0.9px] border-b-[7px] border-solid  p-6 lg:w-[461px] h-[255px] flex flex-row justify-between w-[359px]"
                             style={{
                                 backgroundColor: service?.bg || '#fff',
                                 color: service?.text || '#000',

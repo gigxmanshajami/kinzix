@@ -167,7 +167,7 @@ export default function Home() {
     // backdrop-filter: blur(10px);
     // z-index: -1;
     // filter: blur(36px);
-    <div className=" space-grotesk overflow-hidden ">
+    <>
       {/* object-position: center;
     object-fit: contain;
     position: absolute;
@@ -175,7 +175,7 @@ export default function Home() {
     top: 6px;
     backdrop-filter: blur(1px);
     z-index: -1; */}
-      <section id="home" className="lg:px-[150px] px-[16px] mb-48 lg:mb-0 mt-[8em] lg:h-screen h-fit relative" data-aos="zoom-in" >
+      <section id="home" className="lg:px-[150px] px-[16px] mb-48 lg:mb-0 mt-[8em] lg:h-screen h-fit relative flex justify-center" data-aos="zoom-in" >
         <img
           data-aos="zoom-in-up"
           src={bgimage.src}
@@ -191,21 +191,176 @@ export default function Home() {
         <Hero data={hero} />
       </section>
 
-      <section id="services" className="lg:px-[114px] h-screen ">
+      <section id="services" className="lg:px-[114px] h-fit bg-[#dcbbfe] ">
         <Howework data={projects} />
       </section>
- 
-    
-      {/* case studies */}
-      <section   style={{
+
+      <section id="oup" className="lg:px-[150px] px-[16px] lg:h-screen h-fit mt-20" data-aos="zoom-in-up">
+        <div className="lg:max-w-6xl w-full justify-center lg:justify-baseline mx-auto mb-10 flex lg:flex-row flex-col gap-10 items-center">
+          <h2 className="text-white font-medium  flex items-center justify-center text-4xl lg:text-[40px] w-fit h-[51px] bg-[#FE332F] whitespace-nowrap px-1.5">
+            {designSubscription?.mainHeading || "Our Working Process"}
+          </h2>
+          <p className="text-black w-fit lg:w-[580px] h-[46px] text-center lg:text-left text-2xl hidden lg:block">
+            {designSubscription?.subHeading || "Step-by-Step Guide to Achieving Your Business Goals"}
+          </p>
+        </div>
+
+        <div className="space-y-4 max-w-[1000px]">
+          {steps.map((step, index) => {
+            const isOpen = openIndex === index;
+            return (
+              <div key={step._key} data-aos="fade-up">
+                <div
+                  className={` border-t-[0.9px] border-b-[5px] border-x-[0.9px] border-solid border-[black] overflow-hidden transition-all duration-300 ${isOpen ? 'bg-[#FE332F] text-white' : 'bg-[#F2F2F2] text-black'
+                    }`}
+                >
+                  <button
+                    onClick={() => setOpenIndex(isOpen ? null : index)}
+                    className="w-full px-6 py-5 flex items-center justify-between text-left"
+                  >
+                    <div className="flex gap-4 items-center">
+                      <span className="text-3xl font-bold">{step.number}</span>
+                      <span className="text-lg font-medium">{step.title}</span>
+                    </div>
+                    <div
+                      className={` border-[0.9px] border-solid border-black p-[3px] transition-colors duration-300 ${isOpen ? 'bg-[#fff] text-black' : 'bg-transparent text-black'
+                        }`}
+                    >
+                      {isOpen ? <Minus className="w-6 h-6" /> : <Plus className="w-6 h-6" />}
+                    </div>
+                  </button>
+                  {isOpen && step.content && (
+                    <div className="px-6 pb-6 pt-2 border-t border-white/30 text-sm">
+                      {step.content}
+                    </div>
+                  )}
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </section>
+      {/* ind */}
+      <section className="w-full py-o mt-[116px] pb-[4em] pt-[0.1px] md:px-12 lg:px-[150px] px-[16px]  bg-[#e3e3e3]">
+        <div className="max-w-7xl mx-20 mx-auto grid mt-20 grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          {/* Left Content */}
+          <div>
+            <span className="text-sm font-medium text-gray-500 uppercase">Custom</span>
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mt-2">
+              Tailored Software Solutions for Every Business Need
+            </h2>
+            <p className="mt-4 text-gray-600">
+              At Kinzix, we specialize in creating custom software solutions designed specifically for your unique challenges.
+              Our expert team collaborates closely with you to ensure your vision becomes a reality.
+            </p>
+
+            <div className="mt-8 space-y-4">
+              <div className="flex items-start gap-4">
+                <div className="p-2 rounded bg-gray-100 text-gray-700">
+                  📦
+                </div>
+                <div>
+                  <h4 className="font-semibold text-lg">Innovative Solutions</h4>
+                  <p className="text-gray-600 text-sm">
+                    Experience cutting-edge technology that drives efficiency and growth for your business.
+                  </p>
+                </div>
+              </div>
+              <div className="flex items-start gap-4">
+                <div className="p-2 rounded bg-gray-100 text-gray-700">
+                  👨‍💻
+                </div>
+                <div>
+                  <h4 className="font-semibold text-lg">Expert Team</h4>
+                  <p className="text-gray-600 text-sm">
+                    Our skilled developers are dedicated to delivering exceptional results tailored to your needs.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Buttons */}
+            <div className="mt-8 flex gap-4 flex-wrap">
+              <button className="px-6 py-2 bg-black text-white hover:bg-gray-800">
+                Learn More
+              </button>
+              <button className="px-6 py-2 border border-black text-black  hover:bg-gray-100">
+                Sign Up
+              </button>
+            </div>
+          </div>
+
+          {/* Right Image */}
+          <div className="w-full h-64 md:h-80 bg-gray-100 flex items-center justify-center rounded-md">
+            <span className="text-gray-400 text-sm">Image Placeholder</span>
+          </div>
+        </div>
+      </section>
+
+      {/* <section></section> */}
+
+      {/* project */}
+      {testimonial?.projectList?.length > 0 && (
+        <section style={{
           backgroundImage: `url(${bgimage.src})`,
           backgroundSize: '600px',
-          backgroundPosition:'center',
-          backgroundRepeat: 'no-repeat',
-        }} id="cs" className="lg:px-[155px] mt-10 px-[16px] h-fit" data-aos="zoom-in-up">
+          backgroundPosition: 'center',
+          backgroundRepeat: 'space',
+        }} id='projects' className="lg:px-[150px] px-[16px] lg:h-screen h-fit lg:mt-30 mt-20 text-white">
+          <div className="max-w-6xl mx-auto">
+            {/* Section Heading */}
+            <div className="max-w-6xl mx-auto mb-10 flex flex-row gap-10 items-center justify-center lg:justify-baseline">
+              <h2 className="text-white w-fit font-medium items-center flex text-center justify-center text-[40px] px-1.5 h-[51px] bg-[#FE332F]">
+                {testimonial.mainHeading || "Our Projects"}
+              </h2>
+            </div>
+
+            {/* Team Grid */}
+            <div className="grid gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+              {testimonial.projectList.map((person, i) => (
+                <div
+                  key={person._key || i}
+                  className=" overflow-hidden bg-white text-black border-[1px] border-black border-b-[3px] transition-all duration-300"
+                  data-aos="zoom-in-up"
+                >
+                  {/* Thumbnail */}
+                  <img
+                    src={urlFor(person.image?.asset?._ref)}
+                    alt={person.name}
+                    className="w-full h-[200px] object-cover object-top"
+                  />
+
+                  {/* Info */}
+                  <div className="p-5">
+                    <div className="flex justify-between items-center mb-2">
+                      <div>
+                        <h3 className="font-semibold text-lg">{person.name}</h3>
+                      </div>
+                      <a href={person.pr_url} target="_blank" rel="noopener noreferrer">
+                        <div className="w-[40px] h-[40px] flex items-center justify-center  bg-[#191A23] hover:scale-125 cursor-pointer transition-all">
+                          <MoveUpRight color="#B9FF66" strokeWidth={2.27} />
+                        </div>
+                      </a>
+                    </div>
+                    <hr className="my-3 border-t-[1px] border-gray-300" />
+                    <p className="text-sm">{person.description}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+      {/* case studies */}
+      <section style={{
+        backgroundImage: `url(${bgimage.src})`,
+        backgroundSize: '600px',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+      }} id="cs" className="lg:px-[155px] mt-[5em] px-[16px] h-fit" data-aos="zoom-in-up">
         {/* heading */}
         <div className="lg:max-w-6xl w-full justify-center mx-auto mb-10 flex flex-row gap-10 items-center">
-          <h2 className="text-white w-fit font-medium rounded-[7px] items-center flex text-center justify-center text-[40px] px-1.5 h-[51px] bg-[#FE332F]">
+          <h2 className="text-white w-fit font-medium  items-center flex text-center justify-center text-[40px] px-1.5 h-[51px] bg-[#FE332F]">
             Case Studies
           </h2>
         </div>
@@ -213,7 +368,7 @@ export default function Home() {
         {/* content */}
         <div
           data-aos="fade-up"
-          className="w-full max-w-[1000px] p-6 bg-[#0F0F15] text-white rounded-[47px] grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-white/20 overflow-hidden"
+          className="w-full max-w-[1000px] p-6 bg-[#0F0F15] text-white  grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-white/20 overflow-hidden"
         >
           {works.length > 0 ? (
             works.map((work) => (
@@ -234,105 +389,6 @@ export default function Home() {
           )}
         </div>
       </section>
-      {/* <section></section> */}
-      <section id="oup" className="lg:px-[150px] px-[16px] lg:h-screen h-fit mt-20" data-aos="zoom-in-up">
-        <div className="lg:max-w-6xl w-full justify-center lg:justify-baseline mx-auto mb-10 flex lg:flex-row flex-col gap-10 items-center">
-          <h2 className="text-white font-medium rounded-[7px] flex items-center justify-center text-4xl lg:text-[40px] w-fit h-[51px] bg-[#FE332F] whitespace-nowrap px-1.5">
-            {designSubscription?.mainHeading || "Our Working Process"}
-          </h2>
-          <p className="text-black w-fit lg:w-[580px] h-[46px] text-center lg:text-left text-2xl hidden lg:block">
-            {designSubscription?.subHeading || "Step-by-Step Guide to Achieving Your Business Goals"}
-          </p>
-        </div>
-
-        <div className="space-y-4 max-w-[1000px] lg:p-6">
-          {steps.map((step, index) => {
-            const isOpen = openIndex === index;
-            return (
-              <div key={step._key} data-aos="fade-up">
-                <div
-                  className={`rounded-[20px] border-t-[0.9px] border-b-[5px] border-x-[0.9px] border-solid border-[black] overflow-hidden transition-all duration-300 ${isOpen ? 'bg-[#FE332F] text-white' : 'bg-[#F2F2F2] text-black'
-                    }`}
-                >
-                  <button
-                    onClick={() => setOpenIndex(isOpen ? null : index)}
-                    className="w-full px-6 py-5 flex items-center justify-between text-left"
-                  >
-                    <div className="flex gap-4 items-center">
-                      <span className="text-3xl font-bold">{step.number}</span>
-                      <span className="text-lg font-medium">{step.title}</span>
-                    </div>
-                    <div
-                      className={`rounded-[60px] border-[0.9px] border-solid border-black p-[3px] transition-colors duration-300 ${isOpen ? 'bg-[#fff] text-black' : 'bg-transparent text-black'
-                        }`}
-                    >
-                      {isOpen ? <Minus className="w-6 h-6" /> : <Plus className="w-6 h-6" />}
-                    </div>
-                  </button>
-                  {isOpen && step.content && (
-                    <div className="px-6 pb-6 pt-2 border-t border-white/30 text-sm">
-                      {step.content}
-                    </div>
-                  )}
-                </div>
-              </div>
-            );
-          })}
-        </div>
-      </section>
-      {/* project */}
-      {testimonial?.projectList?.length > 0 && (
-        <section style={{
-          backgroundImage: `url(${bgimage.src})`,
-          backgroundSize: '600px',
-          backgroundPosition: 'center',
-          backgroundRepeat: 'space',
-        }} id='projects' className="lg:px-[150px] px-[16px] lg:h-screen h-fit lg:mt-70 mt-20 text-white">
-          <div className="max-w-6xl mx-auto">
-            {/* Section Heading */}
-            <div className="max-w-6xl mx-auto mb-10 flex flex-row gap-10 items-center justify-center lg:justify-baseline">
-              <h2 className="text-white w-fit font-medium rounded-[7px] items-center flex text-center justify-center text-[40px] px-1.5 h-[51px] bg-[#FE332F]">
-                {testimonial.mainHeading || "Our Projects"}
-              </h2>
-            </div>
-
-            {/* Team Grid */}
-            <div className="grid gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
-              {testimonial.projectList.map((person, i) => (
-                <div
-                  key={person._key || i}
-                  className="rounded-3xl overflow-hidden bg-white text-black border-[1px] border-black border-b-[3px] transition-all duration-300"
-                  data-aos="zoom-in-up"
-                >
-                  {/* Thumbnail */}
-                  <img
-                    src={urlFor(person.image?.asset?._ref)}
-                    alt={person.name}
-                    className="w-full h-[200px] object-cover object-top"
-                  />
-
-                  {/* Info */}
-                  <div className="p-5">
-                    <div className="flex justify-between items-center mb-2">
-                      <div>
-                        <h3 className="font-semibold text-lg">{person.name}</h3>
-                      </div>
-                      <a href={person.pr_url} target="_blank" rel="noopener noreferrer">
-                        <div className="w-[40px] h-[40px] flex items-center justify-center rounded-full bg-[#191A23] hover:scale-125 cursor-pointer transition-all">
-                          <MoveUpRight color="#B9FF66" strokeWidth={2.27} />
-                        </div>
-                      </a>
-                    </div>
-                    <hr className="my-3 border-t-[1px] border-gray-300" />
-                    <p className="text-sm">{person.description}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-      )}
-
       <section className="lg:px-[150px] hidden h-screen mt-20 px-[16px] pb-[60px]  lg:mt-90" data-aos="zoom-in-up">
         {/* heading */}
         <div className="max-w-6xl mx-auto mb-10 flex lg:flex-row flex-col  gap-10 items-center">
@@ -345,74 +401,7 @@ export default function Home() {
         </div>
         <Testimonial />
       </section>
-      <section id="contact" className="lg:px-[150px] h-fit lg:h-screen mt-20 lg:mt-20 px-[16px]" data-aos="zoom-in-up">
-        <div className="max-w-6xl mx-auto mb-10 flex flex-row gap-10 items-center justify-center lg:justify-baseline">
-          <h2 className="text-white font-medium rounded-[7px] flex items-center justify-center text-[40px] w-fit h-[51px] bg-[#FE332F] whitespace-nowrap px-1.5">
-            Contact Us
-          </h2>
-        </div>
 
-        <div className="flex flex-col-reverse lg:flex-row items-center justify-between bg-[#f2f2f2] lg:h-[98vh] h-fit rounded-[40px] p-8 lg:p-16">
-          {/* Left Form */}
-          <div className="w-full lg:w-1/2 flex justify-center">
-            <div className="w-full max-w-md space-y-6">
-              <div>
-                <label className="block text-sm font-medium mb-1 text-black">Name</label>
-                <input
-                  type="text"
-                  placeholder="Name"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                  className="w-full border border-black rounded-xl px-4 py-3 outline-none bg-white"
-                />
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium mb-1 text-black">
-                  Email<span className="text-red-500">*</span>
-                </label>
-                <input
-                  type="email"
-                  placeholder="Email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  className="w-full border border-black rounded-xl px-4 py-3 outline-none bg-white"
-                />
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium mb-1 text-black">
-                  Message<span className="text-red-500">*</span>
-                </label>
-                <textarea
-                  placeholder="Message"
-                  rows={6}
-                  value={message}
-                  onChange={(e) => setMessage(e.target.value)}
-                  className="w-full border border-black rounded-xl px-4 py-3 outline-none resize-none bg-white"
-                />
-              </div>
-
-              <a href={mailtoLink}>
-                <button className="w-full bg-[#18181B] text-white py-3 rounded-xl font-medium">
-                  Send Message
-                </button>
-              </a>
-            </div>
-          </div>
-
-          {/* Right Image */}
-          <div className="w-full lg:w-1/2 lg:flex hidden justify-end">
-            <Image
-              src={ms}
-              alt="Illustration"
-              className="rounded-[32px] object-cover h-96 lg:h-full"
-              width={290}
-              height={290}
-            />
-          </div>
-        </div>
-      </section>
 
       {/* style={{
         backgroundImage: `url(${mesh.src})`,
@@ -424,13 +413,13 @@ export default function Home() {
         backgroundSize: '600px',
         backgroundPosition: 'center',
         backgroundRepeat: 'space',
-      }} className="relative lg:px-[150px] px-[16px] mt-10  h-fit lg:mt-30 overflow-hidden" data-aos="zoom-in-up" >
+      }} className="relative lg:px-[150px] px-[16px] mt-10  h-fit lg:mt-30 overflow-hidden bg-[#f1f1f1] pt-[20px] " data-aos="zoom-in-up" >
 
 
         {/* Heading */}
         <div className="relative max-w-6xl mx-auto mb-10 flex flex-row gap-10 items-center z-10 justify-center lg:justify-baseline" >
-          <h2 className="text-white font-medium rounded-[7px] flex items-center justify-center lg:text-[40px] w-fit h-[51px] bg-[#FE332F] whitespace-nowrap px-1.5 text-3xl ">
-            Or Schedule a meeting
+          <h2 className="text-white font-medium  flex items-center justify-center lg:text-[40px] w-fit h-[51px] bg-[#FE332F] whitespace-nowrap px-1.5 text-3xl ">
+            Schedule a meeting
           </h2>
           {/* <img
             src={mesh.src}
@@ -440,7 +429,7 @@ export default function Home() {
         </div>
 
         {/* Main Container */}
-        <div className="relative flex flex-col-reverse lg:flex-row items-center justify-between bg-[#f2f2f2] h-fit rounded-[40px] p-8 lg:p-8 z-10 border-[1px] border-black border-b-[6px]" >
+        <div className="relative flex flex-col-reverse lg:flex-row items-center justify-between bg-[#f2f2f2] h-fit  rounded-t-2xl p-8 lg:p-8 z-10 border-[1px] border-black " >
           <Calx />
         </div>
       </section>
@@ -494,6 +483,6 @@ Failed uploading: uploading error: exit status 2e="relative lg:px-[150px] h-fit 
           ]}
         />
       </section> */}
-    </div >
+    </>
   );
 }

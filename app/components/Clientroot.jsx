@@ -13,14 +13,6 @@ export default function ClientRoot({ children }) {
     }, []);
 
     return (
-
-        // position: fixed;
-        // z-index: 2000;
-        // background: #ffffffbf;
-        // width: 100%;
-        // /* height: 104px; */
-        // top: 0;
-        // backdrop-filter: blur(5px);
         <>
             {/* <SmoothCursor /> */}
             <div className="lg:px-[91px] fixed z-[2000] bg-[#ffffff38] w-[100vw] h-fit top-0 " style={{
@@ -29,9 +21,9 @@ export default function ClientRoot({ children }) {
                 <NavbarHome />
             </div>
             {children}
-            <div className='lg:px-[50px] px-[16px] mt-20'>
-                <Footer />
-            </div>
+            {/* <div className=' mt-20'> */}
+            <Footer />
+            {/* </div> */}
         </>
     );
 }

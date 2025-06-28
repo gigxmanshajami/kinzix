@@ -57,7 +57,10 @@ export default function Calx() {
                 namespace="30min"
                 calLink="kinzix/30min"
                 style={{ width: "100%", height: "100%", border: "none" }}
-                config={{ layout: "month_view" }}
+                config={{
+                    layout: "month_view",
+                    theme: "light", // or "dark", depending on your preference
+                }}
             />
         </div>
     )
