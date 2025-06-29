@@ -191,21 +191,21 @@ export default function Home() {
         <Hero data={hero} />
       </section>
 
-      <section id="services" className="lg:px-[114px] h-fit bg-[#dcbbfe] ">
+      <section id="services" className="lg:px-[114px] h-fit mt-50 bg-[#dcbbfe] ">
         <Howework data={projects} />
       </section>
 
       <section id="oup" className="lg:px-[150px] px-[16px] lg:h-screen h-fit mt-20" data-aos="zoom-in-up">
-        <div className="lg:max-w-6xl w-full justify-center lg:justify-baseline mx-auto mb-10 flex lg:flex-row flex-col gap-10 items-center">
+        <div className=" w-max justify-center lg:justify-baseline mx-auto mb-10 flex lg:flex-row flex-col gap-10 items-center mr-0 ml-0 ">
           <h2 className="text-white font-medium  flex items-center justify-center text-4xl lg:text-[40px] w-fit h-[51px] bg-[#FE332F] whitespace-nowrap px-1.5">
             {designSubscription?.mainHeading || "Our Working Process"}
           </h2>
-          <p className="text-black w-fit lg:w-[580px] h-[46px] text-center lg:text-left text-2xl hidden lg:block">
+          <p className="text-black w-[500px] h-[46px] text-center lg:text-left text-2xl hidden lg:block">
             {designSubscription?.subHeading || "Step-by-Step Guide to Achieving Your Business Goals"}
           </p>
         </div>
 
-        <div className="space-y-4 max-w-[1000px]">
+        <div className="space-y-4">
           {steps.map((step, index) => {
             const isOpen = openIndex === index;
             return (
@@ -368,7 +368,7 @@ export default function Home() {
         {/* content */}
         <div
           data-aos="fade-up"
-          className="w-full max-w-[1000px] p-6 bg-[#0F0F15] text-white  grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-white/20 overflow-hidden"
+          className="w-full p-6 bg-[#0F0F15] text-white  grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-white/20 overflow-hidden"
         >
           {works.length > 0 ? (
             works.map((work) => (
