@@ -167,7 +167,7 @@ export default function Home() {
     // backdrop-filter: blur(10px);
     // z-index: -1;
     // filter: blur(36px);
-    <>
+    <div className='overflow-hidden'>
       {/* object-position: center;
     object-fit: contain;
     position: absolute;
@@ -483,6 +483,6 @@ Failed uploading: uploading error: exit status 2e="relative lg:px-[150px] h-fit 
           ]}
         />
       </section> */}
-    </>
+    </div>
   );
 }
