@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Hero from './Hero';
 import Service from './Service';
 import Teams from './Teams';
@@ -22,6 +22,14 @@ import mesh from '@/public/msh.svg';
 import bgimage from '@/public/pd.png';
 // import Scrollsec from './Scrollsec';
 import { Plus, Minus } from 'lucide-react';
+const logos = [
+  '/mx.png',
+  '/jwr.png',
+  '/astrexa.png',
+  '/abh.png',
+  '/rwd.png',
+  '/xpdedge.png',
+];
 
 const processSteps = [
   {
@@ -75,6 +83,22 @@ const designSubscriptionQuery = '*[_type == "working_process"][0]';
 const testimonialQuery = '*[_type == "our_projects"][0]';
 
 export default function Home() {
+  const marqueeRef = useRef(null);
+
+  useEffect(() => {
+    const root = marqueeRef.current;
+    if (!root) return;
+
+    const scroll = () => {
+      root.scrollLeft += 1;
+      if (root.scrollLeft >= root.scrollWidth / 2) {
+        root.scrollLeft = 0;
+      }
+    };
+
+    const interval = setInterval(scroll, 20);
+    return () => clearInterval(interval);
+  }, []);
   const [openIndex, setOpenIndex] = useState(0);
   const [hero, setHero] = useState([]);
   const [projects, setProjects] = useState([]);
@@ -190,7 +214,24 @@ export default function Home() {
         />
         <Hero data={hero} />
       </section>
+      {/* marquee */}
+      <section>
+        {/* <LogoMarquee /> */}
+        {/* <Marquee /> */}
+        <div className="marquee-wrapper">
+          <div className="marquee-track">
+            {[...logos, ...logos].map((logo, index) => (
+              <img
+                key={index}
+                src={logo}
+                // className='w-[60px] h-[60px]'
+                alt={`Company ${index + 1}`}
+              />
+            ))}
+          </div>
+        </div>
 
+      </section>
       <section id="services" className="lg:px-[114px] h-fit  bg-[#dcbbfe] ">
         <Howework data={projects} />
       </section>

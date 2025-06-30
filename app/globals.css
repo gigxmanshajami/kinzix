@@ -96,12 +96,41 @@ h1, h2, h3, h4, h5, h6, span, p {
   }
 }
 
-@layer utilities {
-  .border-b-important {
-    border-bottom-width: 1px !important;
-    border-bottom-style: solid !important;
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+
+  100% {
+    transform: translateX(-50%);
   }
 }
+
+.marquee-wrapper {
+  overflow: hidden;
+  margin-bottom: 50px;
+  width: 100%;
+  padding: 1rem 0;
+  background: white;
+  position: relative;
+}
+
+.marquee-track {
+  display: flex;
+  flex-wrap: nowrap;
+  /* gap: 1rem; */
+  width: max-content;
+  animation: marquee 20s linear infinite;
+  align-items: center;
+}
+
+/* Responsive Image Styling */
+.marquee-track img {
+  width: 300px;
+  height: 50px;
+  object-fit: contain;
+}
+
 
 /* .no-visible-scrollbar {
   scrollbar-width: none;
