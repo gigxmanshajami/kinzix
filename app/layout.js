@@ -3,6 +3,7 @@ import "./globals.css";
 import Footer from "./components/Footer";
 import { SmoothCursor } from "@/components/ui/smooth-cursor";
 import ClientRoot from "./components/Clientroot";
+import { NavbarHome } from "./components/Navbar";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -25,6 +26,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`}>
+
       <body>
         {/* <SmoothCursor  className="hidden lg:block"/> */}
         <ClientRoot>{children}</ClientRoot>

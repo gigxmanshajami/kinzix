@@ -57,7 +57,7 @@ export const NavbarHome = () => {
 
   return (
     <div className="w-full">
-      <div className="flex bg-[#fff] lg:bg-transparent border-b-[1px] lg:border-b-0 sticky top-0 h-[5em] flex-row justify-between lg:pl-[50px] pr-[45px] items-center px-[20px]">
+      <div className="flex bg-[#fff]  lg:bg-transparent border-b-[1px] lg:border-b-0  h-[5em] flex-row justify-between lg:pl-[50px] pr-[45px] items-center px-[20px]">
         {/* Logo */}
         <div>
           <Image

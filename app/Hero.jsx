@@ -65,13 +65,13 @@ export default function Hero({ data }) {
     const description = data?.hero_description;
     console.warn(data, 'from hero');
     return (
-        <div>
+        <div className="flex justify-center  items-center ">
             {/* content */}
-            <div className="flex  mt-20" >
+            <div className="flex justify-center items-center" >
                 {/* header content */}
-                <div className="flex flex-col w-full h-screen gap-[35px]  items-center ">
-                    <h1 className="text-center  lg:text-7xl text-[55px] leading-[67px] font-semibold text-black  w-fit">
-                        {text_first}<Cover>{texth}</Cover>
+                <div className="flex justify-center  flex-col w-full h-screen gap-[35px]  items-center ">
+                    <h1 className="text-center  lg:text-7xl text-[55px] lg:leading-[86px] leading-[60px] font-semibold text-black  w-fit">
+                        {text_first}<Cover className={'text-5xl lg:text-7xl'}>{texth}</Cover>
                     </h1>
 
                     <p className="leading-[28px] text-[#000000] lg:w-[453px] text-center  w-fit">

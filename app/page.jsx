@@ -175,7 +175,7 @@ export default function Home() {
     top: 6px;
     backdrop-filter: blur(1px);
     z-index: -1; */}
-      <section id="home" className="lg:px-[150px] px-[16px] mb-48 lg:mb-0 mt-[8em] lg:h-screen h-fit relative flex justify-center" data-aos="zoom-in" >
+      <section id="home" className="lg:px-[150px] px-[16px] mb-48 lg:mb-0 lg:mt-[4em] mt-[4em] lg:h-screen h-fit relative flex justify-center items-center" data-aos="zoom-in" >
         <img
           data-aos="zoom-in-up"
           src={bgimage.src}
