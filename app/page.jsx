@@ -283,61 +283,55 @@ export default function Home() {
         </div>
       </section>
       {/* ind */}
-      <section className="w-full py-o mt-[116px] pb-[4em] pt-[0.1px] md:px-12 lg:px-[150px] px-[16px]  bg-[#e3e3e3]">
-        <div className="max-w-7xl mx-20 mx-auto grid mt-20 grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          {/* Left Content */}
-          <div>
-            <span className="text-sm font-medium text-gray-500 uppercase">Custom</span>
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mt-2">
-              Tailored Software Solutions for Every Business Need
+      <section className="w-full mt-[116px] py-20 bg-[#dcbbfe] px-4 sm:px-8 md:px-12 lg:px-24">
+        <div className="max-w-7xl mx-auto">
+          {/* Header */}
+          {/* <div className="text-center mb-12">
+            <span className="text-sm font-medium uppercase text-black tracking-wider">Industries</span>
+            <h2 className="text-3xl md:text-4xl font-bold text-black mt-2">
+              Tailored Software Solutions for Every Industry
             </h2>
-            <p className="mt-4 text-gray-600">
-              At Kinzix, we specialize in creating custom software solutions designed specifically for your unique challenges.
-              Our expert team collaborates closely with you to ensure your vision becomes a reality.
+            <p className="mt-4 text-black max-w-2xl mx-auto text-sm md:text-base">
+              At Kinzix, we deliver intelligent and adaptive software crafted to meet the unique demands of your industry.
             </p>
-
-            <div className="mt-8 space-y-4">
-              <div className="flex items-start gap-4">
-                <div className="p-2 rounded bg-gray-100 text-gray-700">
-                  📦
-                </div>
-                <div>
-                  <h4 className="font-semibold text-lg">Innovative Solutions</h4>
-                  <p className="text-gray-600 text-sm">
-                    Experience cutting-edge technology that drives efficiency and growth for your business.
-                  </p>
-                </div>
-              </div>
-              <div className="flex items-start gap-4">
-                <div className="p-2 rounded bg-gray-100 text-gray-700">
-                  👨‍💻
-                </div>
-                <div>
-                  <h4 className="font-semibold text-lg">Expert Team</h4>
-                  <p className="text-gray-600 text-sm">
-                    Our skilled developers are dedicated to delivering exceptional results tailored to your needs.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            {/* Buttons */}
-            <div className="mt-8 flex gap-4 flex-wrap">
-              <button className="px-6 py-2 bg-black text-white hover:bg-gray-800">
-                Learn More
-              </button>
-              <button className="px-6 py-2 border border-black text-black  hover:bg-gray-100">
-                Sign Up
-              </button>
-            </div>
+          </div> */}
+          <div className=" w-max justify-center lg:justify-normal mx-auto mb-10 flex lg:flex-row flex-col gap-10 items-center mr-0 ml-0 ">
+            <h2 className="text-white font-medium  flex items-center justify-center text-4xl lg:text-[40px] w-fit h-[51px] bg-[#FE332F] whitespace-nowrap px-1.5">
+              Industries
+            </h2>
+            <p className="text-black w-[500px] h-[46px] text-center   lg:text-left text-2xl hidden lg:block">
+              At Kinzix, we build smart, adaptive software tailored to your industry’s needs.
+            </p>
           </div>
-
-          {/* Right Image */}
-          <div className="w-full h-64 md:h-80 bg-gray-100 flex items-center justify-center rounded-md">
-            <span className="text-gray-400 text-sm">Image Placeholder</span>
+          {/* Services Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {[
+              'E-Commerce',
+              'Healthcare',
+              'Education & Training',
+              'Real Estate',
+              'Travel & Tourism',
+              'NGOs',
+            ].map((service, i) => (
+              <div
+                key={i}
+                className="bg-[#ff312f] transition-all cursor-pointer border-[#191A23] border-[0.9px] border-b-[7px] hover:scale-125  duration-300  p-6 "
+              >
+                <div className='bg-white w-fit h-fit p-2 rounded-lg'>
+                  <h3 className="text-3xl font-semibold text-black">{service}</h3>
+                </div>
+                {/* <div className='bg-white w-fit h-fit'>
+                  <p className="text-gray-400 text-sm mt-2">
+                    Empowering growth with scalable digital solutions tailored for the {service.toLowerCase()} sector.
+                  </p>
+                </div> */}
+              </div>
+            ))}
           </div>
         </div>
       </section>
+
+
 
       {/* <section></section> */}
 
