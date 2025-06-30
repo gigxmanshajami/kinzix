@@ -29,6 +29,7 @@ const logos = [
   '/abh.png',
   '/rwd.png',
   '/xpdedge.png',
+  '/hd-r.png',
 ];
 
 const processSteps = [
