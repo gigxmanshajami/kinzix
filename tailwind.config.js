@@ -12,7 +12,7 @@ module.exports = {
     "./components/**/*.{js,ts,jsx,tsx}",
     "./node_modules/flowbite-react/**/*.js", // To support Flowbite React
   ],
-  darkMode: "class",
+  darkMode: false, 
   theme: {
     extend: {
       boxShadow: {

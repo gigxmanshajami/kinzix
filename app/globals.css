@@ -9,7 +9,7 @@
 
 :root {
   --background: #fff;
-  --foreground: #000;
+  --foreground: #fff;
 
   --secondary-glow: conic-gradient(from 10deg at 50% 50%,
       #eb7494 0deg,
@@ -70,12 +70,31 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: "Space Grotesk", sans-serif;
+  color-scheme: light;
+  /* 👈 force light appearance */
 }
 
 h1, h2, h3, h4, h5, h6, span, p {
   font-family: "Space Grotesk", sans-serif !important;
 }
 
+@theme inline {
+  --animate-aurora: aurora 60s linear infinite;
+
+  @keyframes aurora {
+    from {
+      background-position:
+        50% 50%,
+        50% 50%;
+    }
+
+    to {
+      background-position:
+        350% 50%,
+        350% 50%;
+    }
+  }
+}
 
 @theme inline {
   --color-background: var(--background);
