@@ -238,9 +238,9 @@ export default function Home() {
       </section>
 
       <section id="oup" className="lg:px-[150px] px-[16px] lg:h-screen h-fit mt-20" data-aos="zoom-in-up">
-        <div className=" w-max justify-center lg:justify-baseline mx-auto mb-10 flex lg:flex-row flex-col gap-10 items-center mr-0 ml-0 ">
-          <h2 className="text-white font-medium  flex items-center justify-center text-4xl lg:text-[40px] w-fit h-[51px] bg-[#FE332F] whitespace-nowrap px-1.5">
-            {designSubscription?.mainHeading || "Our Working Process"}
+        <div className=" w-max  justify-normal mx-auto mb-10 flex lg:flex-row flex-col gap-10  mr-0 ml-0 ">
+          <h2 className="text-white font-medium  flex justify-center items-center text-4xl lg:text-[40px] w-fit h-[51px] bg-[#FE332F] whitespace-nowrap px-1.5">
+            {designSubscription?.mainHeading || "Process"}
           </h2>
           <p className="text-black w-[500px] h-[46px] text-center lg:text-left text-2xl hidden lg:block">
             {designSubscription?.subHeading || "Step-by-Step Guide to Achieving Your Business Goals"}
@@ -346,9 +346,9 @@ export default function Home() {
         }} id='projects' className="lg:px-[150px] px-[16px] lg:h-screen h-fit lg:mt-30 mt-20 text-white">
           <div className="max-w-6xl mx-auto">
             {/* Section Heading */}
-            <div className="max-w-6xl mx-auto mb-10 flex flex-row gap-10 items-center justify-center lg:justify-baseline">
+            <div className="max-w-6xl mx-auto mb-10 flex flex-row gap-10 justify-normal">
               <h2 className="text-white w-fit font-medium items-center flex text-center justify-center text-[40px] px-1.5 h-[51px] bg-[#FE332F]">
-                {testimonial.mainHeading || "Our Projects"}
+                {testimonial.mainHeading || "Projects"}
               </h2>
             </div>
 
@@ -396,7 +396,7 @@ export default function Home() {
         backgroundRepeat: 'no-repeat',
       }} id="cs" className="lg:px-[155px] mt-[5em] px-[16px] h-fit" data-aos="zoom-in-up">
         {/* heading */}
-        <div className="lg:max-w-6xl w-full justify-center mx-auto mb-10 flex flex-row gap-10 items-center">
+        <div className="lg:max-w-6xl w-full  mx-auto mb-10 flex flex-row gap-10 items-center mt-6">
           <h2 className="text-white w-fit font-medium  items-center flex text-center justify-center text-[40px] px-1.5 h-[51px] bg-[#FE332F]">
             Case Studies
           </h2>
@@ -454,15 +454,10 @@ export default function Home() {
 
 
         {/* Heading */}
-        <div className="relative max-w-6xl mx-auto mb-10 flex flex-row gap-10 items-center z-10 justify-center lg:justify-baseline" >
+        <div className="relative max-w-6xl mx-auto mb-10 flex flex-row gap-10 items-center z-10" >
           <h2 className="text-white font-medium  flex items-center justify-center lg:text-[40px] w-fit h-[51px] bg-[#FE332F] whitespace-nowrap px-1.5 text-3xl ">
             Schedule a meeting
           </h2>
-          {/* <img
-            src={mesh.src}
-            // className="absolute -top-40 left-1/2 -translate-x-1/2 w-[600px] h-[600px] z-0 pointer-events-none select-none"
-            alt="Glow"
-          /> */}
         </div>
 
         {/* Main Container */}

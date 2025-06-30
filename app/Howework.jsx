@@ -45,7 +45,7 @@ const Howework = ({ data }) => {
     return (
         <div className="py-12 lg:px-10 px-[3px] ">
             {/* Header */}
-            <div className="max-w-6xl  mx-auto mb-10 flex lg:flex-row flex-col gap-10 items-center" data-aos="zoom-in-up">
+            <div className="max-w-6xl  mx-auto mb-10 flex lg:flex-row flex-col gap-10 px-[10px]" data-aos="zoom-in-up">
                 <h2 className="text-white font-medium items-center flex text-center justify-center text-[40px] w-[178px] h-[51px] bg-[#FE332F]">
                     Services
                 </h2>
