@@ -17,7 +17,7 @@ const geistMono = Geist_Mono({
 
 export const metadata = {
   title: "Kinzix Innovation | Smart Software Solutions & Tech Consulting",
-  description: "Kinzix Innovation builds responsive websites, powerful mobile apps, and reliable software to help businesses grow online. We offer custom tech solutions that are fast, scalable, and designed to meet your goals in the digital age.",
+  description: "Kinzix Innovation builds responsive websites, powerful mobile apps, and reliable software to help businesses grow online. Also offers custom tech solutions that are fast, scalable, and designed to meet your goals in the digital age.",
   keywords: 'Kinzix Innovation, software solutions, tech consulting, digital transformation, AI software, automation services, custom software development, IT consulting firm, Kinzix software, business automation',
   icons: {
     icon: "/k.ico",
