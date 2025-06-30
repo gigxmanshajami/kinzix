@@ -70,7 +70,7 @@ export default function Hero({ data }) {
             <div className="flex  mt-20" >
                 {/* header content */}
                 <div className="flex flex-col w-full h-screen gap-[35px]  items-center ">
-                    <h1 className="text-center  lg:text-[60px] text-[55px] leading-[67px] font-semibold text-black  w-fit">
+                    <h1 className="text-center  lg:text-7xl text-[55px] leading-[67px] font-semibold text-black  w-fit">
                         {text_first}<Cover>{texth}</Cover>
                     </h1>
 
