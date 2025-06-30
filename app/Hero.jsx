@@ -16,46 +16,25 @@ import HeaderImage from '@/public/Illustration.png'
 const people = [
     {
         id: 1,
-        name: "John Doe",
-        designation: "Software Engineer",
-        image:
-            "https://images.unsplash.com/photo-1599566150163-29194dcaad36?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3387&q=80",
+        name: "Maneesh Birthwar",
+        designation: "Co-Founder, Altezzasys",
+        image: '/maneesh.jpg',
     },
     {
         id: 2,
-        name: "Robert Johnson",
-        designation: "Product Manager",
+        name: "Dr.Manjer Hassan",
+        designation: "Director, Hamida Nursing Home",
         image:
-            "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8YXZhdGFyfGVufDB8fDB8fHww&auto=format&fit=crop&w=800&q=60",
+            "/mjer.jpg",
     },
     {
         id: 3,
-        name: "Jane Smith",
-        designation: "Data Scientist",
+        name: "Tabish Saif",
+        designation: "CEO, Maxi Insight",
         image:
-            "https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8YXZhdGFyfGVufDB8fDB8fHww&auto=format&fit=crop&w=800&q=60",
+            '/tbh.jpg',
     },
-    {
-        id: 4,
-        name: "Emily Davis",
-        designation: "UX Designer",
-        image:
-            "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fGF2YXRhcnxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=800&q=60",
-    },
-    {
-        id: 5,
-        name: "Tyler Durden",
-        designation: "Soap Developer",
-        image:
-            "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3540&q=80",
-    },
-    {
-        id: 6,
-        name: "Dora",
-        designation: "The Explorer",
-        image:
-            "https://images.unsplash.com/photo-1544725176-7c40e5a71c5e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3534&q=80",
-    },
+   
 ];
 
 export default function Hero({ data }) {
@@ -69,7 +48,7 @@ export default function Hero({ data }) {
             {/* content */}
             <div className="flex justify-center items-center" >
                 {/* header content */}
-                <div className="flex justify-center  flex-col w-full h-screen gap-[35px]  items-center ">
+                <div className="flex justify-center  flex-col w-full h-screen gap-[30px]  items-center ">
                     <h1 className="text-center  lg:text-6xl text-[55px] lg:leading-[86px] leading-[60px] font-semibold text-black  w-fit ">
                         {text_first}<Cover className={'text-5xl lg:text-6xl 2xl:text-8xl'}>{texth}</Cover>
                     </h1>
@@ -78,8 +57,11 @@ export default function Hero({ data }) {
                         {/* Our digital marketing agency helps businesses grow and succeed online through a range of services including SEO, PPC, social media marketing, and content creation. */}
                         {description}
                     </p>
-                    <div className="flex flex-row items-center justify-center  w-full">
-                        <AnimatedTooltip items={people} />
+                    <div className="flex flex-col items-center justify-center  w-full">
+                        <div className="flex flex-row">
+                            <AnimatedTooltip items={people} />
+                        </div>
+                        <span className="text-sm text-center mt-5 text-[#0505058c]">Trusted By Founders and Entrepreneurs,from all over the world</span>
                     </div>
                     {/* <button className="text-white bg-[#191A23] rounded-[14px] font-normal ">
                         Book a consultation
