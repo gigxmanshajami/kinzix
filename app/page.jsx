@@ -316,7 +316,7 @@ export default function Home() {
               <div
                 key={i}
                 data-aos="zoom-out-up"
-                className="bg-[#ff312f] transition-all cursor-pointer border-[#191A23] border-[0.9px] border-b-[7px] hover:scale-125  duration-300  p-6 "
+                className="bg-[#ff312f] z-30 transition-all cursor-pointer border-[#191A23] border-[0.9px] border-b-[7px] hover:scale-125  duration-300  p-6 "
               >
                 <div className='bg-white w-fit h-fit p-2 rounded-lg'>
                   <h3 className="text-3xl font-semibold text-black">{service}</h3>
@@ -331,7 +331,51 @@ export default function Home() {
           </div>
         </div>
       </section>
-
+      {/* techno */}
+      <section className="w-full  py-20 bg-[#fff] px-4 sm:px-8 md:px-12 lg:px-24" >
+        <div className="max-w-7xl mx-auto">
+          <div className=" w-max justify-center lg:justify-normal mx-auto mb-10 flex lg:flex-row flex-col gap-10 items-center mr-0 ml-0 ">
+            <h2 className="text-white font-medium  flex items-center justify-center text-4xl lg:text-[40px] w-fit h-[51px] bg-[#FE332F] whitespace-nowrap px-1.5">
+              Technologies
+            </h2>
+            {/* <p className="text-black w-[500px] h-[46px] text-center   lg:text-left text-2xl hidden lg:block">
+              At Kinzix, we build smart, adaptive software tailored to your industry’s needs.
+            </p> */}
+          </div>
+          {/* Services Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {[
+              'React Native',
+              'React.js',
+              'Next JS',
+              'Node.js',
+              'Flutter',
+              'Python',
+              'PHP',
+              'WordPress',
+              'Shopify',
+              'FIGMA',
+              'MONGO DB',
+              'ARDUINO CODE',
+            ].map((service, i) => (
+              <div
+                key={i}
+                data-aos="zoom-out-up"
+                className="bg-[#1a1a24] transition-all z-30 cursor-pointer border-[#191A23] border-[0.9px] border-b-[7px] hover:scale-125  duration-900  p-6 "
+              >
+                <div className='bg-white w-fit h-fit p-2 rounded-lg'>
+                  <h3 className="text-3xl font-semibold text-black">{service}</h3>
+                </div>
+                {/* <div className='bg-white w-fit h-fit'>
+                  <p className="text-gray-400 text-sm mt-2">
+                    Empowering growth with scalable digital solutions tailored for the {service.toLowerCase()} sector.
+                  </p>
+                </div> */}
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
 
       {/* <section></section> */}
