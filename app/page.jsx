@@ -175,7 +175,7 @@ export default function Home() {
     top: 6px;
     backdrop-filter: blur(1px);
     z-index: -1; */}
-      <section id="home" className="lg:px-[150px] px-[16px] mb-48 lg:mb-0 lg:mt-[4em] mt-[4em] lg:h-screen h-fit relative flex justify-center items-center" data-aos="zoom-in" >
+      <section id="home" className="lg:px-[150px] px-[16px]  lg:mb-0 lg:mt-[4em] mt-[4em] lg:h-screen h-fit relative flex justify-center items-center" data-aos="zoom-in" >
         <img
           data-aos="zoom-in-up"
           src={bgimage.src}
@@ -191,7 +191,7 @@ export default function Home() {
         <Hero data={hero} />
       </section>
 
-      <section id="services" className="lg:px-[114px] h-fit mt-50 bg-[#dcbbfe] ">
+      <section id="services" className="lg:px-[114px] h-fit  bg-[#dcbbfe] ">
         <Howework data={projects} />
       </section>
 
