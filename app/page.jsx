@@ -308,13 +308,14 @@ export default function Home() {
             {[
               'E-Commerce',
               'Healthcare',
-              'Education & Training',
+              'Education',
               'Real Estate',
               'Travel & Tourism',
               'NGOs',
             ].map((service, i) => (
               <div
                 key={i}
+                data-aos="zoom-out-up"
                 className="bg-[#ff312f] transition-all cursor-pointer border-[#191A23] border-[0.9px] border-b-[7px] hover:scale-125  duration-300  p-6 "
               >
                 <div className='bg-white w-fit h-fit p-2 rounded-lg'>

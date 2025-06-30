@@ -22,7 +22,7 @@ const people = [
     },
     {
         id: 2,
-        name: "Dr.Manjer Hassan",
+        name: "Dr. Manjer Hassan",
         designation: "Director, Hamida Nursing Home",
         image:
             "/mjer.jpg",
@@ -61,7 +61,7 @@ export default function Hero({ data }) {
                         <div className="flex flex-row">
                             <AnimatedTooltip items={people} />
                         </div>
-                        <span className="text-sm text-center mt-5 text-[#0505058c]">Trusted By Founders and Entrepreneurs,from all over the world</span>
+                        <span className="text-sm text-center mt-5 text-[#0505058c]">Trusted By Founders and Entrepreneurs</span>
                     </div>
                     {/* <button className="text-white bg-[#191A23] rounded-[14px] font-normal ">
                         Book a consultation
