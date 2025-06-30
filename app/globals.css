@@ -96,7 +96,12 @@ h1, h2, h3, h4, h5, h6, span, p {
   }
 }
 
-
+@layer utilities {
+  .border-b-important {
+    border-bottom-width: 1px !important;
+    border-bottom-style: solid !important;
+  }
+}
 
 /* .no-visible-scrollbar {
   scrollbar-width: none;

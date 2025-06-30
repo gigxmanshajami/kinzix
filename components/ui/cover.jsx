@@ -9,7 +9,7 @@ export const Cover = ({
   children,
   className
 }) => {
-  const [hovered, setHovered] = useState(false);
+  const [hovered, setHovered] = useState(true);
 
   const ref = useRef(null);
 
@@ -33,7 +33,7 @@ export const Cover = ({
   return (
     <div
       onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
+      // onMouseLeave={() => setHovered(false)}
       ref={ref}
       className="relative hover:bg-neutral-900  group/cover inline-block dark:bg-neutral-900 bg-neutral-100 px-2 py-2  transition duration-200 rounded-sm">
       <AnimatePresence>
