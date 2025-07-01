@@ -60,7 +60,7 @@ const Howework = ({ data }) => {
                         <div
                             key={service._key || i}
                             data-aos="zoom-out-up"
-                            className="service-card border-[#191A23] border-[0.9px] border-b-[7px] border-solid  p-6 lg:w-[461px] h-[255px] flex flex-row justify-between w-[359px]"
+                            className="service-card border-[#191A23] border-[0.9px] border-b-[7px] border-solid  p-6 2xl:w-[545px] lg:w-[461px] h-[255px] flex flex-row justify-between w-[359px]"
                             style={{
                                 backgroundColor: service?.bg || '#fff',
                                 color: service?.text || '#000',

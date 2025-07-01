@@ -74,6 +74,7 @@ const processSteps = [
 import { VelocityScroll } from "@/components/magicui/scroll-based-velocity";
 import TeamSection from './Teams';
 import Calx from './components/cal';
+import { FollowingPointerDemo } from './components/ProjectContainer';
 
 export const dynamic = 'force-dynamic';
 
@@ -200,7 +201,7 @@ export default function Home() {
     top: 6px;
     backdrop-filter: blur(1px);
     z-index: -1; */}
-      <section id="home" className="lg:px-[150px] px-[16px]  lg:mb-0 lg:mt-[4em] mt-[4em] lg:h-screen h-fit relative flex justify-center items-center" data-aos="zoom-in" >
+      <section id="home" className="lg:px-[150px] px-[16px]  lg:mb-0  lg:h-screen h-fit relative flex justify-center items-center" data-aos="zoom-in" >
         <img
           data-aos="zoom-in-up"
           src={bgimage.src}
@@ -283,7 +284,7 @@ export default function Home() {
         </div>
       </section>
       {/* ind */}
-      <section className="w-full mt-[116px] py-20 bg-[#dcbbfe] px-4 sm:px-8 md:px-12 lg:px-24">
+      <section className="w-full mt-[116px] py-20 bg-[#dcbbfe] px-4 sm:px-8 md:px-12 lg:px-[150px]">
         <div className="max-w-7xl mx-auto">
           {/* Header */}
           {/* <div className="text-center mb-12">
@@ -316,7 +317,7 @@ export default function Home() {
               <div
                 key={i}
                 data-aos="zoom-out-up"
-                className="bg-[#ff312f] z-30 transition-all cursor-pointer border-[#191A23] border-[0.9px] border-b-[7px] hover:scale-125  duration-300  p-6 "
+                className="bg-[#ff312f] z-30 transition-all cursor-pointer border-[#191A23] border-[0.9px] border-b-[7px] hover:scale-105 p-6 "
               >
                 <div className='bg-white w-fit h-fit p-2 rounded-lg'>
                   <h3 className="text-3xl font-semibold text-black">{service}</h3>
@@ -332,50 +333,48 @@ export default function Home() {
         </div>
       </section>
       {/* techno */}
-      <section className="w-full  py-20 bg-[#fff] px-4 sm:px-8 md:px-12 lg:px-24" >
-        <div className="max-w-7xl mx-auto">
-          <div className=" w-max justify-center lg:justify-normal mx-auto mb-10 flex lg:flex-row flex-col gap-10 items-center mr-0 ml-0 ">
-            <h2 className="text-white font-medium  flex items-center justify-center text-4xl lg:text-[40px] w-fit h-[51px] bg-[#FE332F] whitespace-nowrap px-1.5">
-              Technologies
-            </h2>
-            {/* <p className="text-black w-[500px] h-[46px] text-center   lg:text-left text-2xl hidden lg:block">
-              At Kinzix, we build smart, adaptive software tailored to your industry’s needs.
-            </p> */}
-          </div>
-          {/* Services Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {[
-              'React Native',
-              'React.js',
-              'Next JS',
-              'Node.js',
-              'Flutter',
-              'Python',
-              'PHP',
-              'WordPress',
-              'Shopify',
-              'FIGMA',
-              'MONGO DB',
-              'ARDUINO CODE',
-            ].map((service, i) => (
+      <section className="w-full py-20 bg-[#fff] px-4 sm:px-8 md:px-12 lg:px-[150px]">
+        <div className=" w-max justify-center lg:justify-normal mx-auto mb-10 flex lg:flex-row flex-col gap-10 items-center mr-0 ml-0 ">
+          <h2 className="text-white font-medium  flex items-center justify-center text-4xl lg:text-[40px] w-fit h-[51px] bg-[#FE332F] whitespace-nowrap px-1.5">
+            Technologies
+          </h2>
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+          {[
+            'React Native',
+            'React.js',
+            'Next JS',
+            'Node.js',
+            'Flutter',
+            'Python',
+            'PHP',
+            'WordPress',
+            'Shopify',
+            'FIGMA',
+            'MONGO DB',
+            'Arduino Dev',
+          ].map((service, i, arr) => {
+            const isLastRow = i >= arr.length - (arr.length % 4 || 4); // handles last row detection based on 4 cols
+            const isLastCol = (i + 1) % 4 === 0;
+
+            return (
               <div
                 key={i}
-                data-aos="zoom-out-up"
-                className="bg-[#1a1a24] transition-all z-30 cursor-pointer border-[#191A23] border-[0.9px] border-b-[7px] hover:scale-125  duration-900  p-6 "
+                className={`bg-[#f1f1f1]   p-6 transition-all z-30 items-center justify-center flex cursor-pointer  duration-300 hover:scale-105
+          ${!isLastCol ? 'lg:border-r-[0.9px] lg:border-[#000]' : ''}
+          ${!isLastRow ? 'lg:border-b-[0.9px] lg:border-[#000]' : ''}
+        `}
               >
-                <div className='bg-white w-fit h-fit p-2 rounded-lg'>
-                  <h3 className="text-3xl font-semibold text-black">{service}</h3>
+                <div className="bg-white w-fit h-fit p-2 rounded-lg items-center flex">
+                  <h3 className="text-2xl font-semibold text-black">{service}</h3>
                 </div>
-                {/* <div className='bg-white w-fit h-fit'>
-                  <p className="text-gray-400 text-sm mt-2">
-                    Empowering growth with scalable digital solutions tailored for the {service.toLowerCase()} sector.
-                  </p>
-                </div> */}
               </div>
-            ))}
-          </div>
+            );
+          })}
         </div>
+
       </section>
+
 
 
       {/* <section></section> */}
@@ -384,10 +383,10 @@ export default function Home() {
       {testimonial?.projectList?.length > 0 && (
         <section style={{
           backgroundImage: `url(${bgimage.src})`,
-          backgroundSize: '600px',
+          backgroundSize: '495px',
           backgroundPosition: 'center',
           backgroundRepeat: 'space',
-        }} id='projects' className="lg:px-[150px] px-[16px] lg:h-screen h-fit lg:mt-30 mt-20 text-white">
+        }} id='projects' className="lg:px-[150px] px-[16px] h-fit  py-20 lg:py-0  text-white">
           <div className="max-w-6xl mx-auto">
             {/* Section Heading */}
             <div className="max-w-6xl mx-auto mb-10 flex flex-row gap-10 justify-normal">
@@ -398,47 +397,16 @@ export default function Home() {
 
             {/* Team Grid */}
             <div className="grid gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
-              {testimonial.projectList.map((person, i) => (
-                <div
-                  key={person._key || i}
-                  className=" overflow-hidden bg-white text-black border-[1px] border-black border-b-[3px] transition-all duration-300"
-                  data-aos="zoom-in-up"
-                >
-                  {/* Thumbnail */}
-                  <img
-                    src={urlFor(person.image?.asset?._ref)}
-                    alt={person.name}
-                    className="w-full h-[200px] object-cover object-top"
-                  />
 
-                  {/* Info */}
-                  <div className="p-5">
-                    <div className="flex justify-between items-center mb-2">
-                      <div>
-                        <h3 className="font-semibold text-lg">{person.name}</h3>
-                      </div>
-                      <a href={person.pr_url} target="_blank" rel="noopener noreferrer">
-                        <div className="w-[40px] h-[40px] flex items-center justify-center  bg-[#191A23] hover:scale-125 cursor-pointer transition-all">
-                          <MoveUpRight color="#B9FF66" strokeWidth={2.27} />
-                        </div>
-                      </a>
-                    </div>
-                    <hr className="my-3 border-t-[1px] border-gray-300" />
-                    <p className="text-sm">{person.description}</p>
-                  </div>
-                </div>
+              {testimonial.projectList.map((person, i) => (
+                <FollowingPointerDemo img={urlFor(person.image?.asset?._ref)} info={person} />
               ))}
             </div>
           </div>
         </section>
       )}
       {/* case studies */}
-      <section style={{
-        backgroundImage: `url(${bgimage.src})`,
-        backgroundSize: '600px',
-        backgroundPosition: 'center',
-        backgroundRepeat: 'no-repeat',
-      }} id="cs" className="lg:px-[155px] mt-[5em] px-[16px] h-fit" data-aos="zoom-in-up">
+      <section id="cs" className="lg:px-[155px] py-20 px-[16px] h-fit" data-aos="zoom-in-up">
         {/* heading */}
         <div className="lg:max-w-6xl w-full  mx-auto mb-10 flex flex-row gap-10 items-center mt-6">
           <h2 className="text-white w-fit font-medium  items-center flex text-center justify-center text-[40px] px-1.5 h-[51px] bg-[#FE332F]">
@@ -453,7 +421,7 @@ export default function Home() {
         >
           {works.length > 0 ? (
             works.map((work) => (
-              <div key={work._key} data-aos="fade-up" className="p-8 flex flex-col justify-between gap-4">
+              <div key={work._key} data-aos="fade-up" className="p-8 flex flex-col justify-between gap-4 hover:scale-110 cursor-pointer transition-all duration-500 delay-500 ">
                 <p>{work.para}</p>
                 <a
                   href={work.cs_url}
