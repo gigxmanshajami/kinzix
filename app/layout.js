@@ -4,7 +4,8 @@ import Footer from "./components/Footer";
 import { SmoothCursor } from "@/components/ui/smooth-cursor";
 import ClientRoot from "./components/Clientroot";
 import { NavbarHome } from "./components/Navbar";
-import Script from "next/script"; 
+import Script from "next/script";
+
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -43,6 +44,16 @@ export default function RootLayout({ children }) {
             gtag('js', new Date());
             gtag('config', 'G-JL0DPL01MK');
           `}
+        </Script>
+
+        {/* Schema.org Structured Data for Sitelinks */}
+        <Script id="schema-sitelinks" type="application/ld+json" strategy="afterInteractive">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            "name": "Kinzix",
+            "url": "https://kinzix.com"
+          })}
         </Script>
       </head>
       <body>

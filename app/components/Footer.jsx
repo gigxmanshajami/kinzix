@@ -105,9 +105,9 @@ const Footer = () => {
             <div className="border-t border-gray-700 pt-4 flex flex-col md:flex-row justify-between text-sm text-gray-400">
                 <p>{footerData.copyright}</p>
                 <div className="flex gap-4 mt-2 md:mt-0">
-                    <a href={footerData.privacyPolicyUrl} className="hover:underline">Privacy Policy</a>
-                    <a href="/terms" className="hover:underline">Terms</a>
-                    <a href="/sitemap" className="hover:underline">Sitemap</a>
+                    <a href={footerData.privacyPolicyUrl || 'http://www.kinzix.com/PrivacyPolicy'} className="hover:underline">Privacy Policy</a>
+                    <a href='http://www.kinzix.com/Terms' className="hover:underline">Terms</a>
+                    <a href='http://www.kinzix.com/sitemap.xml' className="hover:underline">Sitemap</a>
                 </div>
             </div>
         </footer>
