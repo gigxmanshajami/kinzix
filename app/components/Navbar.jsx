@@ -11,7 +11,13 @@ export const NavbarHome = () => {
   const [activeDropdown, setActiveDropdown] = useState(null);
   const [hidenav, setHidenav] = useState(false);
   const [navItems, setNavItems] = useState([]);
-
+  useEffect(() => {
+    if (hidenav) {
+      document.body.classList.add('overflow-hidden');
+    } else {
+      document.body.classList.remove('overflow-hidden');
+    }
+  }, [hidenav]);
   const setNav = () => {
     setHidenav(!hidenav);
   };
@@ -82,7 +88,7 @@ export const NavbarHome = () => {
                 key={index}
                 className="text-black hover:underline transition-all"
               >
-                <a href={item.link}>{item.name}</a>
+                <a href={item.link} >{item.name}</a>
               </li>
             ))}
           </ul>
@@ -106,7 +112,7 @@ export const NavbarHome = () => {
           <ul className="flex flex-col gap-5 cursor-pointer w-min h-fit items-baseline  text-[29px] justify-start underline relative font-medium">
             {navItems.map((item, index) => (
               <li key={index} className="text-black hover:underline transition-all">
-                <a href={item.link}>{item.name}</a>
+                <a href={item.link} onClick={() => setHidenav(false)}>{item.name}</a>
               </li>
             ))}
           </ul>
