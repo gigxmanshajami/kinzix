@@ -66,13 +66,15 @@ export const NavbarHome = () => {
       <div className="flex bg-[#fff]  lg:bg-transparent  !border-b-[#000] !border-b-[1px] lg:!border-b-0  h-[5em] flex-row justify-between lg:pl-[50px] pr-[45px] items-center px-[20px]">
         {/* Logo */}
         <div>
-          <Image
-            src={kinzixImage}
-            alt="Kinzix"
-            className="object-contain lg:w-[120px] lg:h-[120px]"
-            width={120}
-            height={120}
-          />
+          <Link href={'/'}>
+            <Image
+              src={kinzixImage}
+              alt="Kinzix"
+              className="object-contain lg:w-[120px] lg:h-[120px] pointer-events-none"
+              width={120}
+              height={120}
+            />
+          </Link>
         </div>
 
         {/* Mobile Menu Icon */}
