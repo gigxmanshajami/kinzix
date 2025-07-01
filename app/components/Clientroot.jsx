@@ -26,7 +26,7 @@ export default function ClientRoot({ children }) {
                 </div>
 
                 {/* Page content area */}
-                <main className="flex-grow mt-[6em]"> {/* Adjust margin to offset fixed navbar */}
+                <main className="flex-grow mt-[5em]"> {/* Adjust margin to offset fixed navbar */}
                     {children}
                 </main>
 
