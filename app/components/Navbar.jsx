@@ -101,14 +101,23 @@ export const NavbarHome = () => {
 
       {/* Mobile Menu */}
       {hidenav && (
-        <div className="items-center transition-all justify-center flex h-screen">
-          <ul className="flex flex-col gap-10 cursor-pointer w-min h-fit items-center text-center text-[46px] underline relative -top-[67px] font-medium">
+        <div className={`items-baseline  gap-10 flex-col p-[28px] bg-white transform transition-transform duration-300  flex h-screen  ease-in-out ${hidenav ? 'translate-x-0' : '-translate-x-full'
+          }`}>
+          <ul className="flex flex-col gap-5 cursor-pointer w-min h-fit items-baseline  text-[29px] justify-start underline relative font-medium">
             {navItems.map((item, index) => (
               <li key={index} className="text-black hover:underline transition-all">
                 <a href={item.link}>{item.name}</a>
               </li>
             ))}
           </ul>
+          <button
+            data-cal-namespace="30min"
+            data-cal-link="kinzix/30min"
+            data-cal-config='{"layout":"month_view","theme":"auto"}'
+            className="w-full h-[50px] hover:scale-125 cursor-pointer transition-all text-black items-center  border-[#191A23] border-[1.3px]"
+          >
+            Get in touch
+          </button>
         </div>
       )}
     </div>
