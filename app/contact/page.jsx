@@ -17,8 +17,8 @@ function page() {
                         Email, call, or complete the form to learn how kinzix can solve your messaging problem.
                     </p>
                     <div className="space-y-2">
-                        <p className="text-gray-800">info@kinzix.io</p>
-                        <p className="text-gray-800">321-221-231</p>
+                        <p className="text-gray-800">info@kinzix.com</p>
+                        <p className="text-gray-800">+91 9471532682</p>
                         <a href="#" className="text-blue-600 underline">Customer Support</a>
                     </div>
 
@@ -61,7 +61,7 @@ function page() {
                     </form>
                 </div>
             </section>
-            
+
             {/* Location Map + FAQ */}
             <section className="lg:px-[150px] px-10 md:px-20 py-16 bg-white grid grid-cols-1 md:grid-cols-2 gap-12">
                 <div>
@@ -118,59 +118,37 @@ function page() {
                         className="w-full text-black transition-all"
                     >
                         <AccordionItem value="item-1">
-                            <AccordionTrigger><span className='text-2xl font-medium'>Product Information</span></AccordionTrigger>
+                            <AccordionTrigger><span className='text-2xl font-medium'>What services does Kinzix Innovation offer?</span></AccordionTrigger>
                             <AccordionContent className="flex flex-col gap-4 text-black text-balance">
                                 <p>
-                                    Our flagship product combines cutting-edge technology with sleek
-                                    design. Built with premium materials, it offers unparalleled
-                                    performance and reliability.
-                                </p>
-                                <p>
-                                    Key features include advanced processing capabilities, and an
-                                    intuitive user interface designed for both beginners and experts.
+                                    Kinzix specializes in building responsive websites, scalable mobile apps, and powerful custom software. We also provide tech consulting, business automation, and AI-powered solutions tailored to help your brand grow in the digital space.
                                 </p>
                             </AccordionContent>
                         </AccordionItem>
                         <AccordionItem value="item-2">
-                            <AccordionTrigger><span className='text-2xl font-medium'>Product Information</span></AccordionTrigger>
+                            <AccordionTrigger><span className='text-2xl font-medium'>How is Kinzix different from other software companies?</span></AccordionTrigger>
                             <AccordionContent className="flex flex-col gap-4 text-black text-balance">
                                 <p>
-                                    Our flagship product combines cutting-edge technology with sleek
-                                    design. Built with premium materials, it offers unparalleled
-                                    performance and reliability.
-                                </p>
-                                <p>
-                                    Key features include advanced processing capabilities, and an
-                                    intuitive user interface designed for both beginners and experts.
+                                    Unlike typical agencies, Kinzix combines smart design with strong development. We focus on performance, speed, and scalability while ensuring each solution aligns with your business goals. Every project is built with strategy and future growth in mind.
                                 </p>
                             </AccordionContent>
                         </AccordionItem>
                         <AccordionItem value="item-3">
-                            <AccordionTrigger><span className='text-2xl font-medium'>Product Information</span></AccordionTrigger>
+                            <AccordionTrigger><span className='text-2xl font-medium'> Can Kinzix handle both small startups and large enterprises?</span></AccordionTrigger>
                             <AccordionContent className="flex flex-col gap-4 text-black text-balance">
                                 <p>
-                                    Our flagship product combines cutting-edge technology with sleek
-                                    design. Built with premium materials, it offers unparalleled
-                                    performance and reliability.
+                                    Absolutely. Whether you're a startup looking to launch fast or a large business aiming to scale, Kinzix adapts to your needs with flexible solutions and personalized support every step of the way.
                                 </p>
-                                <p>
-                                    Key features include advanced processing capabilities, and an
-                                    intuitive user interface designed for both beginners and experts.
-                                </p>
+
                             </AccordionContent>
                         </AccordionItem>
                         <AccordionItem value="item-4">
-                            <AccordionTrigger><span className='text-2xl font-medium'>Product Information</span></AccordionTrigger>
+                            <AccordionTrigger><span className='text-2xl font-medium'>What industries do you work with?</span></AccordionTrigger>
                             <AccordionContent className="flex flex-col gap-4 text-black text-balance">
                                 <p>
-                                    Our flagship product combines cutting-edge technology with sleek
-                                    design. Built with premium materials, it offers unparalleled
-                                    performance and reliability.
+                                    We work across a wide range of industries—including healthcare, eCommerce, education, finance, and startups. No matter your field, Kinzix delivers customized digital solutions that fit your business model and goals.
                                 </p>
-                                <p>
-                                    Key features include advanced processing capabilities, and an
-                                    intuitive user interface designed for both beginners and experts.
-                                </p>
+
                             </AccordionContent>
                         </AccordionItem>
 

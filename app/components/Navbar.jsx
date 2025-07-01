@@ -6,7 +6,7 @@ import kinzixImage from '@/public/kinzi-black.png';
 import { Menu, ChevronDown, Lightbulb } from 'lucide-react';
 import { getCalApi } from '@calcom/embed-react';
 import { client } from '@/lib/sanity';
-
+import Link from 'next/link';
 export const NavbarHome = () => {
   const [activeDropdown, setActiveDropdown] = useState(null);
   const [hidenav, setHidenav] = useState(false);
@@ -88,19 +88,19 @@ export const NavbarHome = () => {
                 key={index}
                 className="text-black hover:underline transition-all"
               >
-                <a href={item.link} >{item.name}</a>
+
+                <Link href={item.link} >{item.name}</Link>
               </li>
             ))}
           </ul>
           <div>
-            <button
-              data-cal-namespace="30min"
-              data-cal-link="kinzix/30min"
-              data-cal-config='{"layout":"month_view","theme":"auto"}'
-              className="w-[188px] h-[50px] hover:scale-125 cursor-pointer transition-all text-black items-center  border-[#191A23] border-[1.3px]"
-            >
-              Get in touch
-            </button>
+            <Link href="/contact" >
+              <button
+                className="w-[188px] h-[50px] hover:scale-125 cursor-pointer transition-all text-black items-center  border-[#191A23] border-[1.3px]"
+              >
+                Get in touch
+              </button>
+            </Link>
           </div>
         </div>
       </div>
@@ -109,21 +109,22 @@ export const NavbarHome = () => {
       {hidenav && (
         <div className={`items-baseline  gap-10 flex-col p-[28px] bg-white transform transition-transform duration-300  flex h-screen  ease-in-out ${hidenav ? 'translate-x-0' : '-translate-x-full'
           }`}>
-          <ul className="flex flex-col gap-5 cursor-pointer w-min h-fit items-baseline  text-[29px] justify-start underline relative font-medium">
+          <ul className="flex flex-col gap-5 cursor-pointer w-min h-fit items-baseline  text-[29px] justify-start underline relative fonaget-medium">
             {navItems.map((item, index) => (
               <li key={index} className="text-black hover:underline transition-all">
-                <a href={item.link} onClick={() => setHidenav(false)}>{item.name}</a>
+                <Link href={item.link} onClick={() => setHidenav(false)}>{item.name}</Link>
               </li>
             ))}
           </ul>
-          <button
-            data-cal-namespace="30min"
-            data-cal-link="kinzix/30min"
-            data-cal-config='{"layout":"month_view","theme":"auto"}'
-            className="w-full h-[50px] hover:scale-125 cursor-pointer transition-all text-black items-center  border-[#191A23] border-[1.3px]"
-          >
-            Get in touch
-          </button>
+          <Link href="/contact" className="w-full h-[50px]">
+            <button
+              className="w-full h-[50px] hover:scale-125 cursor-pointer transition-all text-black items-center  border-[#191A23] border-[1.3px]"
+            >
+              Get in touch
+            </button>
+          </Link>
+
+
         </div>
       )}
     </div>
