@@ -332,6 +332,7 @@ export default function Home() {
           </div>
         </div>
       </section>
+ 
       {/* techno */}
       <section className="w-full py-20 bg-[#fff] px-4 sm:px-8 md:px-12 lg:px-[150px]">
         <div className=" w-max justify-center lg:justify-normal mx-auto mb-10 flex lg:flex-row flex-col gap-10 items-center mr-0 ml-0 ">

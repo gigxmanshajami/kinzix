@@ -59,7 +59,7 @@ const Footer = () => {
                 </div>
 
                 {/* Nav links from navbar */}
-                <div className="flex h-[-webkit-fill-available] flex-wrap gap-6 text-sm font-medium items-center justify-center lg:items-start">
+                <div className="flex lg:h-[-webkit-fill-available] h-fit  flex-wrap lg:gap-6 gap-[9px] text-sm font-medium items-center justify-center lg:items-start">
                     {navItems.map((menu, i) => (
                         <a key={i} href={menu.link || '#'} className="hover:underline capitalize">
                             {menu.name}
