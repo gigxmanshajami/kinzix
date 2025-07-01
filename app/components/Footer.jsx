@@ -34,33 +34,44 @@ const Footer = () => {
         <footer className="bg-[#121217] text-white px-6 md:px-20 pt-16 pb-8  bottom-0">
             <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-12 items-center justify-center">
                 {/* Left Section */}
-                <div className="space-y-4 flex flex-col items-center justify-center lg:items-start">
-                    <img
-                        src={footerData.logo ? urlFor(footerData.logo).url() : kinzixImage}
-                        alt="Kinzix"
-                        width={112}
-                        height={50}
-                        className="object-contain"
-                    />
+                <div >
 
-                    <h2 className="text-white font-medium bg-[#FE332F] text-[20px] px-1.5 rounded-[7px]">
-                        {footerData.contactHeading}
-                    </h2>
+                    <div className="space-y-4 flex flex-col items-center justify-center lg:items-start">
+                        <img
+                            src={footerData.logo ? urlFor(footerData.logo).url() : kinzixImage}
+                            alt="Kinzix"
+                            width={112}
+                            height={50}
+                            className="object-contain"
+                        />
 
-                    <div className="text-sm text-gray-300 text-center lg:text-left space-y-1">
-                        <p>Email: {footerData.email}</p>
-                        <p>Phone: {footerData.phone}</p>
-                        <p>Address: {footerData.address}</p>
+                        <h2 className="text-white font-medium bg-[#FE332F] text-[20px] px-1.5 rounded-[7px]">
+                            {footerData.contactHeading}
+                        </h2>
+
+                        <div className="text-sm text-gray-300 text-center lg:text-left space-y-1">
+                            <p>Email: {footerData.email}</p>
+                            <p>Phone: {footerData.phone}</p>
+                            <p>Address: {footerData.address}</p>
+                        </div>
                     </div>
+
                 </div>
 
                 {/* Nav links from navbar */}
-                <div className="flex flex-wrap gap-6 text-sm font-medium items-center justify-center lg:items-start">
+                <div className="flex h-[-webkit-fill-available] flex-wrap gap-6 text-sm font-medium items-center justify-center lg:items-start">
                     {navItems.map((menu, i) => (
                         <a key={i} href={menu.link || '#'} className="hover:underline capitalize">
                             {menu.name}
                         </a>
                     ))}
+                    <iframe
+                        title="kinzix Location"
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3645.1740624868125!2d85.35423017390154!3d23.98962977955284!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39f49c036234b4b5%3A0x728ed0818fb5a8b8!2sDr%20Zakir%20Hussain%20Rd%2C%20Hazaribagh%2C%20Jharkhand%20825301!5e0!3m2!1sen!2sin!4v1751391140020!5m2!1sen!2sin"
+                        className="lg:h-[205px] lg:w-[487px] w-[350px] h-[250px] 2xl:w-[500px]  border-none outline-none"
+                        allowFullScreen
+                        loading="lazy"
+                    ></iframe>
                 </div>
 
                 {/* Social Icons */}

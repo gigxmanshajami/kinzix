@@ -387,7 +387,7 @@ export default function Home() {
           backgroundPosition: 'center',
           backgroundRepeat: 'space',
         }} id='projects' className="lg:px-[150px] px-[16px] h-fit  py-20 lg:py-0  text-white">
-          <div className="max-w-6xl mx-auto">
+          <div className="max-w-6xl">
             {/* Section Heading */}
             <div className="max-w-6xl mx-auto mb-10 flex flex-row gap-10 justify-normal">
               <h2 className="text-white w-fit font-medium items-center flex text-center justify-center text-[40px] px-1.5 h-[51px] bg-[#FE332F]">
@@ -406,9 +406,9 @@ export default function Home() {
         </section>
       )}
       {/* case studies */}
-      <section id="cs" className="lg:px-[155px] py-20 px-[16px] h-fit" data-aos="zoom-in-up">
+      <section id="cs" className="lg:px-[155px] py-20 px-[16px]  h-fit" data-aos="zoom-in-up">
         {/* heading */}
-        <div className="lg:max-w-6xl w-full  mx-auto mb-10 flex flex-row gap-10 items-center mt-6">
+        <div className="lg:max-w-6xl w-full ml-0  mx-auto mb-10 flex flex-row gap-10 items-center mt-6">
           <h2 className="text-white w-fit font-medium  items-center flex text-center justify-center text-[40px] px-1.5 h-[51px] bg-[#FE332F]">
             Case Studies
           </h2>
