@@ -23,7 +23,7 @@ export const metadata = {
   keywords:
     "Kinzix Innovation, software solutions, tech consulting, digital transformation, AI software, automation services, custom software development, IT consulting firm, Kinzix software, business automation",
   icons: {
-    icon: "/k.ico",
+    icon: "/kx.ico",
   },
 };
 
