@@ -4,8 +4,7 @@ import Footer from "./components/Footer";
 import { SmoothCursor } from "@/components/ui/smooth-cursor";
 import ClientRoot from "./components/Clientroot";
 import { NavbarHome } from "./components/Navbar";
-import Script from "next/script"; // ✅ import Script
-
+import Script from "next/script"; 
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],

@@ -1,11 +1,11 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import Image from 'next/image';
 import { client } from '@/lib/sanity';
-import kinzixImage from '@/public/kinzi.png';
 import { Linkedin, Facebook, Github } from 'lucide-react';
-import { urlFor } from '@/lib/imageUrl'; // helper for Sanity image URLs
+import { urlFor } from '@/lib/imageUrl';
+import Image from 'next/image';
+import kinzixImage from '@/public/kinzi.png';
 
 const Footer = () => {
     const [footerData, setFooterData] = useState(null);
@@ -24,98 +24,91 @@ const Footer = () => {
                 console.error('Footer fetch error:', error);
             }
         };
-
         fetchData();
     }, []);
 
     if (!footerData) return null;
 
     return (
-        <footer className="bg-[#121217] text-white px-6 md:px-20 pt-16 pb-8  bottom-0">
-            <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-12 items-center justify-center">
-                {/* Left Section */}
-                <div >
+        <footer className="bg-[#121217] text-white px-6 md:px-20 pt-16 pb-8">
+            <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-10 mb-12">
+                {/* Company Overview */}
+                <div>
+                    <img
+                        src={footerData.logo ? urlFor(footerData.logo).url() : kinzixImage}
+                        alt="Kinzix Logo"
+                        width={120}
+                        height={50}
+                        className="object-contain mb-4"
+                    />
+                    <p className="text-gray-300 text-sm leading-relaxed">
+                        At Kinzix, we empower businesses with cutting-edge software, automation, and AI-driven solutions that boost efficiency and drive innovation.
+                    </p>
+                </div>
 
-                    <div className="space-y-4 flex flex-col items-center justify-center lg:items-start">
-                        <img
-                            src={footerData.logo ? urlFor(footerData.logo).url() : kinzixImage}
-                            alt="Kinzix"
-                            width={112}
-                            height={50}
-                            className="object-contain"
-                        />
+                {/* Quick Links */}
+                <div>
+                    <h3 className="text-white font-semibold text-lg mb-4">Quick Links</h3>
+                    <ul className="space-y-2 text-gray-400 text-sm">
+                        {navItems.map((menu, i) => (
+                            <li key={i}>
+                                <a href={menu.link || '#'} className="hover:underline">{menu.name}</a>
+                            </li>
+                        ))}
+                        <li><a href="/careers" className="hover:underline">Careers</a></li>
+                        <li><a href="/contact" className="hover:underline">Contact Us</a></li>
+                    </ul>
+                </div>
 
-                        <h2 className="text-white font-medium bg-[#FE332F] text-[20px] px-1.5 rounded-[7px]">
-                            {footerData.contactHeading}
-                        </h2>
+                {/* Services */}
+                <div>
+                    <h3 className="text-white font-semibold text-lg mb-4">Services</h3>
+                    <ul className="space-y-2 text-gray-400 text-sm">
+                        <li>AI & ML Development</li>
+                        <li>Cloud Application</li>
+                        <li>Mobile Development</li>
+                        <li>Custom Software</li>
+                        <li><a href="/services" className="hover:underline">View More</a></li>
+                    </ul>
+                </div>
 
-                        <div className="text-sm text-gray-300 text-center lg:text-left space-y-1">
-                            <p>Email: {footerData.email}</p>
-                            <p>Phone: {footerData.phone}</p>
-                            <p>Address: {footerData.address}</p>
-                        </div>
+                {/* Contact Info */}
+                <div>
+                    <h3 className="text-white font-semibold text-lg mb-4">Contact</h3>
+                    <p className="text-sm text-gray-400 mb-2">Email: {footerData.email}</p>
+                    <p className="text-sm text-gray-400 mb-2">Phone: {footerData.phone}</p>
+                    <p className="text-sm text-gray-400 mb-2">Address: {footerData.address}</p>
+                    <div className="flex space-x-3 mt-4">
+                        {footerData.socials?.map((s, i) => {
+                            const iconMap = {
+                                linkedin: <Linkedin size={18} />,
+                                facebook: <Facebook size={18} />,
+                                github: <Github size={18} />,
+                            };
+                            return (
+                                <a
+                                    key={i}
+                                    href={s.url}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="w-8 h-8 bg-white text-black rounded-full flex items-center justify-center hover:scale-110 transition-all"
+                                >
+                                    {iconMap[s.platform.toLowerCase()] || s.platform}
+                                </a>
+                            );
+                        })}
                     </div>
-
-                </div>
-
-                {/* Nav links from navbar */}
-                <div className="flex lg:h-[-webkit-fill-available] h-fit  flex-wrap lg:gap-6 gap-[9px] text-sm font-medium items-center justify-center lg:items-start">
-                    {navItems.map((menu, i) => (
-                        <a key={i} href={menu.link || '#'} className="hover:underline capitalize">
-                            {menu.name}
-                        </a>
-                    ))}
-                    <iframe
-                        title="kinzix Location"
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3645.1740624868125!2d85.35423017390154!3d23.98962977955284!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39f49c036234b4b5%3A0x728ed0818fb5a8b8!2sDr%20Zakir%20Hussain%20Rd%2C%20Hazaribagh%2C%20Jharkhand%20825301!5e0!3m2!1sen!2sin!4v1751391140020!5m2!1sen!2sin"
-                        className="lg:h-[205px] lg:w-[487px] w-[350px] h-[250px] 2xl:w-[500px]  border-none outline-none"
-                        allowFullScreen
-                        loading="lazy"
-                    ></iframe>
-                </div>
-
-                {/* Social Icons */}
-                <div className="flex gap-3">
-                    {footerData.socials?.map((s, i) => {
-                        const iconMap = {
-                            linkedin: <Linkedin size={20} />,
-                            facebook: <Facebook size={20} />,
-                            github: <Github size={20} />
-                        };
-
-                        return (
-                            <a
-                                key={i}
-                                href={s.url}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="w-8 h-8 hover:scale-125 bg-white text-black rounded-full flex items-center justify-center transition-all"
-                            >
-                                {iconMap[s.platform.toLowerCase()] || s.platform}
-                            </a>
-                        );
-                    })}
                 </div>
             </div>
 
-            {/* Subscribe
-            <div className="bg-[#1E1E24] rounded-xl p-6 mt-10 flex flex-col md:flex-row gap-4 items-center justify-between">
-                <input
-                    type="email"
-                    placeholder={footerData.subscribePlaceholder}
-                    className="w-full md:w-auto px-4 py-3 rounded-lg border border-white bg-transparent text-white placeholder-white focus:outline-none"
-                />
-                <button className="bg-[#FF3D3D] text-white px-6 py-3 rounded-lg font-medium">
-                    {footerData.subscribeButtonText}
-                </button>
-            </div> */}
-
-            {/* Bottom Line */}
-            <div className="border-t border-gray-600 mt-12 pt-6 flex flex-col md:flex-row justify-between items-center text-sm text-gray-400">
+            {/* Divider */}
+            <div className="border-t border-gray-700 pt-4 flex flex-col md:flex-row justify-between text-sm text-gray-400">
                 <p>{footerData.copyright}</p>
-                <a href={footerData.privacyPolicyUrl} className="hover:underline">
-                    Privacy Policy
-                </a>
+                <div className="flex gap-4 mt-2 md:mt-0">
+                    <a href={footerData.privacyPolicyUrl} className="hover:underline">Privacy Policy</a>
+                    <a href="/terms" className="hover:underline">Terms</a>
+                    <a href="/sitemap" className="hover:underline">Sitemap</a>
+                </div>
             </div>
         </footer>
     );
