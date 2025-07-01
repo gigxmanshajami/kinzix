@@ -118,7 +118,7 @@ export const NavbarHome = () => {
               </li>
             ))}
           </ul>
-          <Link href="/contact" className="w-full h-[50px]" onClick={setHidenav(false)} >
+          <Link href="/contact" className="w-full h-[50px]" onClick={() => setHidenav(false)} >
             <button
               className="w-full h-[50px] hover:scale-125 cursor-pointer transition-all text-black items-center  border-[#191A23] border-[1.3px]"
             >
