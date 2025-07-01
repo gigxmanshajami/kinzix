@@ -116,7 +116,6 @@ function page() {
                         type="single"
                         collapsible
                         className="w-full text-black transition-all"
-                        defaultValue="item-1"
                     >
                         <AccordionItem value="item-1">
                             <AccordionTrigger><span className='text-2xl font-medium'>Product Information</span></AccordionTrigger>
