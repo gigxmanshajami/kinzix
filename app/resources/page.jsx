@@ -73,7 +73,7 @@ export default function Resources() {
                                 <img
                                     src={urlFor(item.mainImage).width(600).height(240).url()}
                                     alt={item.title}
-                                    className="w-full h-40 object-cover rounded-xl mb-4"
+                                    className="w-full h-40 object-fill rounded-xl mb-4"
                                 />
                                 <h3 className="text-xl font-semibold mb-2 text-[#111]">{item.title}</h3>
                                 <p className="text-gray-600 mb-3">{item.description}</p>
@@ -114,7 +114,7 @@ export default function Resources() {
                                 <img
                                     src={urlFor(item.mainImage).width(400).height(160).url()}
                                     alt={item.title}
-                                    className="w-full md:w-1/3 h-40 object-cover rounded-xl mb-4 md:mb-0"
+                                    className="w-full md:w-1/3 h-40 object-fill rounded-xl mb-4 md:mb-0"
                                 />
                                 <div className="flex-1">
                                     <h3 className="text-xl font-semibold mb-2">{item.title}</h3>
@@ -156,7 +156,7 @@ export default function Resources() {
                                 <img
                                     src={urlFor(item.mainImage).width(600).height(240).url()}
                                     alt={item.title}
-                                    className="w-full h-40 object-cover rounded-xl mb-4"
+                                    className="w-full h-40 object-fill rounded-xl mb-4"
                                 />
                                 <h3 className="text-xl font-semibold mb-2">{item.title}</h3>
                                 <p className="text-gray-600 mb-3">{item.description}</p>
