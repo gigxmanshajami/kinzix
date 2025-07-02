@@ -1,6 +1,5 @@
 import { urlFor } from "@/lib/imageUrl";
 import { FollowerPointerCard } from "@/components/ui/following-pointer";
-import founder from "../../kinzix-studio/studio-kinzix/schemaTypes/founders";
 export function FollowingPointerDemo({
     img,
     info
