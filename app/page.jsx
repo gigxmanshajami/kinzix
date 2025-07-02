@@ -47,7 +47,7 @@ const worksQuery = '*[_type == "cs_studies"][0]';
 const designSubscriptionQuery = '*[_type == "working_process"][0]';
 const testimonialQuery = `*[_type == "our_projects"][0]{
   ...,
-  founder->{name, image, position,company}
+  founder->
 }`;
 
 export default function Home() {
@@ -113,16 +113,16 @@ export default function Home() {
 
         setHero(heroData);
         setProjects(projectData);
-        console.log('query', testimonialData)
+        // console.log('query', testimonialData)
         setWorks(worksData.case_studies);
         setDesignSubscription(designData);
-        setTestimonial(testimonialData);
+        // setTestimonial(testimonialData);
         console.log({
           heroData: heroData,
           projectData: projectData,
           worksData: worksData,
           designSubscriptionData: designData,
-          testimonialData: testimonialData
+          // testimonialData: testimonialData
         });
       } catch (err) {
         console.error('Fetch error:', err);
@@ -155,6 +155,43 @@ export default function Home() {
       testimonialSub.unsubscribe();
     };
   }, []);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const [projectData, allFounders] = await Promise.all([
+          client.fetch(`*[_type == "our_projects"][0]`), // Assuming projects is an array inside this
+          client.fetch(`*[_type == "founder"]{_id, name, position, photo}`)
+        ]);
+
+        const projectsWithFounder = projectData.projectList?.map((proj) => {
+          const founderRef = proj.founder?._ref;
+          const matchedFounder = allFounders.find(f => f._id === founderRef);
+          return {
+            ...proj,
+            founder: matchedFounder || null
+          };
+        });
+
+        setTestimonial({
+          ...projectData,
+          projectList: projectsWithFounder
+        });
+
+        console.log(projectsWithFounder);
+        // console.log(...projectData);
+        console.log(testimonial, 'testimonial data');
+      } catch (err) {
+        console.error("Error fetching project + founder data:", err);
+      }
+    };
+
+    fetchData();
+  }, []);
+  useEffect(() => {
+    if (testimonial) {
+      console.log(testimonial, 'testimonial data');
+    }
+  }, [testimonial]);
   useEffect(() => {
     console.log(testimonial, 'ds')
   }, [testimonial])
@@ -300,7 +337,8 @@ export default function Home() {
             {data?.heading}
           </h2>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+        {/* Desktop / Large Screens */}
+        <div className="hidden lg:grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {data?.technologies.map((item, i, arr) => {
             const tech = item.tech || item;
             const isLastRow = i >= arr.length - (arr.length % 4 || 4);
@@ -309,10 +347,30 @@ export default function Home() {
             return (
               <div
                 key={i}
-                className={`bg-[#f1f1f1]   p-6 transition-all z-30 items-center justify-center flex cursor-pointer  duration-300 hover:scale-105
-                ${!isLastCol ? 'lg:border-r-[0.9px] lg:border-[#000]' : ''}
-                ${!isLastRow ? 'lg:border-b-[0.9px] lg:border-[#000]' : ''}
-              `}
+                className={`bg-[#f1f1f1] p-6 transition-all z-30 items-center justify-center flex cursor-pointer duration-300 hover:scale-105
+        ${!isLastCol ? 'lg:border-r-[0.9px] lg:border-[#000]' : ''}
+        ${!isLastRow ? 'lg:border-b-[0.9px] lg:border-[#000]' : ''}
+      `}
+              >
+                <div className="bg-white w-fit h-fit p-2 rounded-lg items-center flex">
+                  <h3 className="text-2xl font-semibold text-black">{tech}</h3>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+        {/* Mobile View */}
+        <div className="grid grid-cols-1 lg:hidden">
+          {data?.technologies.map((item, i, arr) => {
+            const tech = item.tech || item;
+            const isLast = i === arr.length - 1;
+
+            return (
+              <div
+                key={i}
+                className={`bg-[#f1f1f1] p-6 transition-all z-30 items-center justify-center flex cursor-pointer duration-300 hover:scale-105
+        ${!isLast ? 'border-b-[0.9px] border-[#000]' : ''}
+      `}
               >
                 <div className="bg-white w-fit h-fit p-2 rounded-lg items-center flex">
                   <h3 className="text-2xl font-semibold text-black">{tech}</h3>
@@ -346,7 +404,7 @@ export default function Home() {
             <div className="grid gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
 
               {testimonial.projectList.map((person, i) => (
-                <FollowingPointerDemo img={urlFor(person.image?.asset?._ref)} info={person} />
+                <FollowingPointerDemo img={urlFor(person.image)} info={person} />
               ))}
             </div>
           </div>

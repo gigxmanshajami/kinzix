@@ -3,17 +3,19 @@ import React, { useEffect, useMemo, useState } from "react";
 import { MaskContainer } from "../components/ui/svg-mask-effect";
 import { TextGenerateEffect } from "../components/ui/text-generate-effect";
 import { Button } from "@/components/ui/button"
+import { client } from '@/lib/sanity';
 import Service from "./Service";
 import { motion } from 'framer-motion';
 import Particles, { initParticlesEngine } from "@tsparticles/react";
 import { loadSlim } from "@tsparticles/slim";
 import Blurbg from '@/public/Ellipse.png';
 import Image from 'next/image';
+import { urlFor } from "@/lib/imageUrl";
 import { Cover } from "@/components/ui/cover";
 import { getCalApi } from "@calcom/embed-react";
 import { AnimatedTooltip } from '@/components/ui/animated-tooltip';
 import HeaderImage from '@/public/Illustration.png'
-const people = [
+const initialPeople = [
     {
         id: 1,
         name: "Maneesh Birthwar",
@@ -34,10 +36,35 @@ const people = [
         image:
             '/tbh.jpg',
     },
-   
+
 ];
 
 export default function Hero({ data }) {
+    const [people, setPeople] = useState([]);
+    useEffect(() => {
+        const fetchFounders = async () => {
+            try {
+                const founders = await client.fetch(
+                    `*[_type == "founder"]{_id, name, position, photo,company}`
+                );
+
+                const formatted = founders.map((f, i) => ({
+                    id: i + 1,
+                    name: f.name,
+                    designation: `${f.position}, ${f.company}`,
+                    image: f.photo ? urlFor(f.photo).url() : "/placeholder.jpg",
+                }));
+
+                setPeople(formatted);
+            } catch (err) {
+                console.error("Error fetching founders:", err);
+            }
+        };
+
+        fetchFounders();
+    }, []);
+
+
     const text_first = data?.Text_First;
     const texth = data?.Text_mid;
     // const text_last = data.Text_last;

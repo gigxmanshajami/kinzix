@@ -1,43 +1,46 @@
+import { urlFor } from "@/lib/imageUrl";
 import { FollowerPointerCard } from "@/components/ui/following-pointer";
-
+import founder from "../../kinzix-studio/studio-kinzix/schemaTypes/founders";
 export function FollowingPointerDemo({
     img,
     info
 }) {
     console.log(info);
     return (
-        <div className="mx-auto lg:w-80 2xl:w-full w-full">
-            <FollowerPointerCard
-                title={
-                    <TitleComponent title={info.name} avatar={img} />
-                }>
-                <div
-                    className="group relative h-full overflow-hidden rounded-2xl border border-zinc-100 bg-white transition duration-200 hover:shadow-xl">
+        <a href={info.pr_url} target='_blank'>
+            <div className="mx-auto lg:w-80 2xl:w-full w-full">
+                <FollowerPointerCard
+                    title={
+                        <TitleComponent title={info.founder.name} avatar={urlFor(info.founder.photo)} />
+                    }>
                     <div
-                        className="relative aspect-[16/10] w-full overflow-hidden rounded-tl-lg rounded-tr-lg bg-gray-100">
-                        <img
-                            src={img}
-                            alt="thumbnail"
-                            className=" w-full h-[200px] object-top transform object-cover transition duration-200 group-hover:scale-95 group-hover:rounded-2xl" />
-                    </div>
-                    <div className="p-4">
-                        <h2 className="my-4 text-lg font-bold text-zinc-700">
-                            {info.name}
-                        </h2>
-                        <h2 className="my-4 text-sm font-normal text-zinc-500">
-                            {blogContent.description}
-                        </h2>
-                        <div className="mt-10 flex flex-row items-center justify-between">
-                            <span className="text-sm text-gray-500">{blogContent.date}</span>
-                            <div
-                                className="relative z-10 block rounded-xl bg-black px-6 py-2 text-xs font-bold text-white">
-                                View Project
+                        className="group relative h-full overflow-hidden rounded-2xl border border-zinc-100 bg-white transition duration-200 hover:shadow-xl">
+                        <div
+                            className="relative aspect-[16/10] w-full overflow-hidden rounded-tl-lg rounded-tr-lg bg-gray-100">
+                            <img
+                                src={img}
+                                alt="thumbnail"
+                                className=" w-full h-[200px] object-top transform object-cover transition duration-200 group-hover:scale-95 group-hover:rounded-2xl" />
+                        </div>
+                        <div className="p-4">
+                            <h2 className="my-4 text-lg font-bold text-zinc-700">
+                                {info.name}
+                            </h2>
+                            <h2 className="my-4 text-sm font-normal text-zinc-500">
+                                {info.description}
+                            </h2>
+                            <div className="mt-10 flex flex-row items-center justify-between">
+                                {/* <span className="text-sm text-gray-500">{blogContent.date}</span> */}
+                                <div
+                                    className="relative z-10 block rounded-xl bg-black px-6 py-2 text-xs font-bold text-white">
+                                    View Project
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </FollowerPointerCard>
-        </div>
+                </FollowerPointerCard>
+            </div>
+        </a>
     );
 }
 
