@@ -4,6 +4,7 @@ export function FollowingPointerDemo({
     img,
     info
 }) {
+    console.log(info);
     return (
         <div className="mx-auto lg:w-80 2xl:w-full w-full">
             <FollowerPointerCard

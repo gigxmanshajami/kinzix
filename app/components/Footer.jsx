@@ -2,10 +2,18 @@
 
 import { useEffect, useState } from 'react';
 import { client } from '@/lib/sanity';
-import { Linkedin, Facebook, Github } from 'lucide-react';
+import {
+    Linkedin,
+    Facebook,
+    Github,
+    Twitter,
+    Youtube,
+    Instagram
+} from 'lucide-react';
 import { urlFor } from '@/lib/imageUrl';
 import Image from 'next/image';
 import kinzixImage from '@/public/kinzi.png';
+export const dynamic = "force-dynamic";
 
 const Footer = () => {
     const [footerData, setFooterData] = useState(null);
@@ -28,6 +36,15 @@ const Footer = () => {
     }, []);
 
     if (!footerData) return null;
+
+    const iconMap = {
+        linkedin: <Linkedin size={18} />,
+        facebook: <Facebook size={18} />,
+        github: <Github size={18} />,
+        twitter: <Twitter size={18} />,
+        youtube: <Youtube size={18} />,
+        instagram: <Instagram size={18} />,
+    };
 
     return (
         <footer className="bg-[#121217] text-white px-6 md:px-20 pt-16 pb-8">
@@ -59,18 +76,21 @@ const Footer = () => {
                         <li><a href="/contact" className="hover:underline">Contact Us</a></li>
                     </ul>
                 </div>
-
+                {/* Services */}
                 {/* Services */}
                 <div>
                     <h3 className="text-white font-semibold text-lg mb-4">Services</h3>
                     <ul className="space-y-2 text-gray-400 text-sm">
-                        <li>SAAS Development</li>
-                        <li>Cloud Application</li>
-                        <li>Mobile Development</li>
-                        <li>Custom Software</li>
-                        <li><a href="/services" className="hover:underline">View More</a></li>
+                        {footerData.services?.map((service, i) => (
+                            <li key={i}>
+                                <a href={service.link} className="hover:underline">
+                                    {service.name}
+                                </a>
+                            </li>
+                        ))}
                     </ul>
                 </div>
+
 
                 {/* Contact Info */}
                 <div>
@@ -79,24 +99,17 @@ const Footer = () => {
                     <p className="text-sm text-gray-400 mb-2">Phone: {footerData.phone}</p>
                     <p className="text-sm text-gray-400 mb-2">Address: {footerData.address}</p>
                     <div className="flex space-x-3 mt-4">
-                        {footerData.socials?.map((s, i) => {
-                            const iconMap = {
-                                linkedin: <Linkedin size={18} />,
-                                facebook: <Facebook size={18} />,
-                                github: <Github size={18} />,
-                            };
-                            return (
-                                <a
-                                    key={i}
-                                    href={s.url}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="w-8 h-8 bg-white text-black rounded-full flex items-center justify-center hover:scale-110 transition-all"
-                                >
-                                    {iconMap[s.platform.toLowerCase()] || s.platform}
-                                </a>
-                            );
-                        })}
+                        {footerData.socials?.map((s, i) => (
+                            <a
+                                key={i}
+                                href={s.url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="w-8 h-8 bg-white text-black rounded-full flex items-center justify-center hover:scale-110 transition-all"
+                            >
+                                {iconMap[s.platform.toLowerCase()] || s.platform[0]}
+                            </a>
+                        ))}
                     </div>
                 </div>
             </div>
@@ -105,9 +118,14 @@ const Footer = () => {
             <div className="border-t border-gray-700 pt-4 flex flex-col md:flex-row justify-between text-sm text-gray-400">
                 <p>{footerData.copyright}</p>
                 <div className="flex gap-4 mt-2 md:mt-0">
-                    <a href={footerData.privacyPolicyUrl || 'http://www.kinzix.com/PrivacyPolicy'} className="hover:underline">Privacy Policy</a>
-                    <a href='http://www.kinzix.com/Terms' className="hover:underline">Terms</a>
-                    <a href='http://www.kinzix.com/sitemap.xml' className="hover:underline">Sitemap</a>
+                    <a
+                        href={footerData.privacyPolicyUrl || 'http://www.kinzix.com/PrivacyPolicy'}
+                        className="hover:underline"
+                    >
+                        Privacy Policy
+                    </a>
+                    <a href="http://www.kinzix.com/Terms" className="hover:underline">Terms</a>
+                    <a href="http://www.kinzix.com/sitemap.xml" className="hover:underline">Sitemap</a>
                 </div>
             </div>
         </footer>

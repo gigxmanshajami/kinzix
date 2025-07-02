@@ -1,46 +1,58 @@
-import React from 'react'
+"use client";
+
+import React, { useEffect, useState } from "react";
 import {
     Accordion,
     AccordionContent,
     AccordionItem,
     AccordionTrigger,
 } from "@/components/ui/accordion";
-function page() {
+import { client } from "@/lib/sanity";
+
+export const dynamic = "force-dynamic";
+
+function Page() {
+    const [data, setData] = useState(null);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            const res = await client.fetch(`*[_type == "contactPage"][0]`);
+            setData(res);
+        };
+        fetchData();
+    }, []);
+
+    if (!data) return <div className="text-center py-20 text-gray-400">Loading...</div>;
+
     return (
         <div className="min-h-screen flex flex-col space-grotesk">
             {/* Contact Section */}
-            <section className="flex flex-col lg:flex-row  justify-between lg:px-[150px] px-10 md:px-20 py-16 gap-12 bg-[#e6eefe]">
+            <section className="flex flex-col lg:flex-row justify-between lg:px-[150px] px-10 md:px-20 py-16 gap-12 bg-[#e6eefe]">
                 {/* Left */}
                 <div className="flex-1 space-y-6 flex flex-col justify-center">
-                    <h2 className="text-6xl font-bold text-gray-800">Contact Us</h2>
+                    <h2 className="text-6xl font-bold text-gray-800">{data.pageTitle}</h2>
                     <p className="text-gray-600 text-md w-[62%]">
-                        Email, call, or complete the form to learn how kinzix can solve your messaging problem.
+                        {data.introText}
                     </p>
                     <div className="space-y-2">
-                        <p className="text-gray-800">info@kinzix.com</p>
-                        <p className="text-gray-800">+91 9471532682</p>
-                        <a href="#" className="text-blue-600 underline">Customer Support</a>
+                        <p className="text-gray-800">{data.primaryEmail}</p>
+                        <p className="text-gray-800">{data.phone}</p>
+                        <a href={data.supportLink} className="text-blue-600 underline">Customer Support</a>
                     </div>
 
                     <div className="text-sm text-gray-500 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                        <div>
-                            <strong className='text-[#000]'>Customer Support</strong>
-                            <p>Our support team is available around the clock.</p>
-                        </div>
-                        <div>
-                            <strong className='text-[#000]'>Feedback and Suggestions</strong>
-                            <p>Help shape kinzix by sharing your ideas.</p>
-                        </div>
-                        <div>
-                            <strong className='text-[#000]'>Legal Inquiries</strong>
-                            <p>For legal, contact legal@kinzix.com.</p>
-                        </div>
+                        {data.infoBlocks?.map((block, i) => (
+                            <div key={i}>
+                                <strong className='text-[#000]'>{block.title}</strong>
+                                <p>{block.content}</p>
+                            </div>
+                        ))}
                     </div>
                 </div>
 
                 {/* Right - Form */}
-                <div className="flex-1 bg-white rounded-xl shadow-lg p-8  w-full max-w-md mx-auto">
-                    <h3 className="text-xl font-semibold mb-4 text-gray-800">Get in Touch</h3>
+                <div className="flex-1 bg-white rounded-xl shadow-lg p-8 w-full max-w-md mx-auto">
+                    <h3 className="text-xl font-semibold mb-4 text-gray-800">{data.formHeading}</h3>
                     <form className="space-y-4">
                         <div className="flex gap-4">
                             <input type="text" placeholder="First name" className="w-1/2 px-4 py-2 border rounded-md text-black" />
@@ -56,18 +68,20 @@ function page() {
                             Submit
                         </button>
                         <p className="text-xs text-gray-500 text-center">
-                            By contacting us, you agree to our <a href="#" className="underline text-black font-bold">Terms</a> and <a href="#" className="underline  text-black font-bold">Privacy Policy</a>.
+                            By contacting us, you agree to our{" "}
+                            <a href={data.termsUrl} className="underline text-black font-bold">Terms</a> and{" "}
+                            <a href={data.privacyPolicyUrl} className="underline text-black font-bold">Privacy Policy</a>.
                         </p>
                     </form>
                 </div>
             </section>
 
-            {/* Location Map + FAQ */}
+            {/* Location Map + Info */}
             <section className="lg:px-[150px] px-10 md:px-20 py-16 bg-white grid grid-cols-1 md:grid-cols-2 gap-12">
                 <div>
                     <iframe
-                        title="kinzix Location"
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3645.1740624868125!2d85.35423017390154!3d23.98962977955284!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39f49c036234b4b5%3A0x728ed0818fb5a8b8!2sDr%20Zakir%20Hussain%20Rd%2C%20Hazaribagh%2C%20Jharkhand%20825301!5e0!3m2!1sen!2sin!4v1751391140020!5m2!1sen!2sin"
+                        title="Kinzix Location"
+                        src={data.googleMapEmbedUrl}
                         className="w-full h-[484px] rounded-xl border outline-none"
                         allowFullScreen
                         loading="lazy"
@@ -75,36 +89,30 @@ function page() {
                 </div>
 
                 <div className="space-y-4 flex justify-center flex-col">
-                    <h4 className="text-xl text-black font-medium">Our Location</h4>
-                    <h2 className="text-4xl font-bold text-gray-800">Connecting Near and Far</h2>
-                    <h3 className="text-xl font-medium text-gray-800">Headquaters</h3>
+                    <h4 className="text-xl text-black font-medium">{data.locationHeading}</h4>
+                    <h2 className="text-4xl font-bold text-gray-800">{data.locationSubHeading}</h2>
+                    <h3 className="text-xl font-medium text-gray-800">{data.locationName}</h3>
 
                     <div className="text-gray-600">
-                        <p>kinzix.com</p>
-                        <p>Hazaribagh,Jharkhand</p>
-                        <p>Dr Zakir Hussain Road</p>
-                        <p>India</p>
+                        {data.locationDetails?.map((line, i) => <p key={i}>{line}</p>)}
                     </div>
                 </div>
-
-
             </section>
+
             {/* FAQ Section */}
             <section className="lg:px-[150px] px-10 md:px-20 py-16 bg-white grid grid-cols-1 md:grid-cols-2 gap-12">
                 {/* Left - Email Subscribe */}
                 <div className="space-y-4">
                     <h4 className=" text-black text-2xl font-medium">FAQ</h4>
-                    <h2 className="text-5xl font-bold text-black">Do you have any questions for us?</h2>
-                    <p className="text-gray-600 text-sm">
-                        If there are questions you want to ask, we will answer all your questions.
-                    </p>
+                    <h2 className="text-5xl font-bold text-black">{data.faqHeading}</h2>
+                    <p className="text-gray-600 text-sm">{data.faqSubText}</p>
                     <div className="flex items-center gap-2">
                         <input
                             type="email"
-                            placeholder="Enter your email"
+                            placeholder={data.subscribeCTA}
                             className="px-4 py-4 border text-black outline-none border-gray-300 rounded-full text-sm w-full max-w-xs"
                         />
-                        <button className="bg-blue-600 w-[10em] text-white px-4 py-4  rounded-full text-sm cursor-pointer transition-all hover:scale-110">
+                        <button className="bg-blue-600 w-[10em] text-white px-4 py-4 rounded-full text-sm cursor-pointer transition-all hover:scale-110">
                             Submit
                         </button>
                     </div>
@@ -117,76 +125,19 @@ function page() {
                         collapsible
                         className="w-full text-black transition-all"
                     >
-                        <AccordionItem value="item-1">
-                            <AccordionTrigger><span className='text-2xl font-medium'>What services does Kinzix Innovation offer?</span></AccordionTrigger>
-                            <AccordionContent className="flex flex-col gap-4 text-black text-balance">
-                                <p>
-                                    Kinzix specializes in building responsive websites, scalable mobile apps, and powerful custom software. We also provide tech consulting, business automation, and AI-powered solutions tailored to help your brand grow in the digital space.
-                                </p>
-                            </AccordionContent>
-                        </AccordionItem>
-                        <AccordionItem value="item-2">
-                            <AccordionTrigger><span className='text-2xl font-medium'>How is Kinzix different from other software companies?</span></AccordionTrigger>
-                            <AccordionContent className="flex flex-col gap-4 text-black text-balance">
-                                <p>
-                                    Unlike typical agencies, Kinzix combines smart design with strong development. We focus on performance, speed, and scalability while ensuring each solution aligns with your business goals. Every project is built with strategy and future growth in mind.
-                                </p>
-                            </AccordionContent>
-                        </AccordionItem>
-                        <AccordionItem value="item-3">
-                            <AccordionTrigger><span className='text-2xl font-medium'> Can Kinzix handle both small startups and large enterprises?</span></AccordionTrigger>
-                            <AccordionContent className="flex flex-col gap-4 text-black text-balance">
-                                <p>
-                                    Absolutely. Whether you're a startup looking to launch fast or a large business aiming to scale, Kinzix adapts to your needs with flexible solutions and personalized support every step of the way.
-                                </p>
-
-                            </AccordionContent>
-                        </AccordionItem>
-                        <AccordionItem value="item-4">
-                            <AccordionTrigger><span className='text-2xl font-medium'>What industries do you work with?</span></AccordionTrigger>
-                            <AccordionContent className="flex flex-col gap-4 text-black text-balance">
-                                <p>
-                                    We work across a wide range of industries—including healthcare, eCommerce, education, finance, and startups. No matter your field, Kinzix delivers customized digital solutions that fit your business model and goals.
-                                </p>
-
-                            </AccordionContent>
-                        </AccordionItem>
-
-
-                        {/* <AccordionItem value="item-2">
-                            <AccordionTrigger>Shipping Details</AccordionTrigger>
-                            <AccordionContent className="flex flex-col gap-4 text-black text-balance">
-                                <p>
-                                    We offer worldwide shipping through trusted courier partners.
-                                    Standard delivery takes 3-5 business days, while express shipping
-                                    ensures delivery within 1-2 business days.
-                                </p>
-                                <p>
-                                    All orders are carefully packaged and fully insured. Track your
-                                    shipment in real-time through our dedicated tracking portal.
-                                </p>
-                            </AccordionContent>
-                        </AccordionItem>
-                        <AccordionItem value="item-3">
-                            <AccordionTrigger>Return Policy</AccordionTrigger>
-                            <AccordionContent className="flex flex-col gap-4 text-black text-balance">
-                                <p>
-                                    We stand behind our products with a comprehensive 30-day return
-                                    policy. If you&apos;re not completely satisfied, simply return the
-                                    item in its original condition.
-                                </p>
-                                <p>
-                                    Our hassle-free return process includes free return shipping and
-                                    full refunds processed within 48 hours of receiving the returned
-                                    item.
-                                </p>
-                            </AccordionContent>
-                        </AccordionItem> */}
+                        {data.faqList?.map((item, index) => (
+                            <AccordionItem value={`item-${index}`} key={index}>
+                                <AccordionTrigger><span className='text-2xl font-medium'>{item.question}</span></AccordionTrigger>
+                                <AccordionContent className="flex flex-col gap-4 text-black text-balance">
+                                    <p>{item.answer}</p>
+                                </AccordionContent>
+                            </AccordionItem>
+                        ))}
                     </Accordion>
                 </div>
             </section>
         </div>
-    )
+    );
 }
 
-export default page
+export default Page;

@@ -32,44 +32,7 @@ const logos = [
   '/hd-r.png',
 ];
 
-const processSteps = [
-  {
-    number: "01",
-    title: "Consultation",
-    content:
-      "During the initial consultation, we will discuss your business goals and objectives, target audience, and current marketing efforts. This will allow us to understand your needs and tailor our services to best fit your requirements.",
-  },
-  {
-    number: "02",
-    title: "Research and Strategy Development",
-    content:
-      "We dive deep into your industry, competitors, and audience to craft a custom digital strategy focused on driving measurable results.",
-  },
-  {
-    number: "03",
-    title: "Implementation",
-    content:
-      "Once the strategy is finalized, we begin execution — setting up campaigns, optimizing your website, and aligning all creative elements for launch.",
-  },
-  {
-    number: "04",
-    title: "Monitoring and Optimization",
-    content:
-      "We continuously track performance using analytics and real-time data, refining tactics to improve ROI and overall efficiency.",
-  },
-  {
-    number: "05",
-    title: "Reporting and Communication",
-    content:
-      "You’ll receive detailed reports and insights on a regular basis, with full transparency and open lines of communication at every step.",
-  },
-  {
-    number: "06",
-    title: "Continual Improvement",
-    content:
-      "We don’t stop at success. We constantly test, iterate, and evolve your campaigns to stay ahead of trends and ensure long-term growth.",
-  },
-];
+
 
 import { VelocityScroll } from "@/components/magicui/scroll-based-velocity";
 import TeamSection from './Teams';
@@ -79,10 +42,13 @@ import { FollowingPointerDemo } from './components/ProjectContainer';
 export const dynamic = 'force-dynamic';
 
 const heroQuery = '*[_type == "Hero"][0]';
-const projectQuery = '*[_type == "work_sec"][0]';
+const projectQuery = `*[_type == "work_sec"][0]`;
 const worksQuery = '*[_type == "cs_studies"][0]';
 const designSubscriptionQuery = '*[_type == "working_process"][0]';
-const testimonialQuery = '*[_type == "our_projects"][0]';
+const testimonialQuery = `*[_type == "our_projects"][0]{
+  ...,
+  founder->{name, image, position,company}
+}`;
 
 export default function Home() {
   const marqueeRef = useRef(null);
@@ -108,6 +74,18 @@ export default function Home() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
+  const [data, setData] = useState(null);
+  const [industriesData, setIndustriesData] = useState(null);
+  useEffect(() => {
+    client
+      .fetch(`*[_type == "industriesSection"][0]`)
+      .then(setIndustriesData)
+      .catch(console.error);
+    client
+      .fetch(`*[_type == "technologiesSection"][0]`)
+      .then(setData)
+      .catch(console.error);
+  }, []);
 
   const mailtoLink = `mailto:info@kinzix.com?subject=${encodeURIComponent(
     `Message from ${name || "No Name"} (${email || "No Email"})`
@@ -135,6 +113,7 @@ export default function Home() {
 
         setHero(heroData);
         setProjects(projectData);
+        console.log('query', testimonialData)
         setWorks(worksData.case_studies);
         setDesignSubscription(designData);
         setTestimonial(testimonialData);
@@ -286,96 +265,63 @@ export default function Home() {
       {/* ind */}
       <section id="industries" className="w-full mt-[116px] py-20 bg-[#dcbbfe] px-4 sm:px-8 md:px-12 lg:px-[150px]">
         <div className="max-w-7xl mx-auto">
-          {/* Header */}
-          {/* <div className="text-center mb-12">
-            <span className="text-sm font-medium uppercase text-black tracking-wider">Industries</span>
-            <h2 className="text-3xl md:text-4xl font-bold text-black mt-2">
-              Tailored Software Solutions for Every Industry
-            </h2>
-            <p className="mt-4 text-black max-w-2xl mx-auto text-sm md:text-base">
-              At Kinzix, we deliver intelligent and adaptive software crafted to meet the unique demands of your industry.
-            </p>
-          </div> */}
           <div className=" w-max justify-center lg:justify-normal mx-auto mb-10 flex lg:flex-row flex-col gap-10 items-center mr-0 ml-0 ">
             <h2 className="text-white font-medium  flex items-center justify-center text-4xl lg:text-[40px] w-fit h-[51px] bg-[#FE332F] whitespace-nowrap px-1.5">
-              Industries
+              {industriesData?.heading}
             </h2>
-            <p className="text-black w-[500px] h-[46px] text-center   lg:text-left text-2xl hidden lg:block">
+            {/* <p className="text-black w-[500px] h-[46px] text-center lg:text-left text-2xl hidden lg:block">
               At Kinzix, we build smart, adaptive software tailored to your industry’s needs.
-            </p>
+            </p> */}
           </div>
-          {/* Services Grid */}
+
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {[
-              'E-Commerce',
-              'Healthcare',
-              'Education',
-              'Real Estate',
-              'Travel & Tourism',
-              'NGOs',
-            ].map((service, i) => (
-              <div
-                key={i}
-                data-aos="zoom-out-up"
-                className="bg-[#ff312f] z-30 transition-all cursor-pointer border-[#191A23] border-[0.9px] border-b-[7px] hover:scale-105 p-6 "
-              >
-                <div className='bg-white w-fit h-fit p-2 rounded-lg'>
-                  <h3 className="text-3xl font-semibold text-black">{service}</h3>
+            {industriesData?.industries.map((item, i) => {
+              const industry = item.industry || item;
+              return (
+                <div
+                  key={i}
+                  data-aos="zoom-out-up"
+                  className="bg-[#ff312f] z-30 transition-all cursor-pointer border-[#191A23] border-[0.9px] border-b-[7px] hover:scale-105 p-6 "
+                >
+                  <div className="bg-white w-fit h-fit p-2 rounded-lg">
+                    <h3 className="text-3xl font-semibold text-black">{industry}</h3>
+                  </div>
                 </div>
-                {/* <div className='bg-white w-fit h-fit'>
-                  <p className="text-gray-400 text-sm mt-2">
-                    Empowering growth with scalable digital solutions tailored for the {service.toLowerCase()} sector.
-                  </p>
-                </div> */}
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>
- 
+
       {/* techno */}
       <section id="technologies" className="w-full py-20 bg-[#fff] px-4 sm:px-8 md:px-12 lg:px-[150px]">
         <div className=" w-max justify-center lg:justify-normal mx-auto mb-10 flex lg:flex-row flex-col gap-10 items-center mr-0 ml-0 ">
           <h2 className="text-white font-medium  flex items-center justify-center text-4xl lg:text-[40px] w-fit h-[51px] bg-[#FE332F] whitespace-nowrap px-1.5">
-            Technologies
+            {data?.heading}
           </h2>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-          {[
-            'React Native',
-            'React.js',
-            'Next JS',
-            'Node.js',
-            'Flutter',
-            'Python',
-            'PHP',
-            'WordPress',
-            'Shopify',
-            'FIGMA',
-            'MONGO DB',
-            'Arduino Dev',
-          ].map((service, i, arr) => {
-            const isLastRow = i >= arr.length - (arr.length % 4 || 4); // handles last row detection based on 4 cols
+          {data?.technologies.map((item, i, arr) => {
+            const tech = item.tech || item;
+            const isLastRow = i >= arr.length - (arr.length % 4 || 4);
             const isLastCol = (i + 1) % 4 === 0;
 
             return (
               <div
                 key={i}
                 className={`bg-[#f1f1f1]   p-6 transition-all z-30 items-center justify-center flex cursor-pointer  duration-300 hover:scale-105
-          ${!isLastCol ? 'lg:border-r-[0.9px] lg:border-[#000]' : ''}
-          ${!isLastRow ? 'lg:border-b-[0.9px] lg:border-[#000]' : ''}
-        `}
+                ${!isLastCol ? 'lg:border-r-[0.9px] lg:border-[#000]' : ''}
+                ${!isLastRow ? 'lg:border-b-[0.9px] lg:border-[#000]' : ''}
+              `}
               >
                 <div className="bg-white w-fit h-fit p-2 rounded-lg items-center flex">
-                  <h3 className="text-2xl font-semibold text-black">{service}</h3>
+                  <h3 className="text-2xl font-semibold text-black">{tech}</h3>
                 </div>
               </div>
             );
           })}
         </div>
-
       </section>
-
 
 
       {/* <section></section> */}

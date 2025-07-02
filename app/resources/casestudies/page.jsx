@@ -1,48 +1,33 @@
-// case-studies/page.jsx
 "use client";
 
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
+import { client } from "@/lib/sanity";
+import { urlFor } from "@/lib/imageUrl";
 
-const caseStudies = [
-    {
-        title: "How Kinzix Helped a Startup Scale to 10K Users",
-        description:
-            "A behind-the-scenes look at building a scalable SaaS platform from scratch.",
-        slug: "startup-scale",
-        thumbnail: "",
-    },
-    {
-        title: "Revamping UX for a Fintech Brand in 3 Weeks",
-        description:
-            "How we delivered a full UX redesign and build under tight deadlines.",
-        slug: "fintech-ux",
-        thumbnail: "",
-    },
-    {
-        title: "Improving Accessibility for a Global Education App",
-        description:
-            "Designing inclusive features and improving global reach across devices.",
-        slug: "education-accessibility",
-        thumbnail: "",
-    },
-    {
-        title: "Modernizing Legacy Infrastructure for a Bank",
-        description:
-            "We transformed slow backend systems into scalable, modern microservices.",
-        slug: "legacy-to-modern",
-        thumbnail: "",
-    },
-    {
-        title: "Building a Real-time Dashboard for IoT Devices",
-        description:
-            "Live data visualization and alert systems for thousands of connected sensors.",
-        slug: "iot-dashboard",
-        thumbnail: "",
-    },
-];
+export const dynamic = "force-dynamic";
 
 export default function CaseStudyPage() {
+    const [caseStudies, setCaseStudies] = useState([]);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const data = await client.fetch(`*[_type == "caseStudy"] | order(publishedAt desc) {
+                    title,
+                    "description": excerpt,
+                    "slug": slug.current,
+                    mainImage
+                }`);
+                setCaseStudies(data);
+            } catch (err) {
+                console.error("Failed to fetch case studies:", err);
+            }
+        };
+        fetchData();
+    }, []);
+
     return (
         <main className="w-full py-20 px-4 sm:px-8 md:px-12 lg:px-[150px] bg-white text-[#111]">
             <div className="mb-16">
@@ -62,9 +47,9 @@ export default function CaseStudyPage() {
                         viewport={{ once: true }}
                         transition={{ duration: 0.4, delay: index * 0.1 }}
                     >
-                        {item.thumbnail ? (
+                        {item.mainImage ? (
                             <img
-                                src={item.thumbnail}
+                                src={urlFor(item.mainImage).width(800).height(300).url()}
                                 alt={item.title}
                                 className="w-full h-48 object-cover rounded-xl mb-4"
                             />
@@ -76,7 +61,7 @@ export default function CaseStudyPage() {
                         <h3 className="text-2xl font-semibold text-[#111] mb-2">{item.title}</h3>
                         <p className="text-gray-600 mb-3 text-base">{item.description}</p>
                         <Link
-                            href={`/resources/${item.slug}`}
+                            href={`/resources/casestudies/${item.slug}`}
                             className="text-[#0070f3] hover:underline text-sm font-medium"
                         >
                             Read more →
