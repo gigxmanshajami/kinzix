@@ -45,7 +45,7 @@ const Howework = ({ data }) => {
     return (
         <div className="py-12 lg:px-10 px-[3px] ">
             {/* Header */}
-            <div className="max-w-6xl  mx-auto mb-10 flex lg:flex-row flex-col gap-10 px-[10px]" data-aos="zoom-in-up">
+            <div className=" mx-auto mb-10 flex lg:flex-row flex-col gap-10 px-[10px]" data-aos="zoom-in-up">
                 <h2 className="text-white font-medium items-center flex text-center justify-center text-[40px] w-[178px] h-[51px] bg-[#FE332F]">
                     Services
                 </h2>
@@ -55,12 +55,12 @@ const Howework = ({ data }) => {
             </div>
 
             <div ref={gridRef} className="w-full flex justify-center  h-fit">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-10 gap-y-6 max-w-[1240px]">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-10 gap-y-6 px-[10px] ">
                     {services.map((service, i) => (
                         <div
                             key={service._key || i}
                             data-aos="zoom-out-up"
-                            className="service-card border-[#191A23] border-[0.9px] border-b-[7px] border-solid  p-6 2xl:w-[545px] lg:w-[461px] h-[255px] flex flex-row justify-between w-[359px]"
+                            className="service-card border-[#191A23] border-[0.9px] border-b-[7px] border-solid  p-6   h-[255px] flex flex-row justify-between w-[-webkit-fill-available]"
                             style={{
                                 backgroundColor: service?.bg || '#fff',
                                 color: service?.text || '#000',

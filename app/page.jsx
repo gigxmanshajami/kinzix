@@ -301,7 +301,7 @@ export default function Home() {
       </section>
       {/* ind */}
       <section id="industries" className="w-full mt-[116px] py-20 bg-[#dcbbfe] px-4 sm:px-8 md:px-12 lg:px-[150px]">
-        <div className="max-w-7xl mx-auto">
+        <div className="mx-auto">
           <div className=" w-max justify-center lg:justify-normal mx-auto mb-10 flex lg:flex-row flex-col gap-10 items-center mr-0 ml-0 ">
             <h2 className="text-white font-medium  flex items-center justify-center text-4xl lg:text-[40px] w-fit h-[51px] bg-[#FE332F] whitespace-nowrap px-1.5">
               {industriesData?.heading}
