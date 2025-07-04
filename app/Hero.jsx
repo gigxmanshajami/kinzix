@@ -105,7 +105,7 @@ export default function Hero({ data }) {
                                     <Star color="#efca53" fill="#efca53" stroke="#efca53" className="hover:scale-125 cursor-pointer transition-opacity ease-in-out delay-700 duration-700" strokeWidth={0}  size={25}/>
                                 </div>
                                 <div>
-                                    <span className="text-[#4c4c4c] lg:text-md text-sm1">Trusted By Founders and Entrepreneurs</span>
+                                    <span className="text-[#4c4c4c] lg:text-md text-md">Trusted By Founders</span>
                                 </div>
                             </div>
                         </div>
