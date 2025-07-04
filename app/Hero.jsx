@@ -105,11 +105,11 @@ export default function Hero({ data }) {
                                     <Star color="#efca53" fill="#efca53" stroke="#efca53" className="hover:scale-125 cursor-pointer transition-opacity ease-in-out delay-700 duration-700" strokeWidth={0}  size={25}/>
                                 </div>
                                 <div>
-                                    <span className="text-[#4c4c4c] text-md">5.0 Based on 145 reviews</span>
+                                    <span className="text-[#4c4c4c] text-md">Trusted By Founders and Entrepreneurs</span>
                                 </div>
                             </div>
                         </div>
-                        <span className="text-sm text-center mt-5 text-[#0505058c]">Trusted By Founders and Entrepreneurs</span>
+                        {/* <span className="text-sm text-center mt-5 text-[#0505058c]"></span> */}
                     </div>
                     {/* <button className="text-white bg-[#191A23] rounded-[14px] font-normal ">
                         Book a consultation
