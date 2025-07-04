@@ -98,7 +98,7 @@ export const NavbarHome = () => {
           <div>
             <Link href="/contact">
               <button
-                className="w-[188px] h-[50px] hover:scale-125 cursor-pointer transition-all text-black items-center  border-[#191A23] border-[1.3px]"
+                className="w-[188px] h-[50px] hover:scale-125 cursor-pointer rounded-lg transition-all text-black items-center  border-[#191A23] border-[1.3px]"
               >
                 Get in touch
               </button>
@@ -120,7 +120,7 @@ export const NavbarHome = () => {
           </ul>
           <Link href="/contact" className="w-full h-[50px]" onClick={() => setHidenav(false)} >
             <button
-              className="w-full h-[50px] hover:scale-125 cursor-pointer transition-all text-black items-center  border-[#191A23] border-[1.3px]"
+              className="w-full  rounded-2xl h-[50px] hover:scale-125 cursor-pointer  transition-all text-black items-center  border-[#191A23] border-[1.3px]"
             >
               Get in touch
             </button>

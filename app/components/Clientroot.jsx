@@ -2,15 +2,21 @@
 import NextNProgress from 'nextjs-progressbar';
 import AOS from 'aos';
 import { useEffect } from 'react';
+import { usePathname } from 'next/navigation';
 import 'aos/dist/aos.css';
 import { NavbarHome } from "./Navbar";
 import { SmoothCursor } from "@/components/ui/smooth-cursor";
 import Footer from './Footer';
 
 export default function ClientRoot({ children }) {
+    const pathname = usePathname();
+
     useEffect(() => {
         AOS.init();
     }, []);
+
+    const isHome = pathname === '/';
+    const mainMargin = isHome ? '' : 'mt-[5em]';
 
     return (
         <>
@@ -27,7 +33,7 @@ export default function ClientRoot({ children }) {
                 </div>
 
                 {/* Page content area */}
-                <main className="flex-grow mt-[5em]"> {/* Adjust margin to offset fixed navbar */}
+                <main className={`flex-grow ${mainMargin}`}>
                     {children}
                 </main>
 

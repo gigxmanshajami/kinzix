@@ -46,7 +46,7 @@ const Howework = ({ data }) => {
         <div className="py-12 lg:px-10 px-[3px] ">
             {/* Header */}
             <div className=" mx-auto mb-10 flex lg:flex-row flex-col gap-10 px-[10px]" data-aos="zoom-in-up">
-                <h2 className="text-white font-medium items-center flex text-center justify-center text-[40px] w-[178px] h-[51px] bg-[#FE332F]">
+                <h2 className="text-white font-medium items-center flex text-center justify-center rounded-lg text-[40px] w-[178px] h-[51px] bg-[#FE332F]">
                     Services
                 </h2>
                 <p className="text-black lg:w-[580px] text-center text-[15px] lg:text-left h-[46px] w-fit hidden lg:block">
@@ -60,7 +60,7 @@ const Howework = ({ data }) => {
                         <div
                             key={service._key || i}
                             data-aos="zoom-out-up"
-                            className="service-card border-[#191A23] border-[0.9px] border-b-[7px] border-solid  p-6   h-[255px] flex flex-row justify-between w-[-webkit-fill-available]"
+                            className="service-card border-[#191A23] border-[0.9px] rounded-lg border-b-[7px] border-solid  p-6   h-[255px] flex flex-row justify-between w-[-webkit-fill-available]"
                             style={{
                                 backgroundColor: service?.bg || '#fff',
                                 color: service?.text || '#000',

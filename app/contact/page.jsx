@@ -8,7 +8,7 @@ import {
     AccordionTrigger,
 } from "@/components/ui/accordion";
 import { client } from "@/lib/sanity";
-
+import { Separator } from "@/components/ui/separator"
 export const dynamic = "force-dynamic";
 
 function Page() {
@@ -34,10 +34,22 @@ function Page() {
                     <p className="text-gray-600 text-md w-[62%]">
                         {data.introText}
                     </p>
-                    <div className="space-y-2">
-                        <p className="text-gray-800">{data.primaryEmail}</p>
-                        <p className="text-gray-800">{data.phone}</p>
-                        <a href={data.supportLink} className="text-blue-600 underline">Customer Support</a>
+                    <div className="flex flex-col w-fit gap-1.5" >
+                        <div className="space-y-2 flex lg:flex-row flex-col h-fit overflow-hidden gap-2.5">
+                            <div >
+                                <h2 className="text-md font-bold text-gray-800">Talk to us in India</h2>
+                                <a href={`tel:${data.phone}`}><p className="text-gray-800">{data.phone}</p>
+                                </a>
+                            </div>
+                            <div >
+                                <h2 className="text-md font-bold text-gray-800">Talk to us in Germany</h2>
+                                <a href={`tel:+49 1521 4990547`}> <p className="text-gray-800">+49 1521 4990547</p></a>
+                            </div>
+                        </div>
+                        <div className="flex items-center lg:justify-center ">
+                            <a href={`mailto:${data.primaryEmail}`}><p className="text-gray-800 ">{data.primaryEmail}</p>
+                            </a>
+                        </div>
                     </div>
 
                     <div className="text-sm text-gray-500 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -48,6 +60,7 @@ function Page() {
                             </div>
                         ))}
                     </div>
+
                 </div>
 
                 {/* Right - Form */}
@@ -62,8 +75,11 @@ function Page() {
                         <input type="tel" placeholder="Phone number" className="w-full px-4 py-2 border rounded-md text-black" />
                         <textarea placeholder="How can we help?" className="w-full px-4 py-2 border rounded-md text-black"></textarea>
                         <button
+                            disabled
                             type="submit"
-                            className="w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700"
+                            className="w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700
+                            disabled:cursor-not-allowed disabled:bg-gray-300  disabled:scale-100
+                            "
                         >
                             Submit
                         </button>
@@ -74,10 +90,10 @@ function Page() {
                         </p>
                     </form>
                 </div>
-            </section>
+            </section >
 
             {/* Location Map + Info */}
-            <section className="lg:px-[150px] px-10 md:px-20 py-16 bg-white grid grid-cols-1 md:grid-cols-2 gap-12">
+            < section className="lg:px-[150px] px-10 md:px-20 py-16 bg-white grid grid-cols-1 md:grid-cols-2 gap-12" >
                 <div>
                     <iframe
                         title="Kinzix Location"
@@ -97,12 +113,12 @@ function Page() {
                         {data.locationDetails?.map((line, i) => <p key={i}>{line}</p>)}
                     </div>
                 </div>
-            </section>
+            </section >
 
             {/* FAQ Section */}
-            <section className="lg:px-[150px] px-10 md:px-20 py-16 bg-white grid grid-cols-1 md:grid-cols-2 gap-12">
+            < section className="lg:px-[150px] px-10 md:px-20 py-16 bg-white grid grid-cols-1 md:grid-cols-2 gap-12" >
                 {/* Left - Email Subscribe */}
-                <div className="space-y-4">
+                < div className="space-y-4" >
                     <h4 className=" text-black text-2xl font-medium">FAQ</h4>
                     <h2 className="text-5xl font-bold text-black">{data.faqHeading}</h2>
                     <p className="text-gray-600 text-sm">{data.faqSubText}</p>
@@ -112,14 +128,14 @@ function Page() {
                             placeholder={data.subscribeCTA}
                             className="px-4 py-4 border text-black outline-none border-gray-300 rounded-full text-sm w-full max-w-xs"
                         />
-                        <button className="bg-blue-600 w-[10em] text-white px-4 py-4 rounded-full text-sm cursor-pointer transition-all hover:scale-110">
+                        <button disabled={true} className=" disabled:cursor-not-allowed disabled:bg-gray-300  disabled:scale-100  bg-blue-600 w-[10em] text-white px-4 py-4 rounded-full text-sm cursor-pointer transition-all hover:scale-110">
                             Submit
                         </button>
                     </div>
-                </div>
+                </div >
 
                 {/* Right - Accordion */}
-                <div>
+                < div >
                     <Accordion
                         type="single"
                         collapsible
@@ -134,9 +150,9 @@ function Page() {
                             </AccordionItem>
                         ))}
                     </Accordion>
-                </div>
-            </section>
-        </div>
+                </div >
+            </section >
+        </div >
     );
 }
 

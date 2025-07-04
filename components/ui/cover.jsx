@@ -5,6 +5,7 @@ import { useRef } from "react";
 import { cn } from "@/lib/utils";
 import { SparklesCore } from "@/components/ui/sparkles";
 
+
 export const Cover = ({
   children,
   className

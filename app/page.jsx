@@ -233,7 +233,7 @@ export default function Home() {
         <Hero data={hero} />
       </section>
       {/* marquee */}
-      <section>
+      <section >
         {/* <LogoMarquee /> */}
         {/* <Marquee /> */}
         <div className="marquee-wrapper">
@@ -256,7 +256,7 @@ export default function Home() {
 
       <section id="oup" className="lg:px-[150px] px-[16px] lg:h-screen h-fit mt-20" data-aos="zoom-in-up">
         <div className=" w-max  justify-normal mx-auto mb-10 flex lg:flex-row flex-col gap-10  mr-0 ml-0 ">
-          <h2 className="text-white font-medium  flex justify-center items-center text-4xl lg:text-[40px] w-fit h-[51px] bg-[#FE332F] whitespace-nowrap px-1.5">
+          <h2 className="text-white font-medium  flex justify-center items-center text-4xl lg:text-[40px] rounded-lg w-fit h-[51px] bg-[#FE332F] whitespace-nowrap px-1.5">
             {designSubscription?.mainHeading || "Process"}
           </h2>
           <p className="text-black w-[500px] h-[46px] text-center lg:text-left text-2xl hidden lg:block">
@@ -270,7 +270,7 @@ export default function Home() {
             return (
               <div key={step._key} data-aos="fade-up">
                 <div
-                  className={` border-t-[0.9px] border-b-[5px] border-x-[0.9px] border-solid border-[black] overflow-hidden transition-all duration-300 ${isOpen ? 'bg-[#FE332F] text-white' : 'bg-[#F2F2F2] text-black'
+                  className={` border-t-[0.9px] border-b-[5px] border-x-[0.9px] border-solid rounded-lg border-[black] overflow-hidden transition-all duration-300 ${isOpen ? 'bg-[#FE332F] text-white' : 'bg-[#F2F2F2] text-black'
                     }`}
                 >
                   <button
@@ -282,7 +282,7 @@ export default function Home() {
                       <span className="text-lg font-medium">{step.title}</span>
                     </div>
                     <div
-                      className={` border-[0.9px] border-solid border-black p-[3px] transition-colors duration-300 ${isOpen ? 'bg-[#fff] text-black' : 'bg-transparent text-black'
+                      className={` rounded-lg border-[0.9px] border-solid border-black p-[3px] transition-colors duration-300 ${isOpen ? 'bg-[#fff] text-black' : 'bg-transparent text-black'
                         }`}
                     >
                       {isOpen ? <Minus className="w-6 h-6" /> : <Plus className="w-6 h-6" />}
@@ -303,7 +303,7 @@ export default function Home() {
       <section id="industries" className="w-full mt-[116px] py-20 bg-[#dcbbfe] px-4 sm:px-8 md:px-12 lg:px-[150px]">
         <div className="mx-auto">
           <div className=" w-max justify-center lg:justify-normal mx-auto mb-10 flex lg:flex-row flex-col gap-10 items-center mr-0 ml-0 ">
-            <h2 className="text-white font-medium  flex items-center justify-center text-4xl lg:text-[40px] w-fit h-[51px] bg-[#FE332F] whitespace-nowrap px-1.5">
+            <h2 className="text-white font-medium  rounded-lg flex items-center justify-center text-4xl lg:text-[40px] w-fit h-[51px] bg-[#FE332F] whitespace-nowrap px-1.5">
               {industriesData?.heading}
             </h2>
             {/* <p className="text-black w-[500px] h-[46px] text-center lg:text-left text-2xl hidden lg:block">
@@ -318,7 +318,7 @@ export default function Home() {
                 <div
                   key={i}
                   data-aos="zoom-out-up"
-                  className="bg-[#ff312f] z-30 transition-all cursor-pointer border-[#191A23] border-[0.9px] border-b-[7px] hover:scale-105 p-6 "
+                  className="bg-[#ff312f] z-30 rounded-lg transition-all cursor-pointer border-[#191A23] border-[0.9px] border-b-[7px] hover:scale-105 p-6 "
                 >
                   <div className="bg-white w-fit h-fit p-2 rounded-lg">
                     <h3 className="text-3xl font-semibold text-black">{industry}</h3>
@@ -332,8 +332,8 @@ export default function Home() {
 
       {/* techno */}
       <section id="technologies" className="w-full py-20 bg-[#fff] px-4 sm:px-8 md:px-12 lg:px-[150px]">
-        <div className=" w-max justify-center lg:justify-normal mx-auto mb-10 flex lg:flex-row flex-col gap-10 items-center mr-0 ml-0 ">
-          <h2 className="text-white font-medium  flex items-center justify-center text-4xl lg:text-[40px] w-fit h-[51px] bg-[#FE332F] whitespace-nowrap px-1.5">
+        <div className=" w-max justify-center  lg:justify-normal mx-auto mb-10 flex lg:flex-row flex-col gap-10 items-center mr-0 ml-0 ">
+          <h2 className="text-white rounded-lg font-medium  flex items-center justify-center text-4xl lg:text-[40px] w-fit h-[51px] bg-[#FE332F] whitespace-nowrap px-1.5">
             {data?.heading}
           </h2>
         </div>
@@ -345,15 +345,17 @@ export default function Home() {
             const isLastCol = (i + 1) % 4 === 0;
 
             return (
-              <div
-                key={i}
-                className={`bg-[#f1f1f1] p-6 transition-all z-30 items-center justify-center flex cursor-pointer duration-300 hover:scale-105
-        ${!isLastCol ? 'lg:border-r-[0.9px] lg:border-[#000]' : ''}
+              <div>
+                <div
+                  key={i}
+                  className={`bg-[#f1f1f1]  p-6 transition-all z-30 items-center justify-center flex cursor-pointer duration-300 hover:scale-105
+        ${!isLastCol ? 'lg:border-r-[0.9px]  lg:border-[#000]' : ''}
         ${!isLastRow ? 'lg:border-b-[0.9px] lg:border-[#000]' : ''}
       `}
-              >
-                <div className="bg-white w-fit h-fit p-2 rounded-lg items-center flex">
-                  <h3 className="text-2xl font-semibold text-black">{tech}</h3>
+                >
+                  <div className="bg-white w-fit h-fit p-2 rounded-lg items-center flex">
+                    <h3 className="text-2xl font-semibold text-black">{tech}</h3>
+                  </div>
                 </div>
               </div>
             );
@@ -414,7 +416,7 @@ export default function Home() {
       <section id="cs" className="lg:px-[155px] py-20 px-[16px]  h-fit" data-aos="zoom-in-up">
         {/* heading */}
         <div className="lg:max-w-6xl w-full ml-0  mx-auto mb-10 flex flex-row gap-10 items-center mt-6">
-          <h2 className="text-white w-fit font-medium  items-center flex text-center justify-center text-[40px] px-1.5 h-[51px] bg-[#FE332F]">
+          <h2 className="text-white w-fit font-medium  rounded-lg items-center flex text-center justify-center text-[40px] px-1.5 h-[51px] bg-[#FE332F]">
             Case Studies
           </h2>
         </div>
@@ -422,7 +424,7 @@ export default function Home() {
         {/* content */}
         <div
           data-aos="fade-up"
-          className="w-full p-6 bg-[#0F0F15] text-white  grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-white/20 overflow-hidden"
+          className="w-full p-6 bg-[#0F0F15] text-white  rounded-lg grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-white/20 overflow-hidden"
         >
           {works.length > 0 ? (
             works.map((work) => (
@@ -472,7 +474,7 @@ export default function Home() {
 
         {/* Heading */}
         <div className="relative max-w-6xl mx-auto mb-10 flex flex-row gap-10 items-center z-10" >
-          <h2 className="text-white font-medium  flex items-center justify-center lg:text-[40px] w-fit h-[51px] bg-[#FE332F] whitespace-nowrap px-1.5 text-3xl ">
+          <h2 className="text-white font-medium  rounded-lg flex items-center justify-center lg:text-[40px] w-fit h-[51px] bg-[#FE332F] whitespace-nowrap px-1.5 text-3xl ">
             Schedule a meeting
           </h2>
         </div>
