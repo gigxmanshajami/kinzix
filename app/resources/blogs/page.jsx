@@ -16,7 +16,6 @@ export default function AllBlogsPage() {
             try {
                 const query = `*[_type == "blog"] | order(publishedAt desc)`;
                 const data = await client.fetch(query);
-                console.log(data);
                 setBlogs(data);
             } catch (error) {
                 console.error("Blog fetch error:", error);

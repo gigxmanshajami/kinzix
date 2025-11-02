@@ -31,7 +31,7 @@ export default function ClientRoot({ children }) {
                     <NavbarHome />
                 </div>
                 {/* Page content area */}
-                <main className={`grow ${mainMargin}`}>
+                <main className={`grow`}>
                     {children}
                 </main>
 
