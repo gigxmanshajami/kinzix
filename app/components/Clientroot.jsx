@@ -25,15 +25,13 @@ export default function ClientRoot({ children }) {
             <div className="min-h-screen flex flex-col">
                 {/* Sticky top navbar */}
                 <div
-                    className="lg:px-[91px] fixed z-[2000] bg-[#ffffff38] w-[100vw] h-fit top-0"
-                    style={{ backdropFilter: 'blur(10px)' }}
+                    className="fixed z-[2000] w-screen h-fit top-0"
                 >
                     <NextNProgress color="#000" startPosition={0.3} stopDelayMs={200} height={3} showOnShallow={true} />
                     <NavbarHome />
                 </div>
-
                 {/* Page content area */}
-                <main className={`flex-grow ${mainMargin}`}>
+                <main className={`grow ${mainMargin}`}>
                     {children}
                 </main>
 

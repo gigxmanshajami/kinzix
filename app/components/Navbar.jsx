@@ -2,15 +2,17 @@
 
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
-import kinzixImage from '@/public/kinzi-black.png';
-import { Menu, ChevronDown, Lightbulb } from 'lucide-react';
+import kinzixImage from '@/public/kinzix_white.png';
+import { Menu, X } from 'lucide-react';
 import { getCalApi } from '@calcom/embed-react';
 import { client } from '@/lib/sanity';
 import Link from 'next/link';
+import { motion, AnimatePresence } from 'framer-motion';
+
 export const NavbarHome = () => {
-  const [activeDropdown, setActiveDropdown] = useState(null);
   const [hidenav, setHidenav] = useState(false);
   const [navItems, setNavItems] = useState([]);
+
   useEffect(() => {
     if (hidenav) {
       document.body.classList.add('overflow-hidden');
@@ -18,6 +20,7 @@ export const NavbarHome = () => {
       document.body.classList.remove('overflow-hidden');
     }
   }, [hidenav]);
+
   const setNav = () => {
     setHidenav(!hidenav);
   };
@@ -37,10 +40,6 @@ export const NavbarHome = () => {
             items: cat.items?.map((subItem) => ({
               name: subItem.name,
               link: subItem.link === 'null' ? '#' : subItem.link,
-              icon:
-                subItem.icon === 'Lightbulb' ? (
-                  <Lightbulb color="#6b6b6b" size={27} strokeOpacity={0.8} />
-                ) : null,
             })) || [],
           })) || [],
         }));
@@ -62,73 +61,115 @@ export const NavbarHome = () => {
   }, []);
 
   return (
-    <div className="w-full">
-      <div className="flex bg-[#fff]  lg:bg-transparent  !border-b-[#000] !border-b-[1px] lg:!border-b-0  h-[5em] flex-row justify-between lg:pl-[50px] pr-[45px] items-center px-[20px]">
-        {/* Logo */}
-        <div>
-          <Link href={'/'}>
+    <nav
+      style={{
+        backdropFilter: 'blur(5px)',
+        WebkitBackdropFilter: 'blur(5px)',
+        backgroundColor: 'rrgb(0 0 0 / 9%)'
+      }}
+      className="w-full fixed right-0 left-0 top-0 border-b bg-black/10  border-white/10">
+      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+        <div className="flex items-center justify-between h-20">
+          {/* Logo */}
+          <Link href="/" className="relative z-50">
             <Image
               src={kinzixImage}
               alt="Kinzix"
-              className="object-contain lg:w-[120px] lg:h-[120px] pointer-events-none"
+              className="w-28 h-auto object-contain transition-transform hover:scale-105"
               width={120}
               height={120}
+              priority
             />
           </Link>
-        </div>
 
-        {/* Mobile Menu Icon */}
-        <div className="block lg:hidden">
-          <Menu size={24} color="black" strokeWidth={3} onClick={setNav} />
-        </div>
+          {/* Desktop Navigation */}
+          <div className="hidden lg:flex items-center gap-12">
+            <ul className="flex items-center gap-10">
+              {navItems.map((item, index) => (
+                <li key={index}>
+                  <Link
+                    href={item.link}
+                    className="text-white font-semibold text-[15px] tracking-wide hover:text-[#FE332F] transition-colors duration-300 relative group"
+                  >
+                    {item.name}
+                    <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#FE332F] group-hover:w-full transition-all duration-300"></span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
 
-        {/* Desktop Nav */}
-        <div className="hidden lg:flex flex-row justify-between items-center gap-10">
-          <ul className="flex flex-row gap-10 cursor-pointer">
-            {navItems.map((item, index) => (
-              <li
-                key={index}
-                className="text-black hover:underline transition-all"
-              >
-
-                <Link href={item.link} >{item.name}</Link>
-              </li>
-            ))}
-          </ul>
-          <div>
             <Link href="/contact">
-              <button
-                className="w-[188px] h-[50px] hover:scale-125 cursor-pointer rounded-lg transition-all text-black items-center  border-[#191A23] border-[1.3px]"
-              >
+              <button className="px-8 py-3 bg-white/5 text-white font-bold text-sm tracking-wide rounded-lg border border-white/20 hover:bg-[#FE332F] hover:border-[#FE332F] transition-all duration-300 hover:scale-105 backdrop-blur-sm">
                 Get in touch
               </button>
             </Link>
           </div>
+
+          {/* Mobile Menu Button */}
+          <button
+            onClick={setNav}
+            className="lg:hidden relative z-50 p-2 text-white hover:text-[#FE332F] transition-colors"
+            aria-label="Toggle menu"
+          >
+            {hidenav ? <X size={28} strokeWidth={2.5} /> : <Menu size={28} strokeWidth={2.5} />}
+          </button>
         </div>
       </div>
 
       {/* Mobile Menu */}
-      {hidenav && (
-        <div className={`items-baseline  gap-10 flex-col p-[28px] bg-white transform transition-transform duration-300  flex h-screen  ease-in-out ${hidenav ? 'translate-x-0' : '-translate-x-full'
-          }`}>
-          <ul className="flex flex-col gap-5 cursor-pointer w-min h-fit items-baseline  text-[29px] justify-start underline relative fonaget-medium">
-            {navItems.map((item, index) => (
-              <li key={index} className="text-black hover:underline transition-all">
-                <Link href={item.link} onClick={() => setHidenav(false)}>{item.name}</Link>
-              </li>
-            ))}
-          </ul>
-          <Link href="/contact" className="w-full h-[50px]" onClick={() => setHidenav(false)} >
-            <button
-              className="w-full  rounded-2xl h-[50px] hover:scale-125 cursor-pointer  transition-all text-black items-center  border-[#191A23] border-[1.3px]"
-            >
-              Get in touch
-            </button>
-          </Link>
+      <AnimatePresence>
+        {hidenav && (
+          <motion.div
+            initial={{ opacity: 0, x: '100%' }}
+            animate={{ opacity: 1, x: 0 }}
+          
+            exit={{ opacity: 0, x: '100%' }}
+            transition={{ duration: 0.3, ease: 'easeInOut' }}
+            className="lg:hidden "
+          >
+            <div className="flex flex-col  pt-28 px-8 pb-12  h-screen"
+         >
+              {/* Mobile Navigation Links */}
+              <ul className="flex flex-col gap-6 mb-12">
+                {navItems.map((item, index) => (
+                  <motion.li
+                    key={index}
+                    initial={{ opacity: 0, x: 50 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: index * 0.1 }}
+                  >
+                    <Link
+                      href={item.link}
+                      onClick={() => setHidenav(false)}
+                      className="text-white text-3xl font-bold tracking-tight hover:text-[#FE332F] transition-colors duration-300 block"
+                    >
+                      {item.name}
+                    </Link>
+                  </motion.li>
+                ))}
+              </ul>
 
+              {/* Mobile CTA Button */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: navItems.length * 0.1 }}
+                className="mt-auto"
+              >
+                <Link href="/contact" onClick={() => setHidenav(false)} className="block">
+                  <button className="w-full py-4 bg-gradient-to-r from-[#FE332F] to-purple-600 text-white font-bold text-lg rounded-xl hover:shadow-lg hover:shadow-[#FE332F]/50 transition-all duration-300 hover:scale-105">
+                    Get in touch
+                  </button>
+                </Link>
+              </motion.div>
 
-        </div>
-      )}
-    </div>
+              {/* Decorative Elements */}
+              <div className="absolute top-20 right-10 w-64 h-64 bg-[#FE332F]/20 rounded-full blur-3xl opacity-30 pointer-events-none"></div>
+              <div className="absolute bottom-32 left-10 w-48 h-48 bg-purple-600/20 rounded-full blur-3xl opacity-30 pointer-events-none"></div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </nav>
   );
 };
